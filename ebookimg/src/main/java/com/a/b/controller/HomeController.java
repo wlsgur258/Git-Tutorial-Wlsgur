@@ -312,12 +312,10 @@ public class HomeController {
 	public String cashupdo(HttpServletRequest request, Model model, HttpSession session) {
 		MDao dao = sqlSession.getMapper(MDao.class);
 		String bid = request.getParameter("bId");
-		long bcash = Long.parseLong(request.getParameter("bCash"));
 		Member member = dao.memberView(bid);
-		session.removeAttribute("joinVo");
-		dao.cashupdown(bid, bcash);
-		session.setAttribute("joinVo",member);
-		model.addAttribute("session", session);
+		long bcash = Long.parseLong(request.getParameter("bCash"));
+		long brecash = member.getbCash() + bcash;
+		dao.cashupdown(bid, brecash);
 		
 		return "redirect:main";
 	}
