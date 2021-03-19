@@ -14,15 +14,24 @@
 		String vo = (String)session.getAttribute("searchID");
 	if(vo == null){
 		%>
+		<h1 align="center">
 		입력하신 정보를 확인 후 다시 시도해 주세요.
+		</h1>
+		<h5 align="center">
+		<button class="btn btn-primary" onclick="location.href='idSearch'">ID/PW 찾기</button>
+		</h5>
 		<%
 	}else {
 		%>
 		<h1 align="center">
 		ID or PW : <%=vo %>
 		</h1>
+	<h5 align="center">
+		<button class="btn btn-primary" onclick="location.href='login'">로그인 화면으로</button>
+	</h5>
 		<%
 	}
 	%>
+	<p/>
 </body>
 </html>
