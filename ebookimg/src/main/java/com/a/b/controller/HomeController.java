@@ -158,18 +158,28 @@ public class HomeController {
 		model.addAttribute("request", request);
 		return "login/login";
 	}
-	@RequestMapping("/logindo")
-	public String logindo(HttpServletRequest request, Model model, HttpSession session) {
-		String bId = request.getParameter("id");
-		if(bId == null) {
-			return "memberjoin";
-		}else {
-		model.addAttribute("request", request);
-		model.addAttribute("session", session);
-		service = new LoginService();
-		service.execute(model);
-		return "redirect:main";
-		}
+	@RequestMapping(value="logindo", method=RequestMethod.POST)
+	public void memberLogin(@RequestParam("userId") String userId,
+							@RequestParam("userPwd") String userPwd,
+							HttpServletResponse response, HttpSession session,
+							Model model) throws IOException{
+		Member member = new Member() ;
+		member.setbId(userId);
+		member.setbPw(userPwd);
+		MDao dao = sqlSession.getMapper(MDao.class);
+		Member loginUser = dao.memberView(userId);
+			if(member.getbPw().equals(loginUser.getbPw())) {
+				model.addAttribute("request", loginUser);
+				session.setAttribute("id", userId);
+				session.setAttribute("pw", userPwd);
+				session.setAttribute("loginOk","ok");
+				session.setAttribute("joinVo", loginUser);
+				
+				model.addAttribute("session", session);
+				response.getWriter().print(true) ;
+			} else {
+				response.getWriter().print(false) ;
+			}
 	}
 	@RequestMapping("/idSearch")
 	public String idsearch(HttpServletRequest request, Model model) {
