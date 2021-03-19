@@ -611,7 +611,10 @@ MultipartFile uploadFile = multi.getFile("file");
 		}
 		
 		@RequestMapping("/rentaldo")
-			public String rentaldo(Model model, HttpServletRequest request, HttpSession session) {
+			public String rentaldo(Model model, 
+					HttpServletRequest request, 
+					HttpSession session) 
+					throws UnsupportedEncodingException {
 			
 			MDao dao = sqlSession.getMapper(MDao.class);
 			System.out.println("렌탈두내부시작");
@@ -625,28 +628,29 @@ MultipartFile uploadFile = multi.getFile("file");
 			String bBookname = request.getParameter("bBookname1");
 			System.out.println(bBookname);
 			
-			Member member = dao.memberView(bId);
-			
 			long coin = Integer.parseInt(request.getParameter("cash1"));
 			System.out.println(coin);
 			
 			if(coin >= 3) {
 				
 				EDao dao2 = sqlSession.getMapper(EDao.class);
-				dao2.rentalCashdown(bId);
+				dao2.rentalCashdown(bId);// 캐쉬 3 감소한다...
+				session.removeAttribute("cash"); //기존 "cash"세션 삭제
 			
-				int cash = (int) member.getbCash();
-				session.removeAttribute("cash");
-				session.setAttribute("cash", cash);
+				Member member = dao.memberView(bId); // 멤버dao 통해
+				int cash = (int) member.getbCash(); // 겟캐쉬 새롭게
+				session.setAttribute("cash", cash); // 새션에 새롭게
 			System.out.println(cash);
 			System.out.println("여까진오나");
 				dao2.ebookRental(bId, bBookno);
-				return "redirect:./list";
+				bBookname = URLEncoder.encode(bBookname, "UTF-8");
+				return "redirect:./ebookcontentview?bId="+bBookname;
 				//return "redirect:./ebookcontentview";
-			}else
-			
-			return "redirect:./list";
-			//return "redirect:./ebookcontentview?bId=bBookname";
+			} 
+			else
+				bBookname = URLEncoder.encode(bBookname, "UTF-8");
+				return "redirect:./ebookcontentview?bId="+bBookname;
+			}
 		}
 	
 	
