@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>책 목록</title>
+<title>회원  목록</title>
 
 <style>
 
@@ -31,36 +31,35 @@ text-align: center;
 	<%@ include file="adminpage.jsp"%>
 	
 	<div class= "container">
-		<h1> 도서 관리</h1>	
+		<h1> 회원 목록</h1>	
 		<hr>
 		<div align="right">
 		<a class = "btn btn-primary" href="Adminwrite_view">책추가</a>
 	</div>
 		<table class = "table table-striped">
 			<tr>
-				<th>번호</th>
-				<th>사진</th> 
-				<th>제목</th>
-				<th>소개</th>
-				<th>저자</th>
-				<th>카테고리</th>
-				<th>수정</th>
-				<th>삭제</th>
+				
+				<th>아이디</th> 
+				<th>패스워드</th>
+				<th>이름</th>
+				<th>성</th>
+				<th>생일</th>
+				<th>가입일</th>
+				
 				
 			</tr>
 		
-			<c:forEach items="${BookList}" var="BookList">
+			<c:forEach items="${ADmember}" var="ADmember">
 			<tr>	
-				<th><c:out value="${BookList.bBookno}"/></th>
-				<th>
-				<img src="<spring:url value ='./resources/ebook/${BookList.bUrl}'  />" height="50" > 		
-				</th>
-				<th><c:out value="${BookList.bBookname}"/></th>
-				<td><c:out value="${BookList.bContent}"/></td>
-				<td><c:out value="${BookList.bWriter}"/></td>
-				<td><c:out value="${BookList.bCategory}"/></td>	
-				<th><a class = "btn btn-primary" href="AdminContent?bBookno=${BookList.bBookno}">수정</a></td>	
-				<th><a class = "btn btn-primary" href="AdminDelete?bBookno=${BookList.bBookno}">삭제</a></td>
+					
+				<th><c:out value="${ADmember.bId}"/></th>
+				<td><c:out value="${ADmember.bPw}"/></td>
+				<td><c:out value="${ADmember.bName}"/></td>
+				<td><c:out value="${ADmember.bGender}"/></td>	
+				<td><c:out value="${ADmember.bBirthday}"/></td>
+				<td><c:out value="${ADmember.bJoindate}"/></td>
+				<%-- <th><a class = "btn btn-primary" href="AdminContent?bBookno=${BookList.bBookno}">수정</a></td>	
+				<th><a class = "btn btn-primary" href="AdminDelete?bBookno=${BookList.bBookno}">삭제</a></td> --%>
 				
 				
 				

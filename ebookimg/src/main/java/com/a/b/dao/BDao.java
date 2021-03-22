@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.a.b.dto.Ebook;
+import com.a.b.dto.Member;
 
 public interface BDao {
 
@@ -25,6 +26,9 @@ public ArrayList<Ebook> list();
 			final String bCategory);
 	
 	public Ebook contentview(long bBookno);
+	
+	
+	public ArrayList<Member> Memberlist();
 	
 	
 	
