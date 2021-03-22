@@ -185,27 +185,46 @@ public class HomeController {
 				response.getWriter().print(false) ;
 			}
 	}
-	@RequestMapping("/idSearch")
+	@RequestMapping(value="/idSearch")
 	public String idsearch(HttpServletRequest request, Model model) {
 		return "login/idsearch";
 	}
-	@RequestMapping(value="/idsearchdo")
-	public String idsearchdo(HttpServletRequest request, Model model, HttpSession session) {
+	@RequestMapping(value="/idsearchdo", method=RequestMethod.POST)
+	public void idsearchdo(@RequestParam("name") String name, @RequestParam("birthday") Date birthday,
+			HttpServletResponse response, HttpSession session, Model model) throws IOException {
 		MDao dao = sqlSession.getMapper(MDao.class);
-		String id = request.getParameter("bid");
-		String bName = request.getParameter("name");
-		Date bBirthday = Date.valueOf(request.getParameter("birthday"));
-		if(id != null) {
-			String pw = dao.passwordsearch(id, bName, bBirthday);
-			session.setAttribute("searchID", pw);
+		Member member = new Member();
+		member.setbName(name);
+		member.setbBirthday(birthday);
+		String searchID = dao.idsearch(name, birthday);
+		if(!searchID.equals(null)) {
+			session.setAttribute("searchID", searchID);
 			model.addAttribute("session", session);
+			response.getWriter().print(true) ;
 		}else {
-			String bid = dao.idsearch(bName, bBirthday);			
-			session.setAttribute("searchID", bid);
-			model.addAttribute("session", session);
+			response.getWriter().print(false) ;
 		}
-		
+	}
+	@RequestMapping(value="/id&pwsearch")
+	public String idpwsearch(HttpServletRequest request, Model model, HttpSession session) {
 		return "login/id&pwsearch";
+	}
+	@RequestMapping(value="/pwsearchdo", method=RequestMethod.POST)
+	public void pwsearchdo(@RequestParam("pname") String pname, @RequestParam("pbirthday") Date pbirthday,
+			@RequestParam("bid") String bid, HttpServletResponse response, HttpSession session, Model model) throws IOException {
+		MDao dao = sqlSession.getMapper(MDao.class);
+		Member member = new Member();
+		member.setbName(pname);
+		member.setbBirthday(pbirthday);
+		member.setbId(bid);
+		String searchPW = dao.passwordsearch(bid, pname, pbirthday);
+		if(!searchPW.equals(null)) {
+			session.setAttribute("searchID", searchPW);
+			model.addAttribute("session", session);
+			response.getWriter().print(true) ;
+		}else {
+			response.getWriter().print(false) ;
+		}
 	}
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpServletRequest request, HttpSession session) {
