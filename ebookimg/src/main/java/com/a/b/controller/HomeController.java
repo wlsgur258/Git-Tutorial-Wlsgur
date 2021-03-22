@@ -279,14 +279,18 @@ public class HomeController {
 		String bId = request.getParameter("bId");
 		String bPw = request.getParameter("password");
 		String bName = request.getParameter("name");
-		dao.memberModify(bPw, bName, bId);
-		session.removeAttribute("id");
-		session.removeAttribute("pw");
-		session.removeAttribute("loginOk");
-		session.removeAttribute("joinVo");
-		
-		return "redirect:login";
-	}
+		Member member = dao.memberView(bId);
+		if(bPw.equals(member.getbPw())) {
+			dao.memberModify(bPw, bName, bId);
+			session.removeAttribute("joinVo");
+			Member remember = dao.memberView(bId);
+			session.setAttribute("joinVo", remember);
+			return "redirect:memdata";
+		}else {
+			dao.memberModify(bPw, bName, bId);
+			session.invalidate();
+			return "redirect:login";
+		}
 	@RequestMapping("/memdelete")
 	public String memdelete(HttpServletRequest request, Model model, HttpSession session) {
 		model.addAttribute("request", request);
@@ -320,8 +324,10 @@ public class HomeController {
 		long bcash = Long.parseLong(request.getParameter("bCash"));
 		long brecash = member.getbCash() + bcash;
 		dao.cashupdown(bid, brecash);
-		
-		return "redirect:main";
+		session.removeAttribute("joinVo");
+		Member remember = dao.memberView(bid);
+		session.setAttribute("joinVo", remember);
+		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
 	public String bookSearch(HttpServletRequest request, Model model,HttpSession session) {
