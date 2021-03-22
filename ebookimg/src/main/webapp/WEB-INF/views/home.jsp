@@ -59,9 +59,9 @@
 				%></td>
 		</tr>
 		<tr height="50">
-			<td align="center"><h3><a href="list">도서 목록</a></h3></td>
-			<td align="center"><h3><a href="rentallist">읽은 책 목록</a></h3></td>
-			<td align="center"><h3><a href="rentalinglist">현재 대여 목록</a></h3></td>
+			<td align="center"><h3><a href="memberlist">도서 목록</a></h3></td>
+			<td align="center"><h3><a href="rentaillist">읽은 책 목록</a></h3></td>
+			<td align="center"><h3><a href="rentailinglist">현재 대여 목록</a></h3></td>
 			<td align="center"><h3><a href="">요청 게시판</a></h3></td>
 			<td align="center"><h3><a href="cashup">잔액확인/충전</a></h3>
 		</tr>
