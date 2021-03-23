@@ -67,7 +67,7 @@ import com.a.b.dto.RentalingList;
 public class HomeController {
 	
 	
-	@Autowired
+	@Autowired // ㅁㅁㅁ
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 		Constant.sqlSession = this.sqlSession;
