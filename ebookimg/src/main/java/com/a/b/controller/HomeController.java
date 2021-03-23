@@ -185,27 +185,46 @@ public class HomeController {
 				response.getWriter().print(false) ;
 			}
 	}
-	@RequestMapping("/idSearch")
+	@RequestMapping(value="/idSearch")
 	public String idsearch(HttpServletRequest request, Model model) {
 		return "login/idsearch";
 	}
-	@RequestMapping(value="/idsearchdo")
-	public String idsearchdo(HttpServletRequest request, Model model, HttpSession session) {
+	@RequestMapping(value="/idsearchdo", method=RequestMethod.POST)
+	public void idsearchdo(@RequestParam("name") String name, @RequestParam("birthday") Date birthday,
+			HttpServletResponse response, HttpSession session, Model model) throws IOException {
 		MDao dao = sqlSession.getMapper(MDao.class);
-		String id = request.getParameter("bid");
-		String bName = request.getParameter("name");
-		Date bBirthday = Date.valueOf(request.getParameter("birthday"));
-		if(id != null) {
-			String pw = dao.passwordsearch(id, bName, bBirthday);
-			session.setAttribute("searchID", pw);
+		Member member = new Member();
+		member.setbName(name);
+		member.setbBirthday(birthday);
+		String searchID = dao.idsearch(name, birthday);
+		if(!searchID.equals(null)) {
+			session.setAttribute("searchID", searchID);
 			model.addAttribute("session", session);
+			response.getWriter().print(true) ;
 		}else {
-			String bid = dao.idsearch(bName, bBirthday);			
-			session.setAttribute("searchID", bid);
-			model.addAttribute("session", session);
+			response.getWriter().print(false) ;
 		}
-		
+	}
+	@RequestMapping(value="/id&pwsearch")
+	public String idpwsearch(HttpServletRequest request, Model model, HttpSession session) {
 		return "login/id&pwsearch";
+	}
+	@RequestMapping(value="/pwsearchdo", method=RequestMethod.POST)
+	public void pwsearchdo(@RequestParam("pname") String pname, @RequestParam("pbirthday") Date pbirthday,
+			@RequestParam("bid") String bid, HttpServletResponse response, HttpSession session, Model model) throws IOException {
+		MDao dao = sqlSession.getMapper(MDao.class);
+		Member member = new Member();
+		member.setbName(pname);
+		member.setbBirthday(pbirthday);
+		member.setbId(bid);
+		String searchPW = dao.passwordsearch(bid, pname, pbirthday);
+		if(!searchPW.equals(null)) {
+			session.setAttribute("searchID", searchPW);
+			model.addAttribute("session", session);
+			response.getWriter().print(true) ;
+		}else {
+			response.getWriter().print(false) ;
+		}
 	}
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpServletRequest request, HttpSession session) {
@@ -279,14 +298,18 @@ public class HomeController {
 		String bId = request.getParameter("bId");
 		String bPw = request.getParameter("password");
 		String bName = request.getParameter("name");
-		dao.memberModify(bPw, bName, bId);
-		session.removeAttribute("id");
-		session.removeAttribute("pw");
-		session.removeAttribute("loginOk");
-		session.removeAttribute("joinVo");
-		
-		return "redirect:login";
-	}
+		Member member = dao.memberView(bId);
+		if(bPw.equals(member.getbPw())) {
+			dao.memberModify(bPw, bName, bId);
+			session.removeAttribute("joinVo");
+			Member remember = dao.memberView(bId);
+			session.setAttribute("joinVo", remember);
+			return "redirect:memdata";
+		}else {
+			dao.memberModify(bPw, bName, bId);
+			session.invalidate();
+			return "redirect:login";
+		}
 	@RequestMapping("/memdelete")
 	public String memdelete(HttpServletRequest request, Model model, HttpSession session) {
 		model.addAttribute("request", request);
@@ -320,8 +343,10 @@ public class HomeController {
 		long bcash = Long.parseLong(request.getParameter("bCash"));
 		long brecash = member.getbCash() + bcash;
 		dao.cashupdown(bid, brecash);
-		
-		return "redirect:main";
+		session.removeAttribute("joinVo");
+		Member remember = dao.memberView(bid);
+		session.setAttribute("joinVo", remember);
+		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
 	public String bookSearch(HttpServletRequest request, Model model,HttpSession session) {
