@@ -63,7 +63,7 @@ import com.a.b.dto.RentalingList;
 /**
  * Handles requests for the application home page.
  */
-@Controller
+@Controller //홈 컨트롤러
 public class HomeController {
 	
 	
