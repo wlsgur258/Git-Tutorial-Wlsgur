@@ -684,12 +684,12 @@ MultipartFile uploadFile = multi.getFile("file");
 			System.out.println("여까진오나");
 				dao2.ebookRental(bId, bBookno);
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
-				return "redirect:./ebookcontentview?bId="+bBookname;
+				return "redirect:./ebookcontentview?bId="+bBookname+"&Ryes="+"Ryes";
 				//return "redirect:./ebookcontentview";
 			} 
 			else
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
-				return "redirect:./ebookcontentview?bId="+bBookname;
+				return "redirect:./ebookcontentview?bId="+bBookname+"&Rno="+"Rno";
 			}
 		}
 	
