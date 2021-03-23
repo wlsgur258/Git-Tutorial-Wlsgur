@@ -309,6 +309,7 @@ public class HomeController {
 			dao.memberModify(bPw, bName, bId);
 			session.invalidate();
 			return "redirect:login";
+			}
 		}
 	@RequestMapping("/memdelete")
 	public String memdelete(HttpServletRequest request, Model model, HttpSession session) {
