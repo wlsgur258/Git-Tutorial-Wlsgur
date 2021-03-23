@@ -62,7 +62,7 @@ import com.a.b.dto.RentalingList;
 /**
  * Handles requests for the application home page.
  */
-@Controller
+@Controller // css 적용 이후 대여시 팝업창 활성화 적용 및 코인충전 
 public class HomeController {
 	
 	
