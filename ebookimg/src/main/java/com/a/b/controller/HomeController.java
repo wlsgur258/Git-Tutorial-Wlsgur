@@ -167,17 +167,24 @@ public class HomeController {
 							@RequestParam("userPwd") String userPwd,
 							HttpServletResponse response, HttpSession session,
 							Model model) throws IOException{
+		
+		MDao dao = sqlSession.getMapper(MDao.class);
 		Member member = new Member() ;
 		member.setbId(userId);
 		member.setbPw(userPwd);
-		MDao dao = sqlSession.getMapper(MDao.class);
+		
+		
 		Member loginUser = dao.memberView(userId);
 			if(member.getbPw().equals(loginUser.getbPw())) {
+				
+				int cash = (int) loginUser.getbCash();
+				
 				model.addAttribute("request", loginUser);
 				session.setAttribute("id", userId);
 				session.setAttribute("pw", userPwd);
 				session.setAttribute("loginOk","ok");
 				session.setAttribute("joinVo", loginUser);
+				session.setAttribute("cash", cash);
 				
 				model.addAttribute("session", session);
 				response.getWriter().print(true) ;
