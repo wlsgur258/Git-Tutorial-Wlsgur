@@ -41,7 +41,6 @@ import com.a.b.service.RentalListService;
 import com.a.b.service.AdminBListService;
 import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
-import com.a.b.service.AdminMemberListService;
 import com.a.b.service.AdminModifyService;
 import com.a.b.service.AdminWrite;
 import com.a.b.service.BoardContentService;
@@ -63,11 +62,11 @@ import com.a.b.dto.RentalingList;
 /**
  * Handles requests for the application home page.
  */
-@Controller //홈 컨트롤러 수정 깃허브홈페이지에서 하고
+@Controller
 public class HomeController {
 	
 	
-	@Autowired // ㅁㅁㅁㅁㅁㅁㅁ123
+	@Autowired
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 		Constant.sqlSession = this.sqlSession;
@@ -167,24 +166,17 @@ public class HomeController {
 							@RequestParam("userPwd") String userPwd,
 							HttpServletResponse response, HttpSession session,
 							Model model) throws IOException{
-		
-		MDao dao = sqlSession.getMapper(MDao.class);
 		Member member = new Member() ;
 		member.setbId(userId);
 		member.setbPw(userPwd);
-		
-		
+		MDao dao = sqlSession.getMapper(MDao.class);
 		Member loginUser = dao.memberView(userId);
 			if(member.getbPw().equals(loginUser.getbPw())) {
-				
-				int cash = (int) loginUser.getbCash();
-				
 				model.addAttribute("request", loginUser);
 				session.setAttribute("id", userId);
 				session.setAttribute("pw", userPwd);
 				session.setAttribute("loginOk","ok");
 				session.setAttribute("joinVo", loginUser);
-				session.setAttribute("cash", cash);
 				
 				model.addAttribute("session", session);
 				response.getWriter().print(true) ;
@@ -316,8 +308,8 @@ public class HomeController {
 			dao.memberModify(bPw, bName, bId);
 			session.invalidate();
 			return "redirect:login";
-			}
 		}
+	}
 	@RequestMapping("/memdelete")
 	public String memdelete(HttpServletRequest request, Model model, HttpSession session) {
 		model.addAttribute("request", request);
@@ -340,7 +332,7 @@ public class HomeController {
 	
 	
 	@RequestMapping("/cashup")
-	public String cashup(HttpServletRequest request, Model model) {
+	public String cashup(HttpServletRequest request, Model model, HttpSession session) {
 		return "cashup";
 	}
 	@RequestMapping("/cashupdo")
@@ -438,9 +430,7 @@ MultipartFile uploadFile = multi.getFile("file");
 			System.out.println(fileName+"파일네임이다");
 				
 			if(!uploadFile.isEmpty()) {
-				String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
-				System.out.println(Realpath);
-				File file = new File(Realpath, uploadFile.getOriginalFilename());
+				File file = new File("J:/springworkspace/ebookimg/src/main/webapp/resources/img/", uploadFile.getOriginalFilename());
 				
 				try {
 					uploadFile.transferTo(file);
@@ -486,7 +476,9 @@ MultipartFile uploadFile = multi.getFile("file");
 			BDao dao = sqlSession.getMapper(BDao.class);
 			
 			
+			System.out.println("아래1"+bUrl);
 			
+			System.out.println("아래2"+bContent);
 			
 			
 			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
@@ -565,19 +557,6 @@ MultipartFile uploadFile = multi.getFile("file");
 			service.execute(model);
 			return "./admin/Admincontent_view";
 		}
-		
-		
-		
-		@RequestMapping("/AdminMemberList")
-		public String AdminMemberList(Model model) {
-			
-		service = new AdminMemberListService();
-		service.execute(model);
-		return "./admin/AdminMemberView";
-		}
-		
-		
-		
 	
 	///// ebook 리스트게시판
 		
@@ -692,15 +671,14 @@ MultipartFile uploadFile = multi.getFile("file");
 			System.out.println("여까진오나");
 				dao2.ebookRental(bId, bBookno);
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
-				return "redirect:./ebookcontentview?bId="+bBookname+"&Ryes="+"Ryes";
+				return "redirect:./ebookcontentview?bId="+bBookname;
 				//return "redirect:./ebookcontentview";
 			} 
 			else
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
-				return "redirect:./ebookcontentview?bId="+bBookname+"&Rno="+"Rno";
+				return "redirect:./ebookcontentview?bId="+bBookname;
 			}
 		}
 	
 	
 	
-

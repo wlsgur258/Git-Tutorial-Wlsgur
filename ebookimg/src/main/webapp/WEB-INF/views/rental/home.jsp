@@ -59,11 +59,27 @@
 				%></td>
 		</tr>
 		<tr height="50">
-			<td align="center"><h3><a href="list">도서 목록</a></h3></td>
-			<td align="center"><h3><a href="rentallist">읽은 책 목록</a></h3></td>
-			<td align="center"><h3><a href="rentalinglist">현재 대여 목록</a></h3></td>
-			<td align="center"><h3><a href="">요청 게시판</a></h3></td>
-			<td align="center"><h3><a href="cashup">잔액확인/충전</a></h3>
+		<td>
+			<ul id="nav">
+			<li><h3><a href="list">도서 목록</a></h3></li>
+				<ul>
+					<li><a href="">일반</a>
+					<li><a href="">로맨스/판타지</a>
+				</ul>
+			<li><h3><a href="rentallist">대여 목록</a></h3></li>
+				<ul>
+					<li><a href="">총 대여 목록</a>
+					<li><a href="">현재 대여 목록</a>
+				</ul>
+			<li><h3><a href="">게시판</a></h3></li>
+				<ul>
+					<li><a href="">자유 게시판</a>
+					<li><a href="">요청 게시판</a>
+					<li><a href="">내 글 확인</a>
+				</ul>
+			<li><h3><a href="cashup">잔액확인/충전</a></h3></li>
+			</ul>
+		</td>
 		</tr>
 </table>
 </body>

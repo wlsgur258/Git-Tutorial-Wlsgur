@@ -7,31 +7,42 @@
 <head>
 <meta charset="UTF-8">
 <title>도서 관리</title>
+<link href="/css/main_css.css" rel="stylesheet" type="text/css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+<script src="/script/jquery-3.js"></script>
 <style>
 .body {
 	background-img: url('/resources/img/body.png');
 }
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	padding: 0;
+	text-align: center;
+}
+
 </style>
 </head>
 <body class="body">
+	<div id="__next">
+	</div>
+	<header>
 	<%@include file="home.jsp"%>
-	<form action="booksearch" method="post" align="center">
-		<select name="searchType">
-			<option value="all">전체</option>
-			<option value="Bookname">제목</option>
-			<option value="Publisher">출판사</option>
-			<option value="Writer">저자</option>
-			<option value="Category">카테고리</option>
-		</select>
-		<input type="text" name="search" size="55%">
-		<input type="submit" value="검색">
-	</form>
-	<p/>
-		<%@include file="list.jsp" %>
-	<p/>
-	<center>
-	<img style="width=100%;height=50%;object-fit:contain;" src="<spring:url value ='/resources/img/a.jpg'/>" alt="메인이미지"> 
-	</center>
+	</header>
+	<main>
+		<div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="2000">
+			<div class="cycle-pager"></div>
+			<img src="<spring:url value ='/resources/img/LOGO1.png'/>" alt="banner1"> 
+			<img src="<spring:url value ='/resources/img/LOGO.png'/>" alt="banner2"> 
+			<img src="" alt="banner3"> 
+		</div>
+	</main>
+	<div class="footer">
 	<%@include file="bottom.jsp"%>
+	</div>
 </body>
 </html>

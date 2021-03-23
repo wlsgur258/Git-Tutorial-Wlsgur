@@ -12,8 +12,10 @@
 		<%@include file="../home.jsp"%>
 <div class="wrapper">
 <h1 align="center">로그인</h1>
+		<section>
+		</section>
 <form id="loginFrm" method="post">
-<table align="center" id="loginTable">
+<table align="center">
 	<tr>
 		<th><div id="buttonB1">아이디</div></th>
 		<td><input type="text" id="userId" name="userId" class="loginInput"></td>

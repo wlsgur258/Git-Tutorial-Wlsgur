@@ -1,4 +1,3 @@
-<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.a.b.dto.*"%> 
@@ -13,26 +12,9 @@
 <title>게시글작성</title>
 </head>
 <body>
-
-<% 
-
-String vo = (String)session.getAttribute("id");
-
-
-%>
-
-
-	<%-- <% if (vo=="admin"){ %>
-	<script>
-		alert('관리자 권환없음');
-		document.location.href="main";
-	</script>
-	<%}%> --%>
-
-
-
-
-	
+	<%
+	Member vo = (Member)session.getAttribute("joinVo");
+	%>
 	<div class="container">
 		<h1 align="center">책추가하기</h1>
 		<div align="right">
@@ -74,7 +56,7 @@ String vo = (String)session.getAttribute("id");
 						size="50"></td>
 				</tr>		
 				<tr>
-					<td>카테고리</td>
+					<td>카테고리(옵션사용하기)</td>
 					<td><input type="text" class="form-control" name="bCategory"
 						size="50"></td>
 				</tr>
@@ -83,16 +65,10 @@ String vo = (String)session.getAttribute("id");
 						value="입력" >
 						 &nbsp;&nbsp; <a href="list"
 						class="btn btn-primary">목록보기</a></td>
-						
-						
-						
 				</tr>	
 			</table>
 		</form>
 	</div>
-	
-	
-	
 </body>
 
 

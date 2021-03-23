@@ -26,7 +26,7 @@
 </head>
 <body>
 
-<%@include file="home.jsp"%>
+<%@include file="../home.jsp"%>
 	
 	<%
 	String vo = (String)session.getAttribute("id"); 

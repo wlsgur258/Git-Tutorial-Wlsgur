@@ -6,7 +6,6 @@
 <%@ page import="com.a.b.dto.*" %>
 <html>
 <head>
-	<div>
 	<%
 	Member vo = (Member)session.getAttribute("joinVo");
 	if(vo==null){
@@ -21,6 +20,8 @@
 </head>
 <body>
 	<%@include file="home.jsp"%>
+	<h1 align="center">금액 확인</h1>
+	<h3 align="center">현재 잔액 : ${joinVo.bCash}</h3>
 	<h1 align="center">금액 충전</h1>
 <form name="cashup" action="cashupdo" method ="POST">
 	<input type="hidden" name="bId" value="${joinVo.bId}">

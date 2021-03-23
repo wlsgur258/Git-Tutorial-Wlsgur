@@ -13,21 +13,8 @@
 <head>
 <meta charset="UTF-8">
 <title>책 목록</title>
-
-<style>
-
-.container {
-text-align: center;
-
-}
-
-</style>
-
 </head>
 <body>
-
-
-
 	<%@ include file="adminpage.jsp"%>
 	
 	<div class= "container">
@@ -48,21 +35,21 @@ text-align: center;
 				<th>삭제</th>
 				
 			</tr>
-		
+			
 			<c:forEach items="${BookList}" var="BookList">
 			<tr>	
 				<th><c:out value="${BookList.bBookno}"/></th>
 				<th>
-				<img src="<spring:url value ='./resources/ebook/${BookList.bUrl}'  />" height="50" > 		
+				<img src="<spring:url value ='/resources/img/${BookList.bUrl}'/>" > 		
 				</th>
 				<th><c:out value="${BookList.bBookname}"/></th>
 				<td><c:out value="${BookList.bContent}"/></td>
 				<td><c:out value="${BookList.bWriter}"/></td>
 				<td><c:out value="${BookList.bCategory}"/></td>	
-				<th><a class = "btn btn-primary" href="AdminContent?bBookno=${BookList.bBookno}">수정</a></td>	
-				<th><a class = "btn btn-primary" href="AdminDelete?bBookno=${BookList.bBookno}">삭제</a></td>
+				<td><a class = "btn btn-primary" href="AdminContent?bBookno=${BookList.bBookno}">수정</a></td>	
+				<td><a class = "btn btn-primary" href="AdminDelete?bBookno=${BookList.bBookno}">삭제</a></td>
 				
-				
+				<td></td>
 				
 			</tr>		
 			</c:forEach>

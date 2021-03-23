@@ -31,7 +31,7 @@
 		for (Ebook x: book){
 	%>
 	<tr>
-		<td align="center"><a href=""><%=x.getbBookname() %></td>
+		<td align="center"><a href="ebookcontentview?bId=${book.getbBookname}"><%=x.getbBookname() %></td>
 		<td align="center"><%=x.getbWriter() %></td>
 		<td align="center"><%=x.getbCategory() %></td>
 		<td align="center"><%=x.getbPublisher() %></td>

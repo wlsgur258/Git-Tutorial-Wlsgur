@@ -28,7 +28,7 @@
 <title>현재대여목록페이지</title>
 </head>
 <body>
-<%@include file="home.jsp"%>
+<%@include file="../home.jsp"%>
 
 
 <%

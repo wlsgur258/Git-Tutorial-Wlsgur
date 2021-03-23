@@ -29,7 +29,7 @@
 
 <body>
 
-<%@include file="home.jsp"%>
+<%@include file="../home.jsp"%>
 <%  System.out.println("컨텐츠뷰페이지시작 ");%>
 
 
@@ -50,7 +50,7 @@
 
 <%
 	Integer coin = (Integer)session.getAttribute("cash");
-	System.out.println(coin);
+	
 	if(coin == null){
 		coin = 0;
 	}
@@ -59,32 +59,6 @@
 	if (vo == null) {
 	vo = "GUEST";
 }
-	String Rno1 = request.getParameter("Rno");
-	System.out.println("갑자기:"+Rno1);
-	String Rno2 = "Rno";
-	
-	String Ryes1 = request.getParameter("Ryes");
-	String Ryes2 = "Ryes";
-
-	if(Rno1 != null){
-	 	if (Rno1.equals(Rno2)) { 
-		%>
-		<script>
-			alert('캐쉬가부족해서대여가불가능함');
-		</script>
-		<%}
-	 	}%>
-	 	
-	<% if(Ryes1 != null){
-	 	if (Ryes1.equals(Ryes2)) { 
-		%>
-		<script>
-			alert('코인을 3소모하여 대여를 완료했음');
-		</script>
-		<%}
-	 	}
-	
-	
 %>
 <p>접속자의 코인보유갯수 : <%= coin %></p>
 <p>접속중 아이디 : <%= vo %></p>

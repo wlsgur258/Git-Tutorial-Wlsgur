@@ -24,7 +24,7 @@
 
 <body>
 
-<%@include file="home.jsp"%>
+<%@include file="../home.jsp"%>
 
 <%
 	String vo = (String)session.getAttribute("id");
@@ -35,7 +35,17 @@
 	<div>
 	<br/>
 	<p>현재 접속자 ID = <%= vo %> </p>
-	
+		<form action="booksearch" method="post" align="center">
+		<select name="searchType">
+			<option value="all">전체</option>
+			<option value="Bookname">제목</option>
+			<option value="Publisher">출판사</option>
+			<option value="Writer">저자</option>
+			<option value="Category">카테고리</option>
+		</select>
+		<input type="text" name="search" size="55%">
+		<input type="submit" value="검색">
+	</form>
 	<table border="1" width="45%" align="center">
 	<tr>
 	<th colspan="7">모든 도서 목록</th>
