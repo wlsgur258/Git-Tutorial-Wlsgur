@@ -173,10 +173,12 @@ public class HomeController {
 		Member loginUser = dao.memberView(userId);
 			if(member.getbPw().equals(loginUser.getbPw())) {
 				model.addAttribute("request", loginUser);
+				int cash = (int) loginUser.getbCash();
 				session.setAttribute("id", userId);
 				session.setAttribute("pw", userPwd);
 				session.setAttribute("loginOk","ok");
 				session.setAttribute("joinVo", loginUser);
+				session.setAttribute("cash", cash);
 				
 				model.addAttribute("session", session);
 				response.getWriter().print(true) ;
@@ -671,12 +673,12 @@ MultipartFile uploadFile = multi.getFile("file");
 			System.out.println("여까진오나");
 				dao2.ebookRental(bId, bBookno);
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
-				return "redirect:./ebookcontentview?bId="+bBookname;
+				return "redirect:./ebookcontentview?bId="+bBookname+"&Ryes="+"Ryes";
 				//return "redirect:./ebookcontentview";
 			} 
 			else
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
-				return "redirect:./ebookcontentview?bId="+bBookname;
+				return "redirect:./ebookcontentview?bId="+bBookname+"&Rno="+"Rno";
 			}
 		}
 	
