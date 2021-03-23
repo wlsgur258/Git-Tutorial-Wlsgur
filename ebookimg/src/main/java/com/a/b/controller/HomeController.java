@@ -671,6 +671,7 @@ MultipartFile uploadFile = multi.getFile("file");
 				session.setAttribute("cash", cash); // 새션에 새롭게
 			System.out.println(cash);
 			System.out.println("여까진오나");
+			System.out.println("깃허브실험용 추가문구");
 				dao2.ebookRental(bId, bBookno);
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
 				return "redirect:./ebookcontentview?bId="+bBookname+"&Ryes="+"Ryes";
