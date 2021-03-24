@@ -11,13 +11,14 @@
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <meta charset="UTF-8">
 <title>회원 정보</title>
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 <body>
+		<%@include file="../home.jsp"%>
 	<div align="center">
 	<%
 		Member vo = (Member)session.getAttribute("joinVo");
 	%>
-		<%@include file="../home.jsp"%>
 
 		<h1><%=vo.getbId() %> 회원 정보</h1>
 		<table border="1" width="30% align="center">
@@ -47,5 +48,10 @@
 			</form>
 		</table>
 	</div>
+	<footer>
+		<div>
+	<%@include file="../bottom.jsp"%>
+		</div>
+		</footer>
 </body>
 </html>
