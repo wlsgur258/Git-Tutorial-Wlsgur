@@ -11,6 +11,7 @@ import com.a.b.dao.BoardDao;
 import com.a.b.dto.Board;
 
 public class BoardContentService implements IBoarderService{
+	
 	private SqlSession sqlSession=Constant.sqlSession;
 	
 	@Override
@@ -18,13 +19,13 @@ public class BoardContentService implements IBoarderService{
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		long bBid = Long.parseLong(request.getParameter("bBid"));
 		
-		String bBid = request.getParameter("bBid");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		
+		dao.upHit(bBid);
 		Board board = dao.boardContent_view(bBid);
 		
-		model.addAttribute("board", board);
+		model.addAttribute("boardContent_view", board);
 		
 	}
 
