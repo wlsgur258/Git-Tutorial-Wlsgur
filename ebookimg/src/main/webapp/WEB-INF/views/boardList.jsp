@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/css/main_css.css">
-<title>게시판</title>
+<title>Insert title here</title>
 <%
 	String pageNumberStr = request.getParameter("xpage");
 BoardListService service = new BoardListService();
@@ -26,7 +26,6 @@ MessageListView viewData = service.getMessageListView(pageNumber);
 
 List<Board> subList = viewData.getMessageList();
 %>
-
 </head>
 <body>
 	<%@include file="../home.jsp"%>
@@ -79,13 +78,13 @@ List<Board> subList = viewData.getMessageList();
 					<td>조회수</td>
 				</tr>
 
-				<c:forEach items="<%=subList%>" var="dto">
+				<c:forEach items="${boardList}" var="dto">
 
 					<tr>
 						<td>${dto.bBid}</td>
 						<td>${dto.bId}</td>
-						<td><c:forEach begin="1" end="${dto.bIndent}">-</c:forEach> <a
-							href="boardContent_view?bBid=${dto.bBid}">${dto.bTitle}</a></td>
+						<td><a href="boardContent_view?bTitle=${dto.bTitle}"><c:forEach
+									begin="1" end="${dto.bIndent}">-</c:forEach>${dto.bTitle}</a></td>
 						<td>${dto.bDate}</td>
 						<td>${dto.bHit}</td>
 					</tr>
@@ -93,8 +92,6 @@ List<Board> subList = viewData.getMessageList();
 
 			</table>
 		</div>
-
-		<!-- 페이지 넘버 부분 -->
 		<br>
 		<div id="pageForm">
 			Page<%
@@ -107,21 +104,23 @@ List<Board> subList = viewData.getMessageList();
 			%>
 		</div>
 		<br>
-
-		<!-- 검색 부분 -->
 		<div id="searchForm">
-			<form method="post" action="search.jsp">
+			<form>
 				<select name="opt">
 					<option value="0">제목</option>
 					<option value="1">내용</option>
 					<option value="2">제목+내용</option>
-					<option value="3">작성자</option>
-				</select> <input type="text" size="20" name="searchWord" />&nbsp; <input
+					<option value="3">글쓴이</option>
+				</select> <input type="text" size="20" name="condition" />&nbsp; <input
 					type="submit" value="검색" />
 			</form>
 		</div>
 	</div>
-
+	<footer>
+	<div>
+		<%@include file="../bottom.jsp"%>
+	</div>
+	</footer>
 </body>
 </html>
 
