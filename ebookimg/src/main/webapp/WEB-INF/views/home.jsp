@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page session="true" %>
-<%@ page import="com.a.b.service.*"%>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet"
@@ -18,8 +17,6 @@
 		id = "GUEST";
 	}
 %>
-<title>Home</title>
-<link rel="stylesheet" href="resources/css/home.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.js"></script> 
 <script>
 $(document).ready(function() {
@@ -30,20 +27,25 @@ $(document).ready(function() {
 	});
 });
 </script>
+<link href="/css/main_css.css" rel="stylesheet" type="text/css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+<script src="/script/jquery-3.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>상단</title>
 </head>
-<body class="body">
-	<div class="wrapper">
-		<div class="wrap">
-			<div class="top_area">
-				<div class="logo_area">
-				<a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
-				</div>
-				<div class="search_area" align="center">
-					<h1>E Book</h1>
-				</div>
-				<div class="login_area">
-					<h3 class="y"><%=id%>
-				</h3>
+<body>
+	<div id=wrapper>
+		<header>
+		<div class="title">
+			<a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100px" alt="로고출력자리"></a>
+		</div>
+		<div class="name">
+			Book Rental Service
+		</div>
+		<div class="loginmenu">
+			<h3 class="y"><%=id%></h3>
 	<%
  	if (id.equals("GUEST")) { %>
 				<button class="btn btn-primary" onclick="location.href='login'">로그인</button>
@@ -63,11 +65,10 @@ $(document).ready(function() {
 						<%
 					}
 				%>
-				</div>
-			</div>
-			<div class="navi_bar_area">
-				<div id = "nav">
-				<ul class="main">
+		</div>
+
+		<nav class="mainmenu">
+		<ul>
 					<li><h3><a href="list">도서 목록</a></h3>
 						<ul class="sub">
 							<li><a href="">일반</a>
@@ -88,10 +89,8 @@ $(document).ready(function() {
 						</ul>
 					</li>
 					<li><h3><a href="cashup">잔액확인/충전</a></h3></li>
-				</ul>
-				</div>
-			</div>
-		</div>
+		</ul>
+	</nav>
 	</div>
 </body>
 </html>

@@ -95,14 +95,14 @@ public class HomeController {
 		service = new BoardListService();
 		service.execute(model);
 		
-		return "boardList";
+		return "board/boardList";
 		
 	}
 	
 	@RequestMapping("/boardWrite_view")
 	public String boardWrite_view(Model model) {
 		
-		return "boardWrite_view";
+		return "board/boardWrite_view";
 	}
 	
 	@RequestMapping("/boardWrite")
@@ -121,7 +121,7 @@ public class HomeController {
 		
 		service = new BoardContentService();
 		service.execute(model);
-		return "boardContent_view";
+		return "board/boardContent_view";
 	}
 	
 	@RequestMapping("/boardModify")

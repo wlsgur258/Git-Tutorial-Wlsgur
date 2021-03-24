@@ -6,23 +6,24 @@
 <head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="resources/css/main_css.css">
 <title>회원 로그인</title>
 </head>
 <body>
 		<%@include file="../home.jsp"%>
-<div class="wrapper">
-<h1 align="center">로그인</h1>
+<div align="center">
+	<h1>로그인</h1>
 		<section>
 		</section>
+<table>
 <form id="loginFrm" method="post">
-<table align="center">
 	<tr>
 		<th><div id="buttonB1">아이디</div></th>
-		<td><input type="text" id="userId" name="userId" class="loginInput"></td>
+		<td><input type="text" id="userId" name="userId"></td>
     </tr>
 	<tr>
 		<th><div id="buttonB1">비밀번호</div></th>
-		<td><input type="password" id="userPwd" name="userPwd" class="loginInput"></td>
+		<td><input type="password" id="userPwd" name="userPwd"></td>
 	</tr>
 	<tr><td colspan="2" align="center">
 		<input type="button" class="btn btn-primary" value="로그인" id="submitBtn">
@@ -35,6 +36,11 @@
 		<button class="btn btn-primary" onclick="location.href='idSearch'">아이디 또는 비밀번호 찾기</button>
 	</h5>
 </div>
+		<footer>
+		<div>
+	<%@include file="../bottom.jsp"%>
+		</div>
+		</footer>
 <script>
         $(function() {
             $('#submitBtn').mouseenter(function() {

@@ -8,14 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link rel="stylesheet" href="resources/css/main_css.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	<div align="center">
 		<%@include file="../home.jsp"%>
+	<div align="center">
 		<h1>회원가입</h1>
 		<section>
 		</section>
@@ -65,6 +64,11 @@
 			</form>
 		</table>
 	</div>
+	<footer>
+		<div>
+	<%@include file="../bottom.jsp"%>
+		</div>
+	</footer>
 </body>
 <script>
 	function check() {

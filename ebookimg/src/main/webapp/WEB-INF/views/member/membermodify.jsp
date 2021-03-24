@@ -5,16 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <meta charset="UTF-8">
 <title>정보 수정</title>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 <body>
+		<%@include file="../home.jsp"%>
 	<div align="center">
 <%
 	Member vo = (Member)session.getAttribute("mem_view");
 %>
-		<%@include file="../home.jsp"%>
 		<h1>회원 정보 수정</h1>
 		<table border="1">
 			<form action="memmodifydo" method="post">
@@ -46,5 +47,10 @@
 			</form>
 		</table>
 	</div>
+		<footer>
+		<div>
+	<%@include file="../bottom.jsp"%>
+		</div>
+		</footer>
 </body>
 </html>

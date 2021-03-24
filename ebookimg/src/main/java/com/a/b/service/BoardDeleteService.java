@@ -17,9 +17,9 @@ public class BoardDeleteService implements IBoarderService {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		String bid = request.getParameter("bId");
+		long bBid = Long.parseLong(request.getParameter("bBid"));
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		dao.boardDelete(bid);
+		dao.boardDelete(bBid);
 	}
 
 }

@@ -7,7 +7,7 @@
 		<tr height="5">
 			<td align="center"> 
 			<font color="white" size="2">
-			AI활용 파이썬 장고 웹 개발자 과정 2기 | 3조 | 도서 관리 시스템 | 
+			AI활용 파이썬 장고 웹 개발자 과정 2기 | 3조 | EBook Rental Service | 
 			팀장 : 이건희 | 팀원 : 김병찬 | 박진혁 | 한호인 |
 			COPYRIGHT © VISION CAPITAL SERVICES. INC. ALL RIGHT RESERVED. 
 			</font> 
