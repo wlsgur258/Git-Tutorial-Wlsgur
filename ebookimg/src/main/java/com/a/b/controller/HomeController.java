@@ -418,7 +418,7 @@ public class HomeController {
 		public String AdminWrite(MultipartHttpServletRequest multi, Model model){
 		//	eb.setbUrl(bUrl.getOriginalFilename());
 			
-MultipartFile uploadFile = multi.getFile("file");
+			MultipartFile uploadFile = multi.getFile("file");
 			
 			
 			String name = multi.getParameter("bBookname");
