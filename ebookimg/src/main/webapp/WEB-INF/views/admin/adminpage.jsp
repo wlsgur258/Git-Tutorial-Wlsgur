@@ -5,6 +5,16 @@
 <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
+
+<style>
+
+.h1 {
+	text-align: center;
+}
+
+
+</style>
+
 <%
 	String id = (String) session.getAttribute("id");
 	
@@ -20,20 +30,20 @@
 	<title>Home</title>
 </head>
 <body>
-<table border="0">
+
 		<table width="100%" border="0">
 		<tr>
-			<td colspan ="1">
-			<a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
-			</td>		
-			<td colspan="2">
 			
-				<div>
+			<td><a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
+			</td>		
+			<td colspan="3">
+			
+				<div align ="center">
 					<h1>관리자 페이지</h1>
 				</div>
 				
 			</td>
-			<td align="center" width="200"><h3 class="y"><%=id%>님</h3>
+			<td align="center" ><h3 class="y"><%=id%>님</h3>
 				
 	<%
  	if (id.equals("admin")) { %>
@@ -41,20 +51,22 @@
 				<%
 					}  {
 				%>
-				<button onclick="location.href='logout'">로그아웃</button>
+				<button class="btn btn-primary" onclick="location.href='logout'">로그아웃</button>
 				<%
 						
 				%>
-				<button onclick="location.href='memdata'">정보수정</button>
+				<button class="btn btn-primary" onclick="location.href='main'">홈으로</button>
 				<%
 					}
 				%></td>
+				
+		<td colspan="3"><hr/></td>		
 				
 		</tr>
 		<tr height="50" colspan="3">
 			<td align="center"><h2><a href="AdminBookList">도서 목록</a></h2></td>	
 			<td align="center"><h2><a href="QnA">요청 게시판</a></h2></td>
-			<td align="center"><h2><a href="">흠... 뭘 추가할까</a></h2></td>
+			<td align="center"><h2><a href="AdminMemberList">고객정보</a></h2></td>
 		</tr>
 </table>
 </body>

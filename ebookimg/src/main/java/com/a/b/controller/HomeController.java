@@ -41,6 +41,7 @@ import com.a.b.service.RentalListService;
 import com.a.b.service.AdminBListService;
 import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
+import com.a.b.service.AdminMemberListService;
 import com.a.b.service.AdminModifyService;
 import com.a.b.service.AdminWrite;
 import com.a.b.service.BoardContentService;
@@ -428,11 +429,12 @@ MultipartFile uploadFile = multi.getFile("file");
 			
 			String fileName = uploadFile.getOriginalFilename();
 			
-			System.out.println(name+"네임이다");
+			
 			System.out.println(fileName+"파일네임이다");
+			String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
 				
 			if(!uploadFile.isEmpty()) {
-				File file = new File("J:/springworkspace/ebookimg/src/main/webapp/resources/img/", uploadFile.getOriginalFilename());
+				File file = new File(Realpath, fileName);
 				
 				try {
 					uploadFile.transferTo(file);
@@ -447,15 +449,10 @@ MultipartFile uploadFile = multi.getFile("file");
 					System.out.println("돌아와그대2");
 				}
 			}
-			
-			
-			
-			
-			
+	
 		//	model.addAttribute("multi",multi);
 			
-			//service = new AdminWrite();
-			
+			//service = new AdminWrite()
 			 
 			String bBookname = multi.getParameter("bBookname");
 
@@ -472,24 +469,14 @@ MultipartFile uploadFile = multi.getFile("file");
 			String bCategory = multi.getParameter("bCategory");
 			
 		
-
-			
-			
 			BDao dao = sqlSession.getMapper(BDao.class);
 			
-			
-			System.out.println("아래1"+bUrl);
-			
-			System.out.println("아래2"+bContent);
-			
-			
+	
 			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
 			
 		
 
-			
-			
-			
+		
 			
 			
 		//	service.execute(model);
@@ -535,10 +522,7 @@ MultipartFile uploadFile = multi.getFile("file");
 	//	service = new AdminWrite();
 		//service.execute(model);
 		
-		
-			
-			
-			
+
 					
 		}
 	
@@ -559,6 +543,17 @@ MultipartFile uploadFile = multi.getFile("file");
 			service.execute(model);
 			return "./admin/Admincontent_view";
 		}
+		
+		@RequestMapping("/AdminMemberList")
+		public String AdminMemberList(Model model) {
+			
+		service = new AdminMemberListService();
+		service.execute(model);
+		return "./admin/AdminMemberView";
+		}
+		
+		
+		
 	
 	///// ebook 리스트게시판
 		

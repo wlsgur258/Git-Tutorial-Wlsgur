@@ -29,6 +29,11 @@
 		update ebook set bBookname = #{param2}, bContent = #{param3}, bPrice = #{param4},bWriter = #{param5},bPublisher = #{param6},bCategory = #{param7}  where bBookno = #{param1}
 	</update> 
 	
+	<select id="Memberlist" resultType="com.a.b.dto.Member">
+		select BID,BPW,BNAME,BGENDER,BBIRTHDAY,BJOINDATE,BCASH
+		from MEMBER order by BNO ASC
+	</select>
+
 
 
 

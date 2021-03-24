@@ -13,6 +13,17 @@
 <head>
 <meta charset="UTF-8">
 <title>책 목록</title>
+<style>
+
+.container {
+text-align: center;
+
+}
+
+</style>
+
+
+
 </head>
 <body>
 	<%@ include file="adminpage.jsp"%>
@@ -40,7 +51,7 @@
 			<tr>	
 				<th><c:out value="${BookList.bBookno}"/></th>
 				<th>
-				<img src="<spring:url value ='/resources/img/${BookList.bUrl}'/>" > 		
+				<img src="<spring:url value ='http://localhost:8000/ebook/${BookList.bUrl}'  />" height="50" >		
 				</th>
 				<th><c:out value="${BookList.bBookname}"/></th>
 				<td><c:out value="${BookList.bContent}"/></td>
