@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" href="resources/css/main_css.css">
 <title>Insert title here</title>
 <%
 	String pageNumberStr = request.getParameter("xpage");
@@ -110,7 +110,11 @@
         </form>    
     </div>
 </div>    
- 
+ 	<footer>
+		<div>
+			<%@include file="bottom.jsp"%>
+		</div>
+	</footer>
 </body>
 </html>
 
