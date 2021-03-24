@@ -8,9 +8,9 @@ public interface BoardDao {
 
 
 	public void boardWrite(
-			 String bId,
-			 String bTitle,
-			 String bContent
+			 final String bId,
+			 final String bTitle,
+			 final String bContent
 			);
 	
 	
@@ -18,15 +18,16 @@ public interface BoardDao {
 	
 	
 	public void boardModify(
-			final String bBid,
+			final long bBid,
+			final String bId,
 			final String bTitle,
 			final String bContent
 			);
 	
 	
-	public void boardDelete(final String bBid);
+	public void boardDelete(final long strBID);
 	
-	public Board boardContent_view(final String bBid);
+	public Board boardContent_view(long strBID);
 	
-	public void upHit(final String bBid);
+	public void upHit(final long bBid);
 }
