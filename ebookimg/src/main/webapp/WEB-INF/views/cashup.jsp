@@ -16,6 +16,7 @@
 		</script>
 		<%
 	}%>
+<link rel="stylesheet" href="resources/css/main_css.css">
 <title>금액 충전</title>
 </head>
 <body>
