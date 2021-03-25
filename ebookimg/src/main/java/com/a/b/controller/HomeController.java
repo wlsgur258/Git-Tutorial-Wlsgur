@@ -681,6 +681,32 @@ public class HomeController {
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
 				return "redirect:./ebookcontentview?bId="+bBookname+"&Rno="+"Rno";
 			}
+		
+		
+		@RequestMapping(value="upload",method=RequestMethod.POST)
+
+
+			public String upload(MultipartHttpServletRequest request) {
+				//file 파라미터의 데이터 가져오기
+				MultipartFile file=request.getFile("file");
+				//파일 업로드
+				String filepath="C:/Users/pc374/documents/uploadtest/";
+				filepath=filepath+file.getOriginalFilename();
+				
+				try {
+					file.transferTo(new File(filepath));
+					System.out.println("업로드가 잘되는가?");
+				}catch(Exception e) {
+					e.printStackTrace();
+					System.out.println("업로드 실패!");
+				}
+				return "redirect:./list";
+			}
+		
+		
+		
+		
+		
 		}
 	
 	

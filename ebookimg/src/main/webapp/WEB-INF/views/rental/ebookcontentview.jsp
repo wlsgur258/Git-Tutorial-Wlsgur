@@ -135,6 +135,16 @@
 			<%	}else {	%>
 				<button class="btn btn-primary">이미 대여된 책입니다</button>
 			<% } } %>
+			
+			<p>실험용 ... </p>
+			
+			<form action="upload" method="post" enctype="multipart/form-data">
+				file<input type="file" name="file"/><br/>
+				<input type="submit" value="보내기" />
+			</form>
+			
+			
+			
 
 </body>
 </html>
