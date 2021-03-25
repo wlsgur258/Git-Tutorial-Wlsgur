@@ -12,6 +12,9 @@
 <body>
 		<%@include file="../home.jsp"%>
 <div align="center">
+	<br>
+	<br>
+	<br>
 	<h1>로그인</h1>
 		<section>
 		</section>
