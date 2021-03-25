@@ -16,6 +16,9 @@
 <%
 	Member vo = (Member)session.getAttribute("mem_view");
 %>
+		<br>
+		<br>
+		<br>
 		<h1>회원 정보 수정</h1>
 		<table border="1">
 			<form action="memmodifydo" method="post">

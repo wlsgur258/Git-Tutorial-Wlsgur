@@ -11,6 +11,8 @@
 </head>
 		<%@include file="../home.jsp"%>
 <body>
+	<br>
+	<br>
 	<%
 		String vo = (String)session.getAttribute("searchID");
 	if(vo == null){

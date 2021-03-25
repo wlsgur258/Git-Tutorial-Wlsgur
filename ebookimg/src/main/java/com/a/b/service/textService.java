@@ -19,10 +19,10 @@ public class textService implements IBoarderService{
 	@Override
 	public void execute(Model model) {
 		
-		//String Realpath = "C:/Users/pc346/Desktop/useEbook/";
-		String Realpath = "C:/Users/pc374/Desktop/useEbook/";
+		String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+		//String Realpath = "C:/Users/pc374/Desktop/useEbook/";
 		
-		int a = 211;
+		int a = 212;
 		BDao dao = sqlSession.getMapper(BDao.class);
 		String txt1 = dao.contentview(a).getbRealContent();
 		System.out.println("텍스트서비스시스템:"+txt1);
