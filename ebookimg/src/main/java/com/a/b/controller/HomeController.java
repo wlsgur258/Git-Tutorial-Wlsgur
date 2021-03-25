@@ -380,6 +380,19 @@ public class HomeController {
 		return "searchlist";
 	}
 	
+	
+	@RequestMapping("/AdminBookListSearch")
+	public String AdminBookListSearch(Model model) {
+		
+		 //service = new AdminBListService(); s
+		 //ervice.execute(model);
+		
+		return null;
+	
+	}
+	
+	
+	
 	@RequestMapping("/AdminBookList")
 	public String AdminBookList(Model model) {
 		service = new AdminBListService();
