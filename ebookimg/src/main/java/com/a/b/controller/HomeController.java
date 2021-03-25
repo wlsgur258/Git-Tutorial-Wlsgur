@@ -762,6 +762,10 @@ public class HomeController {
 			String bno = request.getParameter("bBookno1");
 			EDao dao = sqlSession.getMapper(EDao.class);
 			Ebook dto = dao.ebookView(bno);
+			
+			BDao dao2 = sqlSession.getMapper(BDao.class);
+			
+			
 			System.out.println(bno);
 			
 			model.addAttribute("ebook_text", dto);

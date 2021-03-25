@@ -22,16 +22,19 @@ public class textService implements IBoarderService{
 		String Realpath = "C:/Users/pc346/Desktop/useEbook/";
 		//String Realpath = "C:/Users/pc374/Desktop/useEbook/";
 		
-		int a = 212;
+		int a = 212; // 책 고유번호 가져와야함
+		
 		BDao dao = sqlSession.getMapper(BDao.class);
 		String txt1 = dao.contentview(a).getbRealContent();
 		System.out.println("텍스트서비스시스템:"+txt1);
 		
 		// 김병찬씨컴퓨터 경로/bclob객체이름
 		File file = new File(Realpath, txt1);
+		
 		try {
 			System.out.println( "결과 : " + IOUtils.toString( new FileInputStream( file ) ) );
 			txt1 = IOUtils.toString( new FileInputStream( file ));
+		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +42,9 @@ public class textService implements IBoarderService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		model.addAttribute("txt1", txt1);
+		
 		
 		
 		// TODO Auto-generated method stub

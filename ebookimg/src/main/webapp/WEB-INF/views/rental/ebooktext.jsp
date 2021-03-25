@@ -18,10 +18,13 @@
 		이북텍스트가 나오는곳...
 		
 		
-${ebook_text.bBookno}
-${ebook_text.bRealContent}
+<p>책 넘버 :${ebook_text.bBookno}</p>
+<p>책 오라클리얼콘텐츠 : ${ebook_text.bRealContent}</p>
 
-<%= request.getAttribute("txt1") %>
+
+
+
+<p>책 내용 : <%= request.getAttribute("txt1") %></p>
 		
 		
 		
