@@ -20,6 +20,7 @@
 	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>도서 목록</title>
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 
 <body>
