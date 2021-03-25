@@ -49,6 +49,9 @@ import com.a.b.service.BoardDeleteService;
 import com.a.b.service.BoardListService;
 import com.a.b.service.BoardModifyService;
 import com.a.b.service.BoardWriteService;
+import com.a.b.service.CommentDeleteService;
+import com.a.b.service.CommentModifyService;
+import com.a.b.service.CommentWriteService;
 import com.a.b.service.Constant;
 import com.a.b.service.EbookListService;
 import com.a.b.service.EbookListService2;
@@ -115,6 +118,15 @@ public class HomeController {
 		return "redirect:boardList";
 	}
 	
+	@RequestMapping("commentWrite")
+	public String commentWrite(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		service = new CommentWriteService();
+		service.execute(model);
+		
+		return "redirect:boardContent_view";
+	}
+	
 	@RequestMapping("/boardContent_view")
 	public String boardContent_view(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
@@ -142,6 +154,26 @@ public class HomeController {
 		service.execute(model);
 		
 		return "redirect:boardList";
+	}
+	
+	@RequestMapping("/commentModify")
+	public String commentModify(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		
+		service = new CommentModifyService();
+		service.execute(model);
+		
+		return "redirect:boardContent_view";
+	}
+	
+	@RequestMapping("/commentDelete")
+	public String commentDelete(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		
+		service = new CommentDeleteService();
+		service.execute(model);
+		
+		return "redirect:boardContent_view";
 	}
 	
 	
