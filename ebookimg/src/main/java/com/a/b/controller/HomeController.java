@@ -435,29 +435,31 @@ public class HomeController {
 			MultipartFile uploadFile = multi.getFile("file");
 			MultipartFile uploadFile2 = multi.getFile("file_text");
 			
-			String name = multi.getParameter("bBookname");
 			
-
 			System.out.println(uploadFile.getOriginalFilename());
-			
+			System.out.println(uploadFile2.getOriginalFilename());
 			String fileName = uploadFile.getOriginalFilename();
-			String fileName2 = uploadFile.getOriginalFilename();
+			String fileName2 = uploadFile2.getOriginalFilename();
 			
 			
 			System.out.println(fileName+"파일네임이다");
+			System.out.println(fileName2+"파일네임2 이다");
 			
 			
 			//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
+			
 			String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+			//String Realpath = "C:/Users/pc374/Desktop/useEbook/";
 			
 			//http://121.153.134.167/ebook/ebook9.png
 			
-			if(!uploadFile.isEmpty()) {
+			if(!uploadFile.isEmpty() && !uploadFile2.isEmpty()) {
+				//if(!uploadFile.isEmpty()) {
 				File file = new File(Realpath, fileName);
-				File file2 = new File(Realpath, fileName);
+				File file2 = new File(Realpath, fileName2);
 				try {
 					uploadFile.transferTo(file);
-					uploadFile.transferTo(file2);
+					uploadFile2.transferTo(file2);
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -476,7 +478,10 @@ public class HomeController {
 			String bBookname = multi.getParameter("bBookname");
 
 			String bUrl = fileName;
+			
+			
 			String bRealContent = fileName2;
+			
 			
 			String bContent = multi.getParameter("bContent");
 			
