@@ -15,6 +15,9 @@
 <body>
 		<%@include file="../home.jsp"%>
 	<div align="center">
+		<br>
+		<br>
+		<br>
 		<h1>회원가입</h1>
 		<section>
 		</section>
