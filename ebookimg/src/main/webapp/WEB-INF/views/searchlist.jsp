@@ -7,12 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>검색결과</title>
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 <body>
 	<%
 		List<Ebook> book = (List<Ebook>)session.getAttribute("sear_result");
 	%>
 	<h1 align="center">검색결과</h1>
+	<br>
+	<br>
 	<table border='1' width="70%" align="center">
 	<%if(book.equals(null)){
 		%>

@@ -17,8 +17,8 @@
 	</delete>
 	
 	<insert id ="write" >
-	insert into ebook (bBookno, bBookname, bUrl, bContent, bPrice, bWriter, bPublisher, bCategory)
-	values (ebook_seq.nextval,#{param1},#{param2,jdbcType=VARCHAR},#{param3},#{param4},#{param5},#{param6},#{param7})
+	insert into ebook (bBookno, bBookname, bUrl, bContent, bPrice, bWriter, bPublisher, bCategory, bRealContent)
+	values (ebook_seq.nextval,#{param1},#{param2,jdbcType=VARCHAR},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
 	</insert>
 
 	<select id="contentview" resultType="com.a.b.dto.Ebook" parameterType="LONG">

@@ -12,6 +12,9 @@
 <body>
 		<%@include file="../home.jsp"%>
 <div align="center">
+	<br>
+	<br>
+	<br>
 	<h1>로그인</h1>
 		<section>
 		</section>
@@ -19,11 +22,11 @@
 <form id="loginFrm" method="post">
 	<tr>
 		<th><div id="buttonB1">아이디</div></th>
-		<td><input type="text" id="userId" name="userId"></td>
+		<td><input type="text" id="userId" name="userId" class="loginInput"></td>
     </tr>
 	<tr>
 		<th><div id="buttonB1">비밀번호</div></th>
-		<td><input type="password" id="userPwd" name="userPwd"></td>
+		<td><input type="password" id="userPwd" name="userPwd" class="loginInput"></td>
 	</tr>
 	<tr><td colspan="2" align="center">
 		<input type="button" class="btn btn-primary" value="로그인" id="submitBtn">

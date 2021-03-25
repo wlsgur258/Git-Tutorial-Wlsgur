@@ -10,6 +10,7 @@ public class Ebook {
 	private String bPublisher;
 	private String bCategory;
 	private String bUrl;
+	private String bRealContent;
 	
 	public long getbBookno() {
 		return bBookno;
@@ -66,7 +67,7 @@ public class Ebook {
 				+ ", bUrl=" + bUrl + "]";
 	}
 	public Ebook(long bBookno, String bBookname, String bContent, long bPrice, String bWriter, String bPublisher,
-			String bCategory, String bUrl) {
+			String bCategory, String bUrl, String bRealContent) {
 		super();
 		this.bBookno = bBookno;
 		this.bBookname = bBookname;
@@ -76,7 +77,14 @@ public class Ebook {
 		this.bPublisher = bPublisher;
 		this.bCategory = bCategory;
 		this.bUrl = bUrl;
+		this.bRealContent = bRealContent;
 	}
 	public Ebook() {}
+	public String getbRealContent() {
+		return bRealContent;
+	}
+	public void setbRealContent(String bRealContent) {
+		this.bRealContent = bRealContent;
+	}
 	
 }

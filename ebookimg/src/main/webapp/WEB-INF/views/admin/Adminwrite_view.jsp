@@ -29,14 +29,23 @@
 					<td><input type="text" class="form-control" name="bBookname"
 						size="50"></td>
 				</tr>
-			<tr>	
+				<tr>	
 					<td>이미지</td>	
 					<td><input type="file" class="form-control" name="file" size="50"  >
 					<%-- <%=request.getRealPath("/") %> --%>
-					</td>		
+					</td>
+							
 				</tr> 
+							
+				<tr>	
+					<td>책 내용</td>	
+					<td><input type="file" class="form-control" name="file_text" size="50"  >
+					<%-- <%=request.getRealPath("/") %> --%>
+					</td>		
+				</tr>
+				
 				<tr>
-					<td>내용</td>
+					<td>소개글</td>
 					<td><textarea name="bContent" class="form-control" rows="10"></textarea>
 					</td>
 				</tr>	

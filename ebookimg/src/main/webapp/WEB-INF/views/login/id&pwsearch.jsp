@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ID/PW 찾기 결과</title>
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 		<%@include file="../home.jsp"%>
 <body>
