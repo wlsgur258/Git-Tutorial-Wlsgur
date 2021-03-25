@@ -19,7 +19,9 @@
 	<%
 		Member vo = (Member)session.getAttribute("joinVo");
 	%>
-
+	<br>
+	<br>
+	<br>
 		<h1><%=vo.getbId() %> 회원 정보</h1>
 		<table border="1" width="30% align="center">
 		
