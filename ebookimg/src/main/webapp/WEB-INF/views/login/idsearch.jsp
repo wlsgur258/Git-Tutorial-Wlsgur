@@ -11,6 +11,8 @@
 </head>
 <body>
 		<%@include file="../home.jsp"%>
+		<br>
+		<br>
 		<h1 align="center">ID 찾기</h1>
 	<div align="center">
 		<table>
@@ -33,7 +35,8 @@
 		</table>
 	</div>
 	<div align="center">
-	<p/>
+	<br>
+	<br>
 	<h1 align="center">비밀번호 찾기</h1>
 		<table>
 			<form action="pwsearchdo" method="post">
