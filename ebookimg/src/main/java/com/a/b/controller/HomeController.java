@@ -38,6 +38,7 @@ import com.a.b.service.MDeleteService;
 import com.a.b.service.MModifyService;
 import com.a.b.service.MemberService;
 import com.a.b.service.RentalListService;
+import com.a.b.service.textService;
 import com.a.b.service.AdminBListService;
 import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
@@ -49,6 +50,9 @@ import com.a.b.service.BoardDeleteService;
 import com.a.b.service.BoardListService;
 import com.a.b.service.BoardModifyService;
 import com.a.b.service.BoardWriteService;
+import com.a.b.service.CommentDeleteService;
+import com.a.b.service.CommentModifyService;
+import com.a.b.service.CommentWriteService;
 import com.a.b.service.Constant;
 import com.a.b.service.EbookListService;
 import com.a.b.service.EbookListService2;
@@ -115,6 +119,15 @@ public class HomeController {
 		return "redirect:boardList";
 	}
 	
+	@RequestMapping("commentWrite")
+	public String commentWrite(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		service = new CommentWriteService();
+		service.execute(model);
+		
+		return "redirect:boardContent_view";
+	}
+	
 	@RequestMapping("/boardContent_view")
 	public String boardContent_view(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
@@ -142,6 +155,26 @@ public class HomeController {
 		service.execute(model);
 		
 		return "redirect:boardList";
+	}
+	
+	@RequestMapping("/commentModify")
+	public String commentModify(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		
+		service = new CommentModifyService();
+		service.execute(model);
+		
+		return "redirect:boardContent_view";
+	}
+	
+	@RequestMapping("/commentDelete")
+	public String commentDelete(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		
+		service = new CommentDeleteService();
+		service.execute(model);
+		
+		return "redirect:boardContent_view";
 	}
 	
 	
@@ -433,29 +466,33 @@ public class HomeController {
 		//	eb.setbUrl(bUrl.getOriginalFilename());
 			
 			MultipartFile uploadFile = multi.getFile("file");
+			MultipartFile uploadFile2 = multi.getFile("file_text");
 			
 			
-			String name = multi.getParameter("bBookname");
-			
-
 			System.out.println(uploadFile.getOriginalFilename());
-			
+			System.out.println(uploadFile2.getOriginalFilename());
 			String fileName = uploadFile.getOriginalFilename();
+			String fileName2 = uploadFile2.getOriginalFilename();
 			
 			
 			System.out.println(fileName+"파일네임이다");
+			System.out.println(fileName2+"파일네임2 이다");
 			
 			
 			//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
+			
 			String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+			//String Realpath = "C:/Users/pc374/Desktop/useEbook/";
 			
 			//http://121.153.134.167/ebook/ebook9.png
 			
-			if(!uploadFile.isEmpty()) {
+			if(!uploadFile.isEmpty() && !uploadFile2.isEmpty()) {
+				//if(!uploadFile.isEmpty()) {
 				File file = new File(Realpath, fileName);
-				
+				File file2 = new File(Realpath, fileName2);
 				try {
 					uploadFile.transferTo(file);
+					uploadFile2.transferTo(file2);
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -475,6 +512,10 @@ public class HomeController {
 
 			String bUrl = fileName;
 			
+			
+			String bRealContent = fileName2;
+			
+			
 			String bContent = multi.getParameter("bContent");
 			
 			long bPrice =Long.parseLong(multi.getParameter("bPrice"));
@@ -489,7 +530,7 @@ public class HomeController {
 			BDao dao = sqlSession.getMapper(BDao.class);
 			
 	
-			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
+			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory, bRealContent);
 			
 		
 
@@ -693,6 +734,48 @@ public class HomeController {
 				bBookname = URLEncoder.encode(bBookname, "UTF-8");
 				return "redirect:./ebookcontentview?bId="+bBookname+"&Rno="+"Rno";
 			}
+		
+		
+		@RequestMapping(value="upload",method=RequestMethod.POST)
+
+
+			public String upload(MultipartHttpServletRequest request) {
+				//file 파라미터의 데이터 가져오기
+				MultipartFile file=request.getFile("file");
+				//파일 업로드
+				String filepath="C:/Users/pc374/documents/uploadtest/";
+				filepath=filepath+file.getOriginalFilename();
+				
+				try {
+					file.transferTo(new File(filepath));
+					System.out.println("업로드가 잘되는가?");
+				}catch(Exception e) {
+					e.printStackTrace();
+					System.out.println("업로드 실패!");
+				}
+				return "redirect:./list";
+			}
+		
+		@RequestMapping("/textdo")
+		public String textdo(Model model, HttpServletRequest request) {
+			
+			String bno = request.getParameter("bBookno1");
+			EDao dao = sqlSession.getMapper(EDao.class);
+			Ebook dto = dao.ebookView(bno);
+			System.out.println(bno);
+			
+			model.addAttribute("ebook_text", dto);
+			service = new textService();
+			service.execute(model);
+			
+			
+			System.out.println("textdo 컨트롤러중asd");
+			return "/rental/ebooktext";
+			
+		}
+		
+		
+		
 		}
 	
 	

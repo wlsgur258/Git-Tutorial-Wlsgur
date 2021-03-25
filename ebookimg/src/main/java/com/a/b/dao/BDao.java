@@ -23,7 +23,8 @@ public ArrayList<Ebook> list();
 			final long bPrice,
 			final String bWriter,
 			final String bPublisher,
-			final String bCategory);
+			final String bCategory, 
+			final String bRealContent);
 	
 	public Ebook contentview(long bBookno);
 	
