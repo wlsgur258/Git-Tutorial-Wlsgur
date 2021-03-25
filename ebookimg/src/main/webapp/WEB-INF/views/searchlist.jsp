@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.a.b.dto.*" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +14,11 @@
 	<%
 		List<Ebook> book = (List<Ebook>)session.getAttribute("sear_result");
 	%>
-	<h1 align="center">검색결과</h1>
+	<header>
+	<%@include file="home.jsp"%>
+	</header>
 	<br>
+	<h1 align="center">검색결과</h1>
 	<br>
 	<table border='1' width="70%" align="center">
 	<%if(book.equals(null)){
