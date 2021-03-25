@@ -28,7 +28,7 @@ List<Board> subList = viewData.getMessageList();
 %>
 </head>
 <body>
-	<%@include file="../home.jsp"%>
+	<%@include file="./home.jsp"%>
 
 	<%
 		String vo = (String) session.getAttribute("id");
@@ -118,7 +118,7 @@ List<Board> subList = viewData.getMessageList();
 	</div>
 	<footer>
 	<div>
-		<%@include file="../bottom.jsp"%>
+		<%@include file="./bottom.jsp"%>
 	</div>
 	</footer>
 </body>

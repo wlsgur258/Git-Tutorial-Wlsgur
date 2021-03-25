@@ -41,6 +41,7 @@ import com.a.b.service.RentalListService;
 import com.a.b.service.AdminBListService;
 import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
+import com.a.b.service.AdminMemberListService;
 import com.a.b.service.AdminModifyService;
 import com.a.b.service.AdminWrite;
 import com.a.b.service.BoardContentService;
@@ -379,6 +380,19 @@ public class HomeController {
 		return "searchlist";
 	}
 	
+	
+	@RequestMapping("/AdminBookListSearch")
+	public String AdminBookListSearch(Model model) {
+		
+		 //service = new AdminBListService(); s
+		 //ervice.execute(model);
+		
+		return null;
+	
+	}
+	
+	
+	
 	@RequestMapping("/AdminBookList")
 	public String AdminBookList(Model model) {
 		service = new AdminBListService();
@@ -419,7 +433,7 @@ public class HomeController {
 		//	eb.setbUrl(bUrl.getOriginalFilename());
 			
 			MultipartFile uploadFile = multi.getFile("file");
-			
+			MultipartFile uploadFile2 = multi.getFile("file_text");
 			
 			String name = multi.getParameter("bBookname");
 			
@@ -427,39 +441,42 @@ public class HomeController {
 			System.out.println(uploadFile.getOriginalFilename());
 			
 			String fileName = uploadFile.getOriginalFilename();
+			String fileName2 = uploadFile.getOriginalFilename();
 			
-			System.out.println(name+"네임이다");
+			
 			System.out.println(fileName+"파일네임이다");
-				
+			
+			
+			//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
+			String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+			
+			//http://121.153.134.167/ebook/ebook9.png
+			
 			if(!uploadFile.isEmpty()) {
-				File file = new File("J:/springworkspace/ebookimg/src/main/webapp/resources/img/", uploadFile.getOriginalFilename());
-				
+				File file = new File(Realpath, fileName);
+				File file2 = new File(Realpath, fileName);
 				try {
 					uploadFile.transferTo(file);
+					uploadFile.transferTo(file2);
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("돌아와그대");
+					System.out.println("실패1");
 				
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("돌아와그대2");
+					System.out.println("실패2");
 				}
 			}
-			
-			
-			
-			
-			
-		//	model.addAttribute("multi",multi);
-			
-			//service = new AdminWrite();
-			
+	
+			//model.addAttribute("multi",multi);
+			//service = new AdminWrite()
 			 
 			String bBookname = multi.getParameter("bBookname");
 
 			String bUrl = fileName;
+			String bRealContent = fileName2;
 			
 			String bContent = multi.getParameter("bContent");
 			
@@ -472,24 +489,14 @@ public class HomeController {
 			String bCategory = multi.getParameter("bCategory");
 			
 		
-
-			
-			
 			BDao dao = sqlSession.getMapper(BDao.class);
 			
-			
-			System.out.println("아래1"+bUrl);
-			
-			System.out.println("아래2"+bContent);
-			
-			
-			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
+	
+			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory, bRealContent);
 			
 		
 
-			
-			
-			
+		
 			
 			
 		//	service.execute(model);
@@ -535,10 +542,7 @@ public class HomeController {
 	//	service = new AdminWrite();
 		//service.execute(model);
 		
-		
-			
-			
-			
+
 					
 		}
 	
@@ -559,6 +563,17 @@ public class HomeController {
 			service.execute(model);
 			return "./admin/Admincontent_view";
 		}
+		
+		@RequestMapping("/AdminMemberList")
+		public String AdminMemberList(Model model) {
+			
+		service = new AdminMemberListService();
+		service.execute(model);
+		return "./admin/AdminMemberView";
+		}
+		
+		
+		
 	
 	///// ebook 리스트게시판
 		

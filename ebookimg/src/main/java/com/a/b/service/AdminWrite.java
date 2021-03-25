@@ -16,11 +16,33 @@ public class AdminWrite implements IBoarderService {
 		
 		
 		
+		
+		
+		
+		
+    
+    
+
+   
 	
 		
 	//	MultipartRequest multi = new MultipartRequest(request, "" , 1024 * 500 ,"utf-8",new DefaultFileRenamePolicy());
 			
 			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

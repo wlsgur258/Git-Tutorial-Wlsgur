@@ -12,7 +12,7 @@
 <title>게시글 작성</title>
 </head>
 <body>
-	<%@include file="../home.jsp"%>
+	<%@include file="./home.jsp"%>
 
 	<%
 		String vo = (String) session.getAttribute("id");
