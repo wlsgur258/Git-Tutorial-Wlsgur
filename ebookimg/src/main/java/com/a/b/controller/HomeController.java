@@ -380,6 +380,19 @@ public class HomeController {
 		return "searchlist";
 	}
 	
+	
+	@RequestMapping("/AdminBookListSearch")
+	public String AdminBookListSearch(Model model) {
+		
+		 //service = new AdminBListService(); s
+		 //ervice.execute(model);
+		
+		return null;
+	
+	}
+	
+	
+	
 	@RequestMapping("/AdminBookList")
 	public String AdminBookList(Model model) {
 		service = new AdminBListService();
@@ -419,7 +432,7 @@ public class HomeController {
 		public String AdminWrite(MultipartHttpServletRequest multi, Model model){
 		//	eb.setbUrl(bUrl.getOriginalFilename());
 			
-MultipartFile uploadFile = multi.getFile("file");
+			MultipartFile uploadFile = multi.getFile("file");
 			
 			
 			String name = multi.getParameter("bBookname");
@@ -431,8 +444,13 @@ MultipartFile uploadFile = multi.getFile("file");
 			
 			
 			System.out.println(fileName+"파일네임이다");
-			String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
-				
+			
+			
+			//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
+			String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+			
+			//http://121.153.134.167/ebook/ebook9.png
+			
 			if(!uploadFile.isEmpty()) {
 				File file = new File(Realpath, fileName);
 				
@@ -441,17 +459,16 @@ MultipartFile uploadFile = multi.getFile("file");
 				} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("돌아와그대");
+					System.out.println("실패1");
 				
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("돌아와그대2");
+					System.out.println("실패2");
 				}
 			}
 	
-		//	model.addAttribute("multi",multi);
-			
+			//model.addAttribute("multi",multi);
 			//service = new AdminWrite()
 			 
 			String bBookname = multi.getParameter("bBookname");

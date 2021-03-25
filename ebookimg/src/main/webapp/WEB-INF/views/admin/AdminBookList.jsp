@@ -51,7 +51,7 @@ text-align: center;
 			<tr>	
 				<th><c:out value="${BookList.bBookno}"/></th>
 				<th>
-				<img src="<spring:url value ='http://localhost:8000/ebook/${BookList.bUrl}'  />" height="50" >		
+				<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >		
 				</th>
 				<th><c:out value="${BookList.bBookname}"/></th>
 				<td><c:out value="${BookList.bContent}"/></td>
