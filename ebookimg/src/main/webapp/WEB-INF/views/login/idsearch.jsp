@@ -7,9 +7,12 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <meta charset="UTF-8">
 <title>ID 찾기</title>
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 <body>
 		<%@include file="../home.jsp"%>
+		<br>
+		<br>
 		<h1 align="center">ID 찾기</h1>
 	<div align="center">
 		<table>
@@ -32,7 +35,8 @@
 		</table>
 	</div>
 	<div align="center">
-	<p/>
+	<br>
+	<br>
 	<h1 align="center">비밀번호 찾기</h1>
 		<table>
 			<form action="pwsearchdo" method="post">

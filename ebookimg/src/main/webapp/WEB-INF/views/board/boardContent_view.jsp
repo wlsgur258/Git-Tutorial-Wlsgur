@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글</title>
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 <body>
 	<%@include file="../home.jsp"%>
