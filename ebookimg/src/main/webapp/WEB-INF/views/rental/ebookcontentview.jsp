@@ -134,14 +134,14 @@
 			</form>
 			<%	}else {	%>
 				<button class="btn btn-primary">이미 대여된 책입니다</button>
-			<% } } %>
-			
-			<p>실험용 ... </p>
-			
-			<form action="upload" method="post" enctype="multipart/form-data">
-				file<input type="file" name="file"/><br/>
-				<input type="submit" value="보내기" />
+			<form name = "textgo" action= "textdo" method = "POST">
+				<input type="hidden" name = "bBookno1" value = "${ebook_view.bBookno}">
+				<button class="btn btn-primary" type="submit">책내용 보러가기!</button>
 			</form>
+			<% } } %>
+		
+			
+			
 			
 			
 			

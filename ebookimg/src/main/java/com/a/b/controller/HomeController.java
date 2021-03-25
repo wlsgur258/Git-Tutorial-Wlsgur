@@ -38,6 +38,7 @@ import com.a.b.service.MDeleteService;
 import com.a.b.service.MModifyService;
 import com.a.b.service.MemberService;
 import com.a.b.service.RentalListService;
+import com.a.b.service.textService;
 import com.a.b.service.AdminBListService;
 import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
@@ -755,7 +756,23 @@ public class HomeController {
 				return "redirect:./list";
 			}
 		
-		
+		@RequestMapping("/textdo")
+		public String textdo(Model model, HttpServletRequest request) {
+			
+			String bno = request.getParameter("bBookno1");
+			EDao dao = sqlSession.getMapper(EDao.class);
+			Ebook dto = dao.ebookView(bno);
+			System.out.println(bno);
+			
+			model.addAttribute("ebook_text", dto);
+			service = new textService();
+			service.execute(model);
+			
+			
+			System.out.println("textdo 컨트롤러중asd");
+			return "/rental/ebooktext";
+			
+		}
 		
 		
 		
