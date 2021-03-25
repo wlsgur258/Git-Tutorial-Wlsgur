@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 
 <title>책 세부 내용</title>
-
+<link rel="stylesheet" href="resources/css/main_css.css">
 </head>
 
 <body>
