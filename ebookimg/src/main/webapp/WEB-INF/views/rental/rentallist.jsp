@@ -77,7 +77,11 @@
 	<td><%= List.get(i).getbId() %></td>
 	<td><%= List.get(i).getbBookno() %></td>
 	<% String goname = List.get(i).getbBookname(); %>
-	<td><a href = "ebookcontentview?bId=<%= goname %>"><%= List.get(i).getbBookname() %></a></td>
+	<td>
+	<a href = "ebookcontentview?bId=<%= goname %>">
+	<%= List.get(i).getbBookname() %>
+	</a>
+	</td>
 	<td><%= formatT.format(List.get(i).getbRentaldate()) %></td>
 			</tr>
 	<%}
