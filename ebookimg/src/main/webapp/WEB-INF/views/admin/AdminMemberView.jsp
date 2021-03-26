@@ -28,13 +28,34 @@ text-align: center;
 
 
 
+
+
 	<%@ include file="adminpage.jsp"%>
 	
+<%
+	
+		String pageNumberStr = request.getParameter("xpage");
+		AdminBListService service = new AdminBListService();
+		//BDao dao = sqlSession.getMapper(BDao.class);
+		//BDao dao = new BDao();
+		int pageNumber = 1;
+		if (pageNumberStr != null) {
+			pageNumber = Integer.parseInt(pageNumberStr);
+		}
+		MemberListViewAdmin viewData = service.getMemberListViewAdmin(pageNumber);
+		int totalPages = viewData.getPageTotalCount();
+		if (pageNumberStr == null)
+		pageNumberStr = "1";
+	
+		List<Ebook> subList = viewData.getMessageList();
+		 %>
+
+
 	<div class= "container">
 		<h1> 회원 목록</h1>	
 		<hr>
 		<div align="right">
-		<a class = "btn btn-primary" href="Adminwrite_view">책추가</a>
+		
 	</div>
 		<table class = "table table-striped">
 			<tr>
