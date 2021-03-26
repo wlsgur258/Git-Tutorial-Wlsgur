@@ -9,9 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>도서 관리</title>
-<%
-	List<Ebook> book = (List<Ebook>)session.getAttribute("newebook");
-%>
+
 <link rel="stylesheet" href="resources/css/main_css.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -36,15 +34,7 @@
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-				<%for(Ebook x: book){
-					%>
-					<td><a href=""><%=x.getbBookname() %></a></td>
-					<td><%=x.getbWriter() %></td>
-					<td><%=x.getbPublisher() %></td>
-					<td><%=x.getbCategory() %></td>
-					<%
-				}
-					%>
+				
 				</table>
 			</div>
 			<div class="main">
@@ -64,15 +54,7 @@
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-				<%for(Ebook x: book){
-					%>
-					<td><a href=""><%=x.getbBookname() %></a></td>
-					<td><%=x.getbWriter() %></td>
-					<td><%=x.getbPublisher() %></td>
-					<td><%=x.getbCategory() %></td>
-					<%
-				}
-					%>
+				
 				</table>
 			</div>
 		</div>

@@ -86,6 +86,10 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request", request);
 		model.addAttribute("locale", locale);
+		EDao dao = sqlSession.getMapper(EDao.class);
+		ArrayList<Ebook> ebook = dao.newebook();
+		session.setAttribute("newebook", ebook);
+		model.addAttribute("session",session);
 		return "main";
 	}
 	@RequestMapping(value="/main", method=RequestMethod.GET)
@@ -386,11 +390,17 @@ public class HomeController {
 		Member remember = dao.memberView(bid);
 		session.setAttribute("joinVo", remember);
 		
+<<<<<<< HEAD
 
 		int newCash = (int) remember.getbCash();
 		session.removeAttribute("cash");
 		session.setAttribute("cash", newCash);
 
+=======
+		int newCash = (int) remember.getbCash();
+		session.removeAttribute("cash");
+		session.setAttribute("cash", newCash);
+>>>>>>> 1e57686c00b0201db4367838ec84de2faa2ef958
 		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
@@ -545,7 +555,7 @@ public class HomeController {
 			BDao dao = sqlSession.getMapper(BDao.class);
 			
 	
-			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
+			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory, bRealContent);
 			
 		
 
