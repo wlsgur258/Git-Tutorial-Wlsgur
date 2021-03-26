@@ -145,7 +145,7 @@ public class HomeController {
 		service = new BoardModifyService();
 		service.execute(model);
 		
-		return "redirect:boardList";
+		return "redirect:boardContent_view";
 	}
 	
 	@RequestMapping("/boardDelete")
