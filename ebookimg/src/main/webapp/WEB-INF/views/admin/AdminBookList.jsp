@@ -8,27 +8,57 @@
 <%@ page import="com.a.b.service.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <title>책 목록</title>
 <style>
-
 .container {
+
 text-align: center;
 
 }
-
 </style>
 
 
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
+
 	<%@ include file="adminpage.jsp"%>
 	
-	<div class= "container">
+	
+	<%-- <% 
+		 Member vo = (Member)session.getAttribute("joinVo");
+	 		if(vo==null) {	
+	%>
+	<script>
+	alert("새션만료");
+	document.location.href="main";
+	</script> --%>
+	
+	<%
+	
+		String pageNumberStr = request.getParameter("xpage");
+		AdminBListService service = new AdminBListService();
+		//BDao dao = sqlSession.getMapper(BDao.class);
+		//BDao dao = new BDao();
+		int pageNumber = 1;
+		if (pageNumberStr != null) {
+			pageNumber = Integer.parseInt(pageNumberStr);
+		}
+		MessageListViewAdmin viewData = service.getMessageListView(pageNumber);
+		int totalPages = viewData.getPageTotalCount();
+		if (pageNumberStr == null)
+		pageNumberStr = "1";
+	
+		List<Ebook> subList = viewData.getMessageList();
+		 %>
+	
+	<div class="container">
 		<h1> 도서 관리</h1>	
 		<hr>
 		<div align="right">
@@ -37,7 +67,7 @@ text-align: center;
 		<table class = "table table-striped">
 			<tr>
 				<th>번호</th>
-				<th>사진</th> 
+				<!-- <th>사진</th>  -->
 				<th>제목</th>
 				<th>소개</th>
 				<th>저자</th>
@@ -47,7 +77,8 @@ text-align: center;
 				
 			</tr>
 			
-			<c:forEach items="${BookList}" var="BookList">
+			 <%-- <c:forEach items="${subList}" var="BookList">  --%>
+			<c:forEach items="<%=subList%>" var="BookList">
 			<tr>	
 				<th><c:out value="${BookList.bBookno}"/></th>
 				<th>
@@ -60,16 +91,29 @@ text-align: center;
 				<td><a class = "btn btn-primary" href="AdminContent?bBookno=${BookList.bBookno}">수정</a></td>	
 				<td><a class = "btn btn-primary" href="AdminDelete?bBookno=${BookList.bBookno}">삭제</a></td>
 				
-				<td></td>
+			
 				
 			</tr>		
 			</c:forEach>
-			
 		</table>
+	
+	<br/>
+	<br/>
+	
+	<div align="center">
+	Page<% 
+	for (int i= 1; i<= viewData.getPageTotalCount(); i++) {	
+	%>
+		<a href = "AdminBookList?xpage=<%=i%>">[<%=i%>]
+		</a>
+	<% 	
+		}
+	
+	 %>	
+
+ 
+ <%@ include file="/WEB-INF/views/bottom.jsp"%>
 	</div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
-
-
-
+</div>
 </body>
 </html>

@@ -221,6 +221,8 @@ public class HomeController {
 				response.getWriter().print(false) ;
 			}
 	}
+	
+	
 	@RequestMapping(value="/idSearch")
 	public String idsearch(HttpServletRequest request, Model model) {
 		return "login/idsearch";
@@ -384,16 +386,11 @@ public class HomeController {
 		Member remember = dao.memberView(bid);
 		session.setAttribute("joinVo", remember);
 		
-<<<<<<< HEAD
-		int newCash=(int) remember.getbCash();
-		session.removeAttribute("cash");
-		session.setAttribute("cash", newCash);
-		
-=======
+
 		int newCash = (int) remember.getbCash();
 		session.removeAttribute("cash");
 		session.setAttribute("cash", newCash);
->>>>>>> e2401319f70077996f1f1feeef1967eab72ca714
+
 		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
@@ -440,6 +437,7 @@ public class HomeController {
 	
 	@RequestMapping("/AdminBookList")
 	public String AdminBookList(Model model) {
+		
 		service = new AdminBListService();
 		service.execute(model);
 		

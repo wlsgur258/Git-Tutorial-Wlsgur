@@ -14,37 +14,12 @@ public class AdminWrite implements IBoarderService {
 	@Override
 	public void execute(Model model) {
 		
-		
-		
-		
-		
-		
-		
-    
-    
 
-   
-	
 		
 	//	MultipartRequest multi = new MultipartRequest(request, "" , 1024 * 500 ,"utf-8",new DefaultFileRenamePolicy());
 			
 			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		Map<String, Object> map = model.asMap();
 	HttpServletRequest request = (HttpServletRequest) map.get("request");
@@ -69,11 +44,7 @@ public class AdminWrite implements IBoarderService {
 	
 		BDao dao = sqlSession.getMapper(BDao.class);
 		
-		
-		
-		
-		
-		dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
+		//dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
 		
 	}
 
