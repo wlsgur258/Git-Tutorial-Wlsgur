@@ -60,6 +60,7 @@
 			<th>대출기록번호</th>
 			<th>회원아이디</th>
 			<th>책번호</th>
+			<th>책이름</th>
 			<th>대출한날짜</th>
 		</tr>
 			
@@ -75,6 +76,8 @@
 	<td><%= List.get(i).getbRentalno() %></td>
 	<td><%= List.get(i).getbId() %></td>
 	<td><%= List.get(i).getbBookno() %></td>
+	<% String goname = List.get(i).getbBookname(); %>
+	<td><a href = "ebookcontentview?bId=<%= goname %>"><%= List.get(i).getbBookname() %></a></td>
 	<td><%= formatT.format(List.get(i).getbRentaldate()) %></td>
 			</tr>
 	<%}
