@@ -12,6 +12,9 @@
 		select *
 		from EBOOK order by BBOOKNO ASC
 	</select>
+	<select id="newebook" resultType="com.a.b.dto.Ebook">
+		select * FROM (select * from ebook order by bbookno desc) where rownum=1
+	</select>
 	
 	<insert id="ebookInsert">
 		insert into EBOOK (bBookno, bBookname, bContent, 
