@@ -49,6 +49,7 @@
 %>	
 
 <%
+	
 	Integer coin = (Integer)session.getAttribute("cash");
 	
 	if(coin == null){
