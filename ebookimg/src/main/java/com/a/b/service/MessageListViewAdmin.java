@@ -2,20 +2,21 @@ package com.a.b.service;
 
 import java.util.List;
 
-import com.a.b.dto.Board;
+
+import com.a.b.dto.Ebook;
 
 
 // 게시글의 리스트를 페이징 처리하기 위한 클래스 입니다.
-public class MessageListView {
+public class MessageListViewAdmin {
 	private int messageTotalCount;
 	private int currentPageNumber;
-	private List<Board> messageList;
+	private List<Ebook> messageList;
 	private int pageTotalCount;
 	private int messageCountPerPage;
 	private int firstRow;
 	private int endRow;
 
-	public MessageListView(List<Board> messageList, int messageTotalCount, int currentPageNumber,
+	public MessageListViewAdmin(List<Ebook> messageList, int messageTotalCount, int currentPageNumber,
 			int messageCountPerPage, int firstRow, int endRow) {
 
 		this.messageList = messageList;
@@ -26,8 +27,7 @@ public class MessageListView {
 		this.endRow = endRow;
 		calculatePageTotalCount();
 	}
-	
-	
+
 
 	private void calculatePageTotalCount() {
 		if(messageTotalCount == 0 ){
@@ -48,7 +48,7 @@ public class MessageListView {
 		return currentPageNumber;
 	}
 
-	public List<Board> getMessageList() {
+	public List<Ebook> getMessageList() {
 		return messageList;
 	}
 		

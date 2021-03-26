@@ -16,7 +16,7 @@
 <title>게시판</title>
 <%
 	String pageNumberStr = request.getParameter("xpage");
-BoardListService service = new BoardListService();
+	BoardListService service = new BoardListService();
 
 int pageNumber = 1;
 if (pageNumberStr != null) {

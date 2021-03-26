@@ -221,6 +221,8 @@ public class HomeController {
 				response.getWriter().print(false) ;
 			}
 	}
+	
+	
 	@RequestMapping(value="/idSearch")
 	public String idsearch(HttpServletRequest request, Model model) {
 		return "login/idsearch";
@@ -429,6 +431,7 @@ public class HomeController {
 	
 	@RequestMapping("/AdminBookList")
 	public String AdminBookList(Model model) {
+		
 		service = new AdminBListService();
 		service.execute(model);
 		
