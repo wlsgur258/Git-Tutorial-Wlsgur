@@ -21,9 +21,10 @@ public class BoardWriteService implements IBoarderService {
 		String bId = request.getParameter("bId");
 		String bTitle = request.getParameter("bTitle");
 		String bContent = request.getParameter("bContent");
+		String bUrl = request.getParameter("bUrl");
 	
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		dao.boardWrite(bId, bTitle, bContent);
+		dao.boardWrite(bId, bTitle, bContent, bUrl);
 		
 	}
 

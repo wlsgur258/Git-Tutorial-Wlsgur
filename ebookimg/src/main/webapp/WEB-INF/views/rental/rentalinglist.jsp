@@ -87,9 +87,12 @@
 		<p>현재 접속자 ID = <%= vo %> , 렌탈'링'리스트, 로그인 회원아이디로 현재빌려진책들 출력</p>
 	</tr>
 		<tr>
+			<th>그냥번호</th>
+			<th>이미지</th>
 			<th>대출기록번호</th>
 			<th>회원아이디</th>
 			<th>책번호</th>
+			<th>책이름</th>
 			<th>대출한날짜</th>
 			<th>대출기간만료예정일</th>
 		</tr>
@@ -98,9 +101,20 @@
 	for(int i=0; i < List.size() ; i++)
 	{%>
 			<tr>
+			<td><%= i+1 %></td>
+			<td>
+			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"
+			height="50" >
+			</td>
 	<td><%= List.get(i).getbRentalno() %></td>
 	<td><%= List.get(i).getbId() %></td>
 	<td><%= List.get(i).getbBookno() %></td>
+	<% String goname = List.get(i).getbBookname(); %>
+	<td>
+	<a href = "ebookcontentview?bId=<%= goname %>">
+	<%= List.get(i).getbBookname() %>
+	</a>
+	</td>
 	<td><%= formatT.format(List.get(i).getbRentaldate()) %></td>
 	<td><%= formatT.format(List.get(i).getbReturndate()) %></td>
 			</tr>

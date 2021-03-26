@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글</title>
 </head>
 <body>
@@ -36,82 +36,120 @@
 				if (vo != null) {
 			%>
 			<tr>
-				<td>작성자</td>
+				<th>작성자</th>
 				<td>${boardContent_view.bId}</td>
 
-				<td>작성일</td>
+				<th>작성일</th>
 				<td>${boardContent_view.bDate}</td>
 			</tr>
 
 			<tr>
-				<td>제목</td>
+			<c:if test="${sessionScope.id == boardContent_view.bId}">
+				<th>제목</th>
 				<td><input type="text" name="bTitle"
 					value="${boardContent_view.bTitle}"></td>
 
-				<td>조회수</td>
+				<th>조회수</th>
 				<td>${boardContent_view.bHit}</td>
+			</c:if>	
 			</tr>
-
+			
 			<tr>
-				<td>내용</td>
+			<c:if test="${sessionScope.id == boardContent_view.bId}">
+				<th>내용</th>
 				<td><textarea rows="10" name="bContent">${boardContent_view.bContent}</textarea></td>
+			</c:if>
 			</tr>
+			
+			<tr>
+			<c:if test="${sessionScope.id == boardContent_view.bId}">
+				<th>이미지</th>
+				<td>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >
+				</td>
+			</c:if>
+			</tr>
+			
+			<tr>
+			<c:if test="${sessionScope.id != boardContent_view.bId}">
+				<th>제목</th>
+				<td>${boardContent_view.bTitle}</td>
+
+				<th>조회수</th>
+				<td>${boardContent_view.bHit}</td>
+			</c:if>	
+			</tr>
+			
+			<tr>
+			<c:if test="${sessionScope.id != boardContent_view.bId}">
+				<th>내용</th>
+				<td>${boardContent_view.bContent}</td>
+			</c:if>	
+			</tr>
+			
+			<tr>
+			<c:if test="${sessionScope.id != boardContent_view.bId}">
+				<th>이미지</th>
+				<td>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >
+				</td>
+			</c:if>
+			</tr>
+			
 			<%
 				} else {
 			%>
 			<tr>
-				<td>작성자</td>
+				<th>작성자</th>
 				<td>${boardContent_view.bId}</td>
 
-				<td>작성일</td>
+				<th>작성일</th>
 				<td>${boardContent_view.bDate}</td>
 			</tr>
 		<tr>
-			<td>제목</td>
+			<th>제목</th>
 			<td>${boardContent_view.bTitle}</td>
 
-			<td>조회수</td>
+			<th>조회수</th>
 			<td>${boardContent_view.bHit}</td>
 		</tr>
 
 		<tr>
-			<td>내용</td>
+			<th>내용</th>
 			<td>${boardContent_view.bContent}</td>
 		</tr>
-
+		
+		<tr>
+			<th>이미지</th>
+			<td>
+				<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >
+			</td>
+		</tr>
+		
+		
 			<%
 				}
 			%>
 
 		<tr>
-				<%
-					if (vo != null) {
-				%>
-		
+			<c:if test="${sessionScope.id == boardContent_view.bId}">
 			<td colspan="2"><input class="btn btn-primary" type="submit"
 				value="수정"> &nbsp;&nbsp;
 
 				<button type="button" class="btn btn-danger">
 					<a href="boardDelete?bBid=${boardContent_view.bBid}">삭제</a>
 				</button> &nbsp;&nbsp;
-
+			</td>	
+			</c:if>
+			<td>
 				<button type="button" class="btn btn-success">
 					<a href="boardList">목록보기</a>
 				</button> &nbsp;&nbsp; 
 			</td>
-		<%
- 	} else {
-		 %>
-			<td colspan="2">
-				<button type="button" class="btn btn-success">
-					<a href="boardList">목록보기</a>
-				</button> 
-			</td>	
-	<%
- 		}
- 	%>
-			
+
 		</tr>
+	
+		</form>
 	</table>
 	<br>
 	<b><font size="6" color="gray">댓글</font></b>
@@ -123,14 +161,21 @@
 				if (vo != null) {
 			%>
 			<tr>
-				<td>작성자</td>
-				<td><%=id %></td>
+				<th>작성자</th>
+				<td><%=vo %></td>
 			</tr>
 		<tr>
-			<td>내용</td>
-			<td><textarea rows="10" name="bContent"></textarea></td>
+			<th>내용</th>
+			<td><textarea rows="10" name="cContent"></textarea></td>
 		</tr>
-
+		<tr>
+			<td colspan="2">
+				<input class="btn btn-primary" 
+					type="submit"
+					value="등록"> 
+			</td>
+		</tr>		
+		
 			<%
 			}else{
 			%>
@@ -138,33 +183,18 @@
 		<tr>
 			<td>로그인후 작성하실 수 있습니다.</td>
 		</tr>
-
+		<tr>
+			<td>
+ 				<button type="button" class="btn btn-success">
+					<a href="login">로그인</a>
+				</button>
+			</td>
+		</tr>
+		
 			<% 
 			}
 			%>
-		<tr>
-
-				<%
-					if (vo != null) {
-				%>
-
-			<td colspan="2">
-			<input class="btn btn-primary" 
-				type="submit"
-				value="등록"> 
-			</td>	
-	<% 
- 	} else {
-	 %>
- 	<td>
- 		<button type="button" class="btn btn-success">
-			<a href="login">로그인</a>
-		</button>
-	</td>
- 		<%
- 	}
- 		%>
-		</tr>
+			
 		</form>
 	</table>
 </body>

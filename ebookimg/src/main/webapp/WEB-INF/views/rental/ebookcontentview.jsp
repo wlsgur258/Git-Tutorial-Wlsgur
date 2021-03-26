@@ -49,6 +49,7 @@
 %>	
 
 <%
+	
 	Integer coin = (Integer)session.getAttribute("cash");
 	
 	if(coin == null){
@@ -136,6 +137,7 @@
 				<button class="btn btn-primary">이미 대여된 책입니다</button>
 			<form name = "textgo" action= "textdo" method = "POST">
 				<input type="hidden" name = "bBookno1" value = "${ebook_view.bBookno}">
+				<input type="hidden" name = "bBookname1" value = "${ebook_view.bBookname}">
 				<button class="btn btn-primary" type="submit">책내용 보러가기!</button>
 			</form>
 			<% } } %>

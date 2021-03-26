@@ -55,7 +55,7 @@
 	
 	</tr>
 		<tr>
-			<th>책번호</th>
+			<th>책이미지</th>
 			<th>책제목</th>
 			<th>책내용</th>
 			<th>책가격</th>
@@ -72,7 +72,11 @@
 			</c:forEach> --%>
 			<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto.bBookno}</td>
+				<td>
+				<img src="<spring:url 
+				value ='http://121.153.134.167/ebook/${dto.bUrl}'/>" 
+				height="50">
+				</td>
 				<td><a href ="ebookcontentview?bId=${dto.bBookname}">${dto.bBookname}</a></td>
 				<td>${dto.bContent}</td>
 				<td>${dto.bPrice}</td>

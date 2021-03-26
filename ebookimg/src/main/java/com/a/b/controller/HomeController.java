@@ -120,7 +120,7 @@ public class HomeController {
 		return "redirect:boardList";
 	}
 	
-	@RequestMapping("commentWrite")
+	@RequestMapping("/commentWrite")
 	public String commentWrite(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		service = new CommentWriteService();
@@ -138,7 +138,7 @@ public class HomeController {
 		return "board/boardContent_view";
 	}
 	
-	@RequestMapping("/boardModify")
+	@RequestMapping(method =  RequestMethod.POST, value = "/boardModify")
 	public String boardModify(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
@@ -383,6 +383,17 @@ public class HomeController {
 		session.removeAttribute("joinVo");
 		Member remember = dao.memberView(bid);
 		session.setAttribute("joinVo", remember);
+		
+<<<<<<< HEAD
+		int newCash=(int) remember.getbCash();
+		session.removeAttribute("cash");
+		session.setAttribute("cash", newCash);
+		
+=======
+		int newCash = (int) remember.getbCash();
+		session.removeAttribute("cash");
+		session.setAttribute("cash", newCash);
+>>>>>>> e2401319f70077996f1f1feeef1967eab72ca714
 		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
@@ -536,7 +547,7 @@ public class HomeController {
 			BDao dao = sqlSession.getMapper(BDao.class);
 			
 	
-			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory, bRealContent);
+			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
 			
 		
 
@@ -622,7 +633,19 @@ public class HomeController {
 	///// ebook 리스트게시판
 		
 		@RequestMapping("/list")
-		public String list(Model model) {
+		public String list(Model model, HttpSession session) {
+			
+			String ok = (String)session.getAttribute("id");
+			System.out.println(ok);
+			System.out.println("기본 북리스트 접근...");
+			if(ok != null) { // 로그인 상태로 북리스트 접근시
+				
+				EDao dao = sqlSession.getMapper(EDao.class);
+				dao.ebookRentalOverListDelete(ok); 
+				System.out.println("렌탈링리스트 최신화 완료");
+				// 북리스트접근시 렌탈링리스트에 기간지난거 삭제하고
+			}
+			
 			System.out.println("list()");
 			service = new EbookListService();
 			service.execute(model);
@@ -766,14 +789,16 @@ public class HomeController {
 		public String textdo(Model model, HttpServletRequest request) {
 			
 			String bno = request.getParameter("bBookno1");
+			String bname = request.getParameter("bBookname1");
 			EDao dao = sqlSession.getMapper(EDao.class);
-			Ebook dto = dao.ebookView(bno);
-			System.out.println(bno);
+			Ebook dto = dao.ebookView(bname);
+			
+			System.out.println("텍스트두:"+bno);
 			
 			model.addAttribute("ebook_text", dto);
-			service = new textService();
-			service.execute(model);
 			
+			service = new textService(bno);
+			service.execute(model);
 			
 			System.out.println("textdo 컨트롤러중asd");
 			return "/rental/ebooktext";

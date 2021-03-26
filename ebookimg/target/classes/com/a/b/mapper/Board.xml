@@ -29,10 +29,9 @@
 	WHERE BBID = #{param1}
 	</select>
 
-
 	<update id="boardModify">
 	UPDATE BOARD
-	SET BID = #{param2,jdbcType=VARCHAR}, BTITLE = #{param3,jdbcType=VARCHAR}, BCONTENT = #{param4,jdbcType=VARCHAR}
+	SET BTITLE = #{param2,jdbcType=VARCHAR}, BCONTENT = #{param3,jdbcType=VARCHAR}
 	WHERE BBID = #{param1,jdbcType=NUMERIC}
 	</update>
 
