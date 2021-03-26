@@ -8,15 +8,17 @@ public class RentalList {
 	private String bId;
 	private long bBookno;
 	private Timestamp bRentaldate;
+	private String bUrl;
 	
 	public RentalList() {}
 
 	public RentalList(long bRentalno, String bId, long bBookno, 
-			Timestamp bRentaldate) {
+			Timestamp bRentaldate, String bUrl) {
 		this.bRentalno = bRentalno;
 		this.bId = bId;
 		this.bBookno = bBookno;
 		this.bRentaldate = bRentaldate;
+		this.setbUrl(bUrl);
 	}
 
 	public long getbRentalno() {
@@ -49,6 +51,14 @@ public class RentalList {
 
 	public void setbRentaldate(Timestamp bRentaldate) {
 		this.bRentaldate = bRentaldate;
+	}
+
+	public String getbUrl() {
+		return bUrl;
+	}
+
+	public void setbUrl(String bUrl) {
+		this.bUrl = bUrl;
 	}
 
 	

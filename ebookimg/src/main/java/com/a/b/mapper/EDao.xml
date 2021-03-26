@@ -9,7 +9,7 @@
 		select * FROM EBOOK WHERE BBOOKNAME = #{param1}
 	</select>
 	<select id="ebookList" resultType="com.a.b.dto.Ebook">
-		select BBOOKNO, BBOOKNAME, BCONTENT, BPRICE, BWRITER, BPUBLISHER, BCATEGORY
+		select *
 		from EBOOK order by BBOOKNO ASC
 	</select>
 	
@@ -70,19 +70,22 @@
 	
 	<select id="ebookRentalList" resultType = "com.a.b.dto.RentalList"> 
 	<!-- 멤버아이디 참조해서.. -->
-		select * 
-		FROM RENTALLIST 
-		WHERE bId = #{param1} 
+		SELECT BRENTALNO, BID, RENTALLIST.BBOOKNO, BRENTALDATE, BURL
+		FROM RENTALLIST, EBOOK
+		WHERE RENTALLIST.BBOOKNO = EBOOK.BBOOKNO
+		AND bId = #{param1}  
 	</select>
 	
 	<select id="ebookRentalingList" resultType = "com.a.b.dto.RentalingList">
 	 <!-- 현재대여중보기 -->
-		select BRENTALNO, BID, BBOOKNO, 
+		select BRENTALNO, BID, RENTALINGLIST.BBOOKNO, 
 		BRENTALDATE,
-		BRETURNDATE
+		BRETURNDATE,
+		BURL
 		<!-- TO_CHAR(BRETURNDATE, 'YYYY-MM-DD HH24-MI-SS')-->
-		FROM RENTALINGLIST
-		WHERE bId = #{param1}
+		FROM RENTALINGLIST, EBOOK
+		WHERE RENTALINGLIST.BBOOKNO = EBOOK.BBOOKNO
+		AND bId = #{param1}
 	</select>
 	
 	<update id="rentalCashdown">
