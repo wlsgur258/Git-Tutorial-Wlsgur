@@ -622,7 +622,19 @@ public class HomeController {
 	///// ebook 리스트게시판
 		
 		@RequestMapping("/list")
-		public String list(Model model) {
+		public String list(Model model, HttpSession session) {
+			
+			String ok = (String)session.getAttribute("id");
+			System.out.println(ok);
+			System.out.println("기본 북리스트 접근...");
+			if(ok != null) { // 로그인 상태로 북리스트 접근시
+				
+				EDao dao = sqlSession.getMapper(EDao.class);
+				dao.ebookRentalOverListDelete(ok); 
+				System.out.println("렌탈링리스트 최신화 완료");
+				// 북리스트접근시 렌탈링리스트에 기간지난거 삭제하고
+			}
+			
 			System.out.println("list()");
 			service = new EbookListService();
 			service.execute(model);
@@ -766,10 +778,11 @@ public class HomeController {
 		public String textdo(Model model, HttpServletRequest request) {
 			
 			String bno = request.getParameter("bBookno1");
+			String bname = request.getParameter("bBookname1");
 			EDao dao = sqlSession.getMapper(EDao.class);
-			Ebook dto = dao.ebookView(bno);
+			Ebook dto = dao.ebookView(bname);
 			
-			System.out.println(bno);
+			System.out.println("텍스트두:"+bno);
 			
 			model.addAttribute("ebook_text", dto);
 			
