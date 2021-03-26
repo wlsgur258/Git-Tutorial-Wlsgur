@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletRequest;
@@ -468,22 +469,26 @@ public class HomeController {
 			MultipartFile uploadFile = multi.getFile("file");
 			MultipartFile uploadFile2 = multi.getFile("file_text");
 			
+			 UUID uuid = UUID.randomUUID();
 			
 			System.out.println(uploadFile.getOriginalFilename());
 			System.out.println(uploadFile2.getOriginalFilename());
-			String fileName = uploadFile.getOriginalFilename();
-			String fileName2 = uploadFile2.getOriginalFilename();
+			
+			
+			//String fileName = uploadFile.getOriginalFilename();
+			String fileName = uuid+"_"+uploadFile.getOriginalFilename();
+			//String fileName2 =uploadFile2.getOriginalFilename();
+			String fileName2 = uuid+"_"+uploadFile2.getOriginalFilename();
 			
 			
 			System.out.println(fileName+"파일네임이다");
-			System.out.println(fileName2+"파일네임2 이다");
+			System.out.println(fileName2+"파일네임2이다");
 			
 			
 			//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
 			
 			String Realpath = "C:/Users/pc346/Desktop/useEbook/";
-			//String Realpath = "C:/Users/pc374/Desktop/useEbook/";
-			
+					
 			//http://121.153.134.167/ebook/ebook9.png
 			
 			if(!uploadFile.isEmpty() && !uploadFile2.isEmpty()) {
@@ -504,17 +509,18 @@ public class HomeController {
 					System.out.println("실패2");
 				}
 			}
-	
+
+			
 			//model.addAttribute("multi",multi);
 			//service = new AdminWrite()
 			 
 			String bBookname = multi.getParameter("bBookname");
 
 			String bUrl = fileName;
-			
-			
+		
 			String bRealContent = fileName2;
 			
+			System.out.println(bRealContent+"DB에 넣을 값 입니다");
 			
 			String bContent = multi.getParameter("bContent");
 			
@@ -763,15 +769,12 @@ public class HomeController {
 			EDao dao = sqlSession.getMapper(EDao.class);
 			Ebook dto = dao.ebookView(bno);
 			
-			BDao dao2 = sqlSession.getMapper(BDao.class);
-			
-			
 			System.out.println(bno);
 			
 			model.addAttribute("ebook_text", dto);
-			service = new textService();
-			service.execute(model);
 			
+			service = new textService(bno);
+			service.execute(model);
 			
 			System.out.println("textdo 컨트롤러중asd");
 			return "/rental/ebooktext";
