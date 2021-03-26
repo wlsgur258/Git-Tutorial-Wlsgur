@@ -62,15 +62,6 @@
 			</tr>
 			
 			<tr>
-			<c:if test="${sessionScope.id == boardContent_view.bId}">
-				<th>이미지</th>
-				<td>
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >
-				</td>
-			</c:if>
-			</tr>
-			
-			<tr>
 			<c:if test="${sessionScope.id != boardContent_view.bId}">
 				<th>제목</th>
 				<td>${boardContent_view.bTitle}</td>
@@ -86,16 +77,6 @@
 				<td>${boardContent_view.bContent}</td>
 			</c:if>	
 			</tr>
-			
-			<tr>
-			<c:if test="${sessionScope.id != boardContent_view.bId}">
-				<th>이미지</th>
-				<td>
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >
-				</td>
-			</c:if>
-			</tr>
-			
 			<%
 				} else {
 			%>
@@ -119,12 +100,6 @@
 			<td>${boardContent_view.bContent}</td>
 		</tr>
 		
-		<tr>
-			<th>이미지</th>
-			<td>
-				<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >
-			</td>
-		</tr>
 		
 		
 			<%
