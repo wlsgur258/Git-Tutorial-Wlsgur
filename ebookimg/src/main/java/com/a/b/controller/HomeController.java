@@ -86,6 +86,10 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request", request);
 		model.addAttribute("locale", locale);
+		EDao dao = sqlSession.getMapper(EDao.class);
+		ArrayList<Ebook> ebook = dao.newebook();
+		session.setAttribute("newebook", ebook);
+		model.addAttribute("session",session);
 		return "main";
 	}
 	@RequestMapping(value="/main", method=RequestMethod.GET)
