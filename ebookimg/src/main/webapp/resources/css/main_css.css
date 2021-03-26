@@ -117,12 +117,10 @@ header .loginmenu{
 	color: black;
 	font-weight: bold;
 }
-/* 여기까지가 윗부분 header 메뉴 틀입니다. 여기까지 복사하시면 됩니다. */
 .cycle-slideshow{
 	position: relative;
 	width: 100%;
 	z-index: 200;
-	height: 200px;
 }
 .cycle-slideshow img{
 	width: 100%;
@@ -131,85 +129,31 @@ header .loginmenu{
 #container{
 	position:relative;
 	width: 100%;
+	height: 100%;
 }
-.conimg{
-	position: absolute;
-	width: 75%;
-	height: 400px;
+.left, .right, .main{
+    height:100%;
 }
-.conimg img{
-  width:inherit;
-  height:inherit;
-}
-.img1 {
-  top:0px;
-  left:0px;
-}
-
-.img2 {
-  top:0px;
-  left:50%;
-}
-
-.img3 {
-  top:400px;
-  left:0;
-}
-
-.img4 {
-  top:400px;
-  left:50%;
-}
-.darkness {
-  position:absolute;
-  top:0;
-  left:0;
-  width:inherit;
-  height:inherit;
-  background:#000000;
-  opacity:0;
-  transition:all .2s linear;
-}
-.darkness span{
-  color:#ffffff;
-  user-select:none;
-}
-.conimg:hover .darkness{
-  opacity:0.7;
-}
-
-/* 스크립트가 다운되지 않을 때 */
-.cycle-slideshow img:first-child{
-	position: static; z-index: 100;
-}
-.cycle-pager{
+.left {
+	float:left;
+	width:25%;
 	text-align: center;
-	width: 100%;
-	z-index: 500;
-	position: absolute;
-	bottom: 5px;
-	overflow: hidden;
 }
-.cycle-pager span{
-	font-family: arial;
-	font-size: 50px;
-	width: 16px;
-	hegiht: 16px;
-	padding: 0 5px 0 0;
-	display: inline-block;
-	color: #ddd;
-	cursor: pointer;
+.main{
+	float:left;
+	width:50%;
+    text-align: center;
+	
 }
-.cycle-pager span.cycle-pager-active{
-	color: #c8ffff;
-}
-.cycle-pager>*{
-	cursor: pointer;
+.right{
+	float:left;
+    width :25%;
+    text-align: center;
 }
 
 
-footer div {
-    position: absolute;
+footer .fixed{
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
