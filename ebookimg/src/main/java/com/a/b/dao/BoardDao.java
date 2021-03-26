@@ -10,7 +10,8 @@ public interface BoardDao {
 	public void boardWrite(
 			 final String bId,
 			 final String bTitle,
-			 final String bContent
+			 final String bContent,
+			 final String bUrl
 			);
 	
 	
