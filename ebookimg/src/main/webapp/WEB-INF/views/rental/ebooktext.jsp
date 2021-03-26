@@ -15,13 +15,23 @@
 <title>이북텍스트</title>
 </head>
 <body>
-		이북텍스트가 나오는곳...
+이북텍스트가 나오는곳...
 		
 		
-${ebook_text.bBookno}
-${ebook_text.bRealContent}
+<p>책 넘버 :${ebook_text.bBookno}</p>
+<p>책 오라클db리얼콘텐츠 : ${ebook_text.bRealContent}</p>
+
+
+
+<form>
+<textarea rows = "5" cols = "50" readonly >
 
 <%= request.getAttribute("txt1") %>
+
+</textarea>
+</form>
+
+<p>책 내용 : <%= request.getAttribute("txt1") %></p>
 		
 		
 		

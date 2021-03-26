@@ -16,22 +16,30 @@ import com.a.b.dao.MDao;
 
 public class textService implements IBoarderService{
 	private SqlSession sqlSession = Constant.sqlSession;
+	private int ebookno;
+	
+	public textService(String bno) {
+		ebookno = Integer.parseInt(bno);
+	}
+	
 	@Override
 	public void execute(Model model) {
-		
+		System.out.println(ebookno);
+		int a = ebookno;
 		String Realpath = "C:/Users/pc346/Desktop/useEbook/";
 		//String Realpath = "C:/Users/pc374/Desktop/useEbook/";
 		
-		int a = 212;
 		BDao dao = sqlSession.getMapper(BDao.class);
 		String txt1 = dao.contentview(a).getbRealContent();
 		System.out.println("텍스트서비스시스템:"+txt1);
 		
 		// 김병찬씨컴퓨터 경로/bclob객체이름
 		File file = new File(Realpath, txt1);
+		
 		try {
 			System.out.println( "결과 : " + IOUtils.toString( new FileInputStream( file ) ) );
 			txt1 = IOUtils.toString( new FileInputStream( file ));
+		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,8 +47,8 @@ public class textService implements IBoarderService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("txt1", txt1);
 		
+		model.addAttribute("txt1", txt1);
 		
 		// TODO Auto-generated method stub
 //		String txt1 = null;

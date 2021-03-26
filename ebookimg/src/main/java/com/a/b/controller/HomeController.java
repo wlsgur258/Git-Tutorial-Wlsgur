@@ -768,12 +768,13 @@ public class HomeController {
 			String bno = request.getParameter("bBookno1");
 			EDao dao = sqlSession.getMapper(EDao.class);
 			Ebook dto = dao.ebookView(bno);
+			
 			System.out.println(bno);
 			
 			model.addAttribute("ebook_text", dto);
-			service = new textService();
-			service.execute(model);
 			
+			service = new textService(bno);
+			service.execute(model);
 			
 			System.out.println("textdo 컨트롤러중asd");
 			return "/rental/ebooktext";
