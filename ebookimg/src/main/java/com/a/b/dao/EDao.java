@@ -39,6 +39,6 @@ public interface EDao {
 	public int ebookRentalingCheck(final String bId, final String bBookname);
 	
 	public int rentalCashdown(final String bId);
-	
+	public ArrayList<Ebook> newebook();	
 	
 }
