@@ -18,12 +18,11 @@ public class BoardModifyService implements IBoarderService {
 	HttpServletRequest request = (HttpServletRequest) map.get("request");
 	
 	long bBid = Long.parseLong(request.getParameter("bBid"));
-	String bId = request.getParameter("bId");
 	String bTitle = request.getParameter("bTitle");
 	String bContent = request.getParameter("bContent");
 	
 	BoardDao dao = sqlSession.getMapper(BoardDao.class);
-	dao.boardModify(bBid, bId, bTitle, bContent);
+	dao.boardModify(bBid, bTitle, bContent);
 	
 	}
 

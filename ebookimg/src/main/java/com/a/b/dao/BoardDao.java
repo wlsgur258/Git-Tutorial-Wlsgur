@@ -19,7 +19,6 @@ public interface BoardDao {
 	
 	public void boardModify(
 			final long bBid,
-			final String bId,
 			final String bTitle,
 			final String bContent
 			);

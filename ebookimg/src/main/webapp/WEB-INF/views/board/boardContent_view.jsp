@@ -6,7 +6,7 @@
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글</title>
 </head>
 <body>
@@ -29,50 +29,51 @@
 	<br>
 
 	<table width="700" border="3" bordercolor="lightgray" align="center">
-		<form method="post">
+		<form action="boardModify" method="post">
 
 			<input type="hidden" name="bBid" value="${boardContent_view.bBid}">
 			<%
 				if (vo != null) {
 			%>
 			<tr>
-				<td>작성자</td>
+				<th>작성자</th>
 				<td>${boardContent_view.bId}</td>
 
-				<td>작성일</td>
+				<th>작성일</th>
 				<td>${boardContent_view.bDate}</td>
 			</tr>
 
 			<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId}">
-				<td>제목</td>
-				<td>${boardContent_view.bTitle}</td>
- 
-				<td>조회수</td>
+				<th>제목</th>
+				<td><input type="text" name="bTitle"
+					value="${boardContent_view.bTitle}"></td>
+
+				<th>조회수</th>
 				<td>${boardContent_view.bHit}</td>
 			</c:if>	
 			</tr>
 			
 			<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId}">
-				<td>내용</td>
-				<td>${boardContent_view.bContent}</td>
+				<th>내용</th>
+				<td><textarea rows="10" name="bContent">${boardContent_view.bContent}</textarea></td>
 			</c:if>
 			</tr>
 			
 			<tr>
 			<c:if test="${sessionScope.id != boardContent_view.bId}">
-				<td>제목</td>
+				<th>제목</th>
 				<td>${boardContent_view.bTitle}</td>
 
-				<td>조회수</td>
+				<th>조회수</th>
 				<td>${boardContent_view.bHit}</td>
 			</c:if>	
 			</tr>
 			
 			<tr>
 			<c:if test="${sessionScope.id != boardContent_view.bId}">
-				<td>내용</td>
+				<th>내용</th>
 				<td>${boardContent_view.bContent}</td>
 			</c:if>	
 			</tr>
@@ -80,22 +81,22 @@
 				} else {
 			%>
 			<tr>
-				<td>작성자</td>
+				<th>작성자</th>
 				<td>${boardContent_view.bId}</td>
 
-				<td>작성일</td>
+				<th>작성일</th>
 				<td>${boardContent_view.bDate}</td>
 			</tr>
 		<tr>
-			<td>제목</td>
+			<th>제목</th>
 			<td>${boardContent_view.bTitle}</td>
 
-			<td>조회수</td>
+			<th>조회수</th>
 			<td>${boardContent_view.bHit}</td>
 		</tr>
 
 		<tr>
-			<td>내용</td>
+			<th>내용</th>
 			<td>${boardContent_view.bContent}</td>
 		</tr>
 		
@@ -107,10 +108,8 @@
 
 		<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId}">
-			<td>
-				<button type="button" class="btn btn-primary">
-					<a href="boardModify?bBid=${boardContent_view.bBid}">수정</a>
-				</button> &nbsp;&nbsp;
+			<td colspan="2"><input class="btn btn-primary" type="submit"
+				value="수정"> &nbsp;&nbsp;
 
 				<button type="button" class="btn btn-danger">
 					<a href="boardDelete?bBid=${boardContent_view.bBid}">삭제</a>
@@ -124,7 +123,8 @@
 			</td>
 
 		</tr>
-	</form>	
+	
+		</form>
 	</table>
 	<br>
 	<b><font size="6" color="gray">댓글</font></b>
@@ -136,11 +136,11 @@
 				if (vo != null) {
 			%>
 			<tr>
-				<td>작성자</td>
+				<th>작성자</th>
 				<td><%=vo %></td>
 			</tr>
 		<tr>
-			<td>내용</td>
+			<th>내용</th>
 			<td><textarea rows="10" name="cContent"></textarea></td>
 		</tr>
 		<tr>
@@ -169,6 +169,7 @@
 			<% 
 			}
 			%>
+			
 		</form>
 	</table>
 </body>

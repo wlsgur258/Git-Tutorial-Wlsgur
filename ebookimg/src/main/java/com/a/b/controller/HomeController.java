@@ -120,7 +120,7 @@ public class HomeController {
 		return "redirect:boardList";
 	}
 	
-	@RequestMapping("commentWrite")
+	@RequestMapping("/commentWrite")
 	public String commentWrite(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		service = new CommentWriteService();
@@ -138,14 +138,14 @@ public class HomeController {
 		return "board/boardContent_view";
 	}
 	
-	@RequestMapping("/boardModify")
+	@RequestMapping(method =  RequestMethod.POST, value = "/boardModify")
 	public String boardModify(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
 		service = new BoardModifyService();
 		service.execute(model);
 		
-		return "redirect:boardContent_view";
+		return "redirect:boardList";
 	}
 	
 	@RequestMapping("/boardDelete")
