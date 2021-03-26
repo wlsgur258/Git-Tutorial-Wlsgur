@@ -383,6 +383,11 @@ public class HomeController {
 		session.removeAttribute("joinVo");
 		Member remember = dao.memberView(bid);
 		session.setAttribute("joinVo", remember);
+		
+		int newCash=(int) remember.getbCash();
+		session.removeAttribute("cash");
+		session.setAttribute("cash", newCash);
+		
 		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
@@ -536,7 +541,7 @@ public class HomeController {
 			BDao dao = sqlSession.getMapper(BDao.class);
 			
 	
-			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory, bRealContent);
+			dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
 			
 		
 
