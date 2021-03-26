@@ -46,19 +46,27 @@
 		<form action="boardWrite" method="post">
 
 			<input type="hidden" name="bBid" value="${boardWrite_view.bBid}">
+		
 			<tr>
 				<th>작성자</th>
 				<td><input name="bId"></td>
 			</tr>
+			
 			<tr>
 				<th>제 목</th>
 				<td><input name="bTitle" type="text" size="70" maxlength="100"></td>
 			</tr>
+			
 			<tr>
 				<th>내 용</th>
 				<td><textarea name="bContent" cols="72" rows="20"></textarea></td>
 			</tr>
-
+			
+			<tr>
+				<th>이미지</th>
+				<td><input name = "file" type="file" size="50"></td>
+			</tr>
+			
 			<tr align="center" valign="middle">
 				<td colspan="5"><input type="reset" value="작성취소"> <input
 					type="submit" value="등록">
