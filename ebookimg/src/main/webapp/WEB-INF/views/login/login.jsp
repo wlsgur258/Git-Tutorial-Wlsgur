@@ -39,11 +39,11 @@
 		<button class="btn btn-primary" onclick="location.href='idSearch'">아이디 또는 비밀번호 찾기</button>
 	</h5>
 </div>
-		<footer>
-		<div>
+	<footer>
+		<div class="fixed">
 	<%@include file="../bottom.jsp"%>
 		</div>
-		</footer>
+	</footer>
 <script>
         $(function() {
             $('#submitBtn').mouseenter(function() {
