@@ -51,9 +51,9 @@
 		</table>
 	</div>
 	<footer>
-		<div>
+		<div class="fixed">
 	<%@include file="../bottom.jsp"%>
 		</div>
-		</footer>
+	</footer>
 </body>
 </html>
