@@ -121,7 +121,11 @@ List<Board> subList = viewData.getMessageList();
 			</form>
 		</div>
 	</div>
-
+	<footer>
+		<div class="fixed">
+	<%@include file="../bottom.jsp"%>
+		</div>
+	</footer>
 </body>
 </html>
 
