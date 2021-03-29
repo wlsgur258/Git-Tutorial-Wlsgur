@@ -15,7 +15,7 @@ text-align: center;
 <meta charset="UTF-8">
 <title>검색결과</title>
 </head>
-<%@ include file="adminpage.jsp"%>
+<%@ include file="adminpageTop.jsp"%>
 
 
 <body>

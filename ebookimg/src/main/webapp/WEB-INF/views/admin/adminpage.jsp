@@ -28,23 +28,190 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 	<title>Home</title>
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>	
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>	 -->
+	
+<script src="${context}/js/jquery-1.9.1.js"></script>
+<script src="${context}/js/bootstrap.min.js"></script>
+<script src="${context}/js/plugins/metisMenu/metisMenu.min.js"></script>
+<script src="${context}/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="${context}/js/sb-admin-2.js"></script>
+<script src="${context}/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="${context}/js/morris.min.js"></script>
+<script src="${context}/js/raphael.js"></script>
+
+<!-- <script src="J:/springworkspace/Git_Tutorial/ebookimg/src/main/webapp/resources/*"></script> -->
+
+
+	
+	
+<!-- <style>
+#container {
+  height: 400px; 
+}
+
+.highcharts-figure, .highcharts-data-table table {
+  min-width: 310px; 
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #EBEBEB;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+</style>	 -->
+	
+<!-- <script type="text/javascript">
+$(function() {
+		
+	Highcharts.chart('container', {
+	    chart: {
+	        type: 'pie',
+	        options3d: {
+	            enabled: true,
+	            alpha: 45,
+	            beta: 0
+	        }
+	    },
+	    title: {
+	        text: '회원별 이 대여한 책의 카테고리'
+	    },
+	    accessibility: {
+	        point: {
+	            valueSuffix: '%'
+	        }
+	    },
+	    tooltip: {
+	        pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+	    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            depth: 35,
+	            dataLabels: {
+	                enabled: true,
+	                format: '{point.name}'
+	            }
+	        }
+	    },
+	    series: [{
+	        type: 'pie',
+	        name: '카테고리',
+	        data: [
+	            ["", 45.0],
+	            ['IE', 26.8],
+	            {
+	                name: 'Chrome',
+	                y: 12.8,
+	                sliced: true,
+	                selected: true
+	            },
+	            ['Safari', 8.5],
+	            ['Opera', 6.2],
+	            ['Others', 0.7]
+	        ]
+	    }]
+	});
+});
+</script> -->	
+<script>	
+	
+	var sort;
+	var url;
+	
+		$(document).ready(function(){
+	
+		
+		var objDonut = JSON.parse('${objDonut}');
+    	var objBar = JSON.parse('${objBar}');
+		sort = '${sort}';
+	
+	if('${sort}' != null) $("#sort").val(sort);
+	
+	$("#sort").change(function(){
+		sort = $("#sort").val();
+
+		if(sort == 'genre'){
+			url = "${context}/work/book/retrieveStatisticsForGenre.do";
+		}else if(sort == 'bookStatus'){
+			url = "${context}/work/book/retrieveStatisticsForBookStatus.do";
+		}else if(sort == 'bookPublisher'){
+			url = "${context}/work/book/retrieveStatisticsForBookPublisher.do";
+		}else if(sort == 'author'){
+			url = "${context}/work/book/retrieveStatisticsForAuthor.do";
+		}
+
+		location.href = url + "?sort=" + sort;
+	});
+	
+	
+	 Morris.Donut({
+            element: 'donutChart',
+            data: objDonut,
+            resize: true
+        });
+
+        Morris.Bar({
+            element: 'barChart',
+            data: objBar,
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['데이터 건수'],
+            hideHover: 'auto',
+            resize: true
+        });
+
+
+    });
+
+	</script>	
+	
+	
+	
 </head>
 <body>
 
 		<table width="100%" border="0">
-		<tr>
-			
+		<tr>		
 			<td><a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
 			</td>		
 			<td colspan="3">
 			
 				<div align ="center">
 					<h1>관리자 페이지</h1>
-				</div>
-				
+				</div>		
 			</td>
 			<td align="center" ><h3 class="y"><%=id%>님</h3>
-				
 	<%
  	if (id.equals("admin")) { %>
 				
@@ -69,6 +236,50 @@
 			<td align="center"><h2><a href="AdminMemberList">고객정보</a></h2></td>
 		</tr>
 </table>
+
+<div class="container">
+		<div class="jumbotron jumbotron-info" style="background-color: white;">
+			<h1><font color="black"><strong>통계</strong>&nbsp;<span class="glyphicon glyphicon glyphicon-pencil"></span></font></h1>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+		   		<h1 class="page-header">
+			    	<label class="glyphicon glyphicon-list-alt fa-lg"></label>&nbsp;<i><b>Statistics</b></i>
+		        </h1>
+	        </div>
+	    </div>
+		<div class="row">
+			<div class="col-md-2">
+				<select class="form-control" id="sort" name="sort">
+					<option value="category">장르별</option>			
+					<option value="publisher">출판사별</option>
+					<option value="author">저자별</option>
+				</select>
+			</div>
+		</div>
+	    <div class="row">
+			<div id="donutChart"></div>
+	    </div>
+
+		<div class="row">
+			<div id="barChart"></div>
+	    </div>
+
+		<div class="row">
+			<div class="col-md-1 col-md-offset-11">
+				<button type="button" class="btn btn-success btn-lg"  style="float:right;" onclick="fn_back()">뒤로가기</button>
+			</div>
+		</div>
+	</div>
+
+
+<%-- <figure class="highcharts-figure">
+  	  <div id="container"></div>
+   		 <p class="highcharts-description"> 
+       ${data}
+    </p>
+</figure> --%>
 </body>
 </html>
 

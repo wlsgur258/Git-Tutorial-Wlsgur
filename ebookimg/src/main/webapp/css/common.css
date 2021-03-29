@@ -1,0 +1,27 @@
+@charset="euc-kr";
+
+body {
+	background: url('../backgroundImage/blueSky.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size:cover;
+}
+
+a{
+	cursor: pointer;
+}
+
+#container	{ background-color: white; border-style:solid; width:1000px; height:600px;
+			 margin-top:50px; margin-left: 150px;}
+#plusCert { cursor: pointer;}
+#minusCert { cursor: pointer;}
+.navbar-nav{
+	background-color: #f0cb85;
+}
+.navbar-brand{
+	background-color: #ffc846;
+}
+.navbar-right{
+	margin-right : 5px;
+}
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus { background-image:none !important; } .navbar-nav > li > a:hover, .navbar-nav > li > a:focus { background-color:#ffc314; }
