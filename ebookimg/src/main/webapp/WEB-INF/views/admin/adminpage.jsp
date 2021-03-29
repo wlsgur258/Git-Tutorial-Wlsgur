@@ -35,14 +35,14 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>	 -->
 	
-<script src="${context}/js/jquery-1.9.1.js"></script>
-<script src="${context}/js/bootstrap.min.js"></script>
-<script src="${context}/js/plugins/metisMenu/metisMenu.min.js"></script>
-<script src="${context}/js/plugins/dataTables/jquery.dataTables.js"></script>
-<script src="${context}/js/sb-admin-2.js"></script>
-<script src="${context}/js/plugins/dataTables/dataTables.bootstrap.js"></script>
-<script src="${context}/js/morris.min.js"></script>
-<script src="${context}/js/raphael.js"></script>
+<script src="/b/js/jquery-1.9.1.js"></script>
+<script src="/b/js/bootstrap.min.js"></script>
+<script src="/b/js/plugins/metisMenu/metisMenu.min.js"></script>
+<script src="/b/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="/b/js/sb-admin-2.js"></script>
+<script src="/b/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="/b/js/morris.min.js"></script>
+<script src="/b/js/raphael.js"></script>
 
 <!-- <script src="J:/springworkspace/Git_Tutorial/ebookimg/src/main/webapp/resources/*"></script> -->
 
