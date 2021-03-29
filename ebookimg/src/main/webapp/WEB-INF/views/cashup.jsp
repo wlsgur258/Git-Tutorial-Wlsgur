@@ -36,5 +36,10 @@
 	</td></tr>
 </table>
 </form>
+	<footer>
+		<div class="fixed">
+	<%@include file="../bottom.jsp"%>
+		</div>
+	</footer>
 </body>
 </html>
