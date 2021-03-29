@@ -50,10 +50,10 @@
 			</form>
 		</table>
 	</div>
-		<footer>
-		<div>
+	<footer>
+		<div class="fixed">
 	<%@include file="../bottom.jsp"%>
 		</div>
-		</footer>
+	</footer>
 </body>
 </html>
