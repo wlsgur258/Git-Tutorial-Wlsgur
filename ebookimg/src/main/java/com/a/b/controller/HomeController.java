@@ -88,7 +88,7 @@ public class HomeController {
 		model.addAttribute("locale", locale);
 		EDao dao = sqlSession.getMapper(EDao.class);
 		ArrayList<Ebook> ebook = dao.newebook();
-		session.setAttribute("newebook", ebook);
+		session.setAttribute("newbook", ebook);
 		ArrayList<Ebook> bestbook = dao.bestbook();
 		session.setAttribute("bestbook", bestbook);
 		model.addAttribute("session",session);
