@@ -9,7 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>도서 관리</title>
-
+<%
+	List<Ebook> book = (List<Ebook>)session.getAttribute("newebook");
+	List<Ebook> bestbook = (List<Ebook>)session.getAttribute("bestbook");
+%>
 <link rel="stylesheet" href="resources/css/main_css.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -27,14 +30,25 @@
 		<div id="container">
 			<div class="left">
 				<h3 align="center">신규 도서</h3>
+				<%for(Ebook x: book){
+					%>
 				<table border="0" width="100%">
+				<tr>
+					<th colspan="4"><img src="<spring:url value ='http://121.153.134.167/ebook/<%=x.getbUrl() %>'/>"></th>
+				</tr>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-				
+					<td><a href=""><%=x.getbBookname() %></a></td>
+					<td><%=x.getbWriter() %></td>
+					<td><%=x.getbPublisher() %></td>
+					<td><%=x.getbCategory() %></td>
+					<%
+				}
+					%>
 				</table>
 			</div>
 			<div class="main">
@@ -48,13 +62,22 @@
 			<div class="right">
 				<h3 align="center">추천 도서</h3>
 				<table border="0" width="100%">
+				<%for(Ebook x: bestbook){
+					%>
+					<th colspan="4"><img src="<spring:url value ='http://121.153.134.167/ebook/<%=x.getbUrl() %>'/>"></th>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-				
+					<td><a href=""><%=x.getbBookname() %></a></td>
+					<td><%=x.getbWriter() %></td>
+					<td><%=x.getbPublisher() %></td>
+					<td><%=x.getbCategory() %></td>
+					<%
+				}
+					%>
 				</table>
 			</div>
 		</div>
