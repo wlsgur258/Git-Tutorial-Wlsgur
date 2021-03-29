@@ -15,6 +15,11 @@
 	<select id="newebook" resultType="com.a.b.dto.Ebook">
 		select * FROM (select * from ebook order by bbookno desc) where rownum=1
 	</select>
+
+	<select id="bestbook" resultType="com.a.b.dto.Ebook">
+		select * from ebook where ebook.bbookno in 
+		(select rentallist.bbookno from rentallist group by bbookno having count(bbookno) > 1) and ROWNUM =1 
+	</select>
 	
 	<insert id="ebookInsert">
 		insert into EBOOK (bBookno, bBookname, bContent, 
