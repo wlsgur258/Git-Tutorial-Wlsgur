@@ -45,7 +45,7 @@ import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
 import com.a.b.service.AdminMemberListService;
 import com.a.b.service.AdminModifyService;
-import com.a.b.service.AdminWrite;
+
 import com.a.b.service.BoardContentService;
 import com.a.b.service.BoardDeleteService;
 import com.a.b.service.BoardListService;

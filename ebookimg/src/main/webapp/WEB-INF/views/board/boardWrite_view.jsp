@@ -46,10 +46,10 @@
 		<form action="boardWrite" method="post">
 
 			<input type="hidden" name="bBid" value="${boardWrite_view.bBid}">
-		
+			<input type="hidden" name="bId" value=<%= vo %>>
 			<tr>
 				<th>작성자</th>
-				<td><input name="bId"></td>
+				<td><%= vo %></td>
 			</tr>
 			
 			<tr>
@@ -64,7 +64,9 @@
 			
 			<tr>
 				<th>이미지</th>
-				<td><input name = "file" type="file" size="50"></td>
+				<td>
+					<input name="file" type="file" size="50">
+				</td>
 			</tr>
 			
 			<tr align="center" valign="middle">
