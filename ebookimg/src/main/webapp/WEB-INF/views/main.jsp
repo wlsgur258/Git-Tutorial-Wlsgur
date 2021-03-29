@@ -28,7 +28,7 @@
 				<table border="0" width="100%">
 				<c:forEach items="${newbook}" var="newbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${newbook.bBookname}">
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px"></a></th>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px" width="100%"></a></th>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>
@@ -45,9 +45,9 @@
 			<div class="main">
 			<div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="2000">
 			<div class="cycle-pager"></div>
-			<img src="<spring:url value ='/resources/img/main/main1.jpg'/>" alt="banner1"> 
-			<img src="<spring:url value ='/resources/img/main/main2.jpg'/>" alt="banner2"> 
-			<img src="<spring:url value ='/resources/img/main/main3.png'/>" alt="banner3"> 
+			<img src="<spring:url value ='/resources/img/main/main1.jpg'/>" alt="banner1" height="300px"> 
+			<img src="<spring:url value ='/resources/img/main/main2.jpg'/>" alt="banner2" height="300px"> 
+			<img src="<spring:url value ='/resources/img/main/main3.png'/>" alt="banner3" height="300px"> 
 			</div>
 			</div>
 			<div class="right">
@@ -55,7 +55,7 @@
 				<table border="0" width="100%">
 				<c:forEach items="${bestbook}" var="bestbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${bestbook.bBookname}">
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>"></a></th>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px" width="100%"></a></th>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>
