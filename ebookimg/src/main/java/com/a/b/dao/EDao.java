@@ -40,5 +40,5 @@ public interface EDao {
 	
 	public int rentalCashdown(final String bId);
 	public ArrayList<Ebook> newebook();	
-	
+	public ArrayList<Ebook> bestbook();
 }
