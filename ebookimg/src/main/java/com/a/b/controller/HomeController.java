@@ -89,6 +89,8 @@ public class HomeController {
 		EDao dao = sqlSession.getMapper(EDao.class);
 		ArrayList<Ebook> ebook = dao.newebook();
 		session.setAttribute("newebook", ebook);
+		ArrayList<Ebook> bestbook = dao.bestbook();
+		session.setAttribute("bestbook", bestbook);
 		model.addAttribute("session",session);
 		return "main";
 	}
