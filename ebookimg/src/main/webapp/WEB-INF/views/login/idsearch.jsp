@@ -59,6 +59,11 @@
 			</form>
 		</table>
 	</div>
+	<footer>
+		<div class="fixed">
+	<%@include file="../bottom.jsp"%>
+		</div>
+	</footer>
 <script>
         $(function() {
             $('#submitBtn').mouseenter(function() {
