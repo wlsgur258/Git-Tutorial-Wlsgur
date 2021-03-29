@@ -126,5 +126,10 @@
 	</table>
 	
 	</div>
+	<footer>
+		<div class="fixed">
+	<%@include file="../bottom.jsp"%>
+		</div>
+	</footer>
 </body>
 </html>
