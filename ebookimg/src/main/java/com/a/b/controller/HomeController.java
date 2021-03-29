@@ -88,7 +88,7 @@ public class HomeController {
 		model.addAttribute("locale", locale);
 		EDao dao = sqlSession.getMapper(EDao.class);
 		ArrayList<Ebook> ebook = dao.newebook();
-		session.setAttribute("newebook", ebook);
+		session.setAttribute("newbook", ebook);
 		ArrayList<Ebook> bestbook = dao.bestbook();
 		session.setAttribute("bestbook", bestbook);
 		model.addAttribute("session",session);
@@ -391,18 +391,10 @@ public class HomeController {
 		session.removeAttribute("joinVo");
 		Member remember = dao.memberView(bid);
 		session.setAttribute("joinVo", remember);
-		
-<<<<<<< HEAD
 
 		int newCash = (int) remember.getbCash();
 		session.removeAttribute("cash");
 		session.setAttribute("cash", newCash);
-
-=======
-		int newCash = (int) remember.getbCash();
-		session.removeAttribute("cash");
-		session.setAttribute("cash", newCash);
->>>>>>> 1e57686c00b0201db4367838ec84de2faa2ef958
 		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
