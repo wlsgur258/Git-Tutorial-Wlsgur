@@ -29,21 +29,8 @@
 <title>현재대여목록페이지</title>
 <link rel="stylesheet" href="resources/css/main_css.css">
 
-<% 
 
-	String pageNumberStr = request.getParameter("xpage");
-	RentalingListService service = new RentalingListService();
-	
-	int pageNumber = 1;
-	if (pageNumberStr != null) {
-		pageNumber = Integer.parseInt(pageNumberStr);
-	}
-		System.out.println(pageNumber);
-		System.out.println("체크");
-	MessageListViewEbookRentalingList viewData = service.getMessageListView(pageNumber);
-	
-	//List<RentalList> subList = viewData.getMessageList();
-%>	
+
 
 
 
@@ -70,12 +57,8 @@
 	SimpleDateFormat formatT = new SimpleDateFormat ("yyyy년 MM월 dd일 HH시 mm분");
 	
 	//ArrayList<RentalingList> List = (ArrayList<RentalingList>)request.getAttribute("rentalinglist");
-	System.out.println(request.getAttribute("rentalinglist"));
-	System.out.println("여까진오나");
-	List<RentalingList> List = viewData.getMessageList();
-	//ArrayList<RentalingList> List2 = List.get(0);
+	%>
 	
-%>
 <%-- 
 <%= request.getAttribute("rentalinglist") %>
 <%= List.get(0).getbRentaldate() %> 이거 도서대출한거 없으면 에러남
@@ -90,6 +73,29 @@
 	</script>
 	<%}%>
 <div>
+
+<% 
+
+	String pageNumberStr = request.getParameter("xpage");
+	RentalingListService service = new RentalingListService();
+	
+	int pageNumber = 1;
+	if (pageNumberStr != null) {
+		pageNumber = Integer.parseInt(pageNumberStr);
+	}
+		System.out.println(pageNumber);
+		System.out.println("체크");
+	MessageListViewEbookRentalingList viewData = service.getMessageListView(pageNumber);
+	
+	//List<RentalList> subList = viewData.getMessageList();
+%>	
+<%
+	System.out.println(request.getAttribute("rentalinglist"));
+	System.out.println("여까진오나");
+	List<RentalingList> List = viewData.getMessageList();
+	//ArrayList<RentalingList> List2 = List.get(0);
+	
+%>
 
 <%-- <table border="1" align = "center">
 	</tr>
@@ -113,17 +119,17 @@
 	
 	<table border="1" align = "center">
 	<tr>
-		<p>현재 접속자 ID = <%= vo %> , 렌탈'링'리스트, 로그인 회원아이디로 현재빌려진책들 출력</p>
+		<p><br></p>
 	</tr>
 		<tr>
-			<th>그냥번호</th>
+			<th>번호</th>
 			<th>이미지</th>
 			<th>대출기록번호</th>
-			<th>회원아이디</th>
+			<th>아이디</th>
 			<th>책번호</th>
-			<th>책이름</th>
-			<th>대출한날짜</th>
-			<th>대출기간만료예정일</th>
+			<th>제목</th>
+			<th>대출날짜</th>
+			<th>대출기간만료날짜</th>
 		</tr>
 			
 <% try{
@@ -137,7 +143,7 @@
 			<td><%= a %></td>
 			<td>
 			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"
-			height="50" >
+			height="80" >
 			</td>
 	<td><%= List.get(i).getbRentalno() %></td>
 	<td><%= List.get(i).getbId() %></td>

@@ -64,8 +64,18 @@ public class RentalingListService implements IBoarderService {
 		
 		
 		EDao dao = sqlSession.getMapper(EDao.class);
-		int messageTotalCount = dao.ebookRentalingList(ok).size();
+		if(ok==null) {
+			List<RentalingList> messageList = null;
+			messageList = Collections.emptyList();
+			int messageTotalCount = 0;
+			int firstRow =0;
+			int endRow =0;
+			return new MessageListViewEbookRentalingList
+					(messageList, messageTotalCount,currentPageNumber,
+							MESSAGE_COUNT_PER_PAGE,firstRow,endRow);
+		}
 		
+		int messageTotalCount = dao.ebookRentalingList(ok).size();
 		List<RentalingList> messageList = null;
 		int firstRow =0;
 		int endRow =0;

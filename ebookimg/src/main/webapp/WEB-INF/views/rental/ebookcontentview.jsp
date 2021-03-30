@@ -86,17 +86,16 @@
 	 	}
 	
 %>
-<p>접속자의 코인보유갯수 : <%= coin %></p>
-<p>접속중 아이디 : <%= vo %></p>
-<p>이곳은 책세부내용페이지</p>
+<%-- 
 <p>현재 세부내용 페이지 책 이름 : ${ebook_view.bBookname}</p> 
-<p>현재 세부내용 페이지책이름 2 :${ebook_view.getbBookname()}</p>
-<p>이 도서가 렌탈히스토리에 기록된 횟수ㅡ(대출횟수, 인기도) : ${ebook_view2} </p>
-<p>이 도서가, 현재 접속자명의로 렌탈링에 기록되있는 횟수ㅡ : ${ebook_view3} </p>
+<p>현재 세부내용 페이지책이름 2 :${ebook_view.getbBookname()}</p> --%>
 
-<table border="1">
+<p><br></p>
+
+<table border="1" align = "center">
 		<tr>
 			<th>책번호</th>
+			<th>책이미지</th>
 			<th>책제목</th>
 			<th>책내용</th>
 			<th>책가격</th>
@@ -107,6 +106,9 @@
 
 		<tr>
 				<td>${ebook_view.bBookno}</td>
+				<td><img src="<spring:url 
+				value ='http://121.153.134.167/ebook/${ebook_view.bUrl}'/>" 
+				height="300"></td>
 				<td>${ebook_view.getbBookname()}</td>
 				<td>${ebook_view.bContent}</td>
 				<td>${ebook_view.bPrice}</td>
@@ -118,9 +120,14 @@
 		
 	
 </table>
+<div align = "center">
+<p>접속자의 코인보유갯수 : <%= coin %></p>
+<p>이 도서가 렌탈히스토리에 기록된 횟수ㅡ(대출횟수, 인기도) : ${ebook_view2} </p>
+<p>이 도서가, 현재 접속자명의로 렌탈링에 기록되있는 횟수ㅡ : ${ebook_view3} </p>
 
-대여시 코인이 3개 차감됨
-연장은 1개로 예정
+</div>
+
+			<div align = "center">
 <%	if (vo.equals("GUEST")) { %>
  			<button class="btn btn-primary">로그인후 대여기능이 활성화됩니다</button>
  		<%	} else {
@@ -135,12 +142,14 @@
 			</form>
 			<%	}else {	%>
 				<button class="btn btn-primary">이미 대여된 책입니다</button>
+				
 			<form name = "textgo" action= "textdo" method = "POST">
 				<input type="hidden" name = "bBookno1" value = "${ebook_view.bBookno}">
 				<input type="hidden" name = "bBookname1" value = "${ebook_view.bBookname}">
 				<button class="btn btn-primary" type="submit">책내용 보러가기!</button>
 			</form>
 			<% } } %>
+				</div>
 		
 			
 			

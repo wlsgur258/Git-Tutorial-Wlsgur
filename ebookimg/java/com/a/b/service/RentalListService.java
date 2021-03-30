@@ -66,12 +66,24 @@ public class RentalListService implements IBoarderService {
 			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 			HttpSession session = request.getSession();
 			String ok = (String)session.getAttribute("id"); // 에러
-			System.out.println("getmessage:"+ok);
+			System.out.println("getmessage123:"+ok);
 			
 			
 			EDao dao = sqlSession.getMapper(EDao.class);
-			int messageTotalCount = dao.ebookRentalList(ok).size();
+			if(ok==null) {
+				List<RentalList> messageList = null;
+				messageList = Collections.emptyList();
+				int messageTotalCount = 0;
+				int firstRow =0;
+				int endRow =0;
+				return new MessageListViewEbookRentalList
+						(messageList, messageTotalCount,currentPageNumber,
+								MESSAGE_COUNT_PER_PAGE,firstRow,endRow);
+			}
 			
+			
+			int messageTotalCount = dao.ebookRentalList(ok).size();
+			System.out.println("messageTotalCount:"+messageTotalCount);
 			
 			List<RentalList> messageList = null;
 			int firstRow =0;
@@ -85,7 +97,9 @@ public class RentalListService implements IBoarderService {
 				currentPageNumber =0;
 				messageList = Collections.emptyList();
 			}
-			return new MessageListViewEbookRentalList(messageList, messageTotalCount,currentPageNumber,MESSAGE_COUNT_PER_PAGE,firstRow,endRow);
+			return new MessageListViewEbookRentalList
+					(messageList, messageTotalCount,currentPageNumber,
+							MESSAGE_COUNT_PER_PAGE,firstRow,endRow);
 		}
 
 }

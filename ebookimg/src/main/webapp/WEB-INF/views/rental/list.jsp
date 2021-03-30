@@ -62,7 +62,7 @@
 %>
 	<div>
 	<br/>
-	<p>현재 접속자 ID = <%= vo %> </p>
+	
 		<form action="booksearch" method="post" align="center">
 		<select name="searchType">
 			<option value="all">전체</option>
@@ -78,9 +78,10 @@
 	<tr>
 	<th colspan="7">모든 도서 목록</th>
 	</tr>
-	<tr>
 	
-	</tr>
+	<p/>
+	
+	
 		<tr>
 			<th>책이미지</th>
 			<th>책제목</th>
@@ -102,7 +103,7 @@
 				<td>
 				<img src="<spring:url 
 				value ='http://121.153.134.167/ebook/${dto.bUrl}'/>" 
-				height="50">
+				height="100">
 				</td>
 				<td><a href ="ebookcontentview?bId=${dto.bBookname}">${dto.bBookname}</a></td>
 				<td>${dto.bContent}</td>
@@ -147,8 +148,7 @@
 		</div>
 		<br>
 	
-	
-	
+	<p/>
 	
 	
 	<footer>

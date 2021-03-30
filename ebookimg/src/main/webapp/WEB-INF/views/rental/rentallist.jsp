@@ -26,6 +26,18 @@
 <link rel="stylesheet" href="resources/css/main_css.css">
 <title>대여기록</title>
 
+	
+</head>
+<body>
+
+<style type="text/css">
+#board, #pageForm, #searchForm {
+	text-align: center;
+}
+</style>
+
+<%@include file="../home.jsp"%>
+	
 <% 
 
 	String pageNumberStr = request.getParameter("xpage");
@@ -41,16 +53,7 @@
 	//List<RentalList> subList = viewData.getMessageList();
 %>	
 	
-</head>
-<body>
-
-<style type="text/css">
-#board, #pageForm, #searchForm {
-	text-align: center;
-}
-</style>
-
-<%@include file="../home.jsp"%>
+	
 	
 	<%
 	
@@ -80,9 +83,9 @@
 
 	<div>
 	<table border="1" align = "center">
-	<tr>
-		<p>현재 접속자 ID = <%= vo %> , 렌탈 히스토리, 로그인 회원아이디로 여태 빌렸던 책들 출력</p>
-	</tr>
+
+	<p><br></p>
+	
 		<tr>
 			<th>기록번호</th>
 			<th>책이미지</th>
@@ -90,7 +93,7 @@
 			<th>회원아이디</th>
 			<th>책번호</th>
 			<th>책이름</th>
-			<th>대출한날짜</th>
+			<th>대출날짜</th>
 		</tr>
 			
 <% try{
@@ -103,7 +106,7 @@
 			<td><%= a %></td>
 			<td>
 			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"
-			height="50" >
+			height="80" >
 			</td>
 	<td><%= List.get(i).getbRentalno() %></td>
 	<td><%= List.get(i).getbId() %></td>
