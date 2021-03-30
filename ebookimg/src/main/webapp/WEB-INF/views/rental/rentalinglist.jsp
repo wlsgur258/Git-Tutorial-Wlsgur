@@ -8,6 +8,7 @@
 <%@ page import="com.a.b.dao.EDao" %>
 <%@ page import="com.a.b.dao.MDao" %>
 <%@ page import="com.a.b.dto.RentalingList" %>
+<%@ page import="com.a.b.service.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import= "java.sql.Timestamp" %>
 <%@ page import= "java.text.DateFormat" %>
@@ -27,8 +28,35 @@
 	crossorigin="anonymous"></script>
 <title>현재대여목록페이지</title>
 <link rel="stylesheet" href="resources/css/main_css.css">
+
+<% 
+
+	String pageNumberStr = request.getParameter("xpage");
+	RentalingListService service = new RentalingListService();
+	
+	int pageNumber = 1;
+	if (pageNumberStr != null) {
+		pageNumber = Integer.parseInt(pageNumberStr);
+	}
+		System.out.println(pageNumber);
+		System.out.println("체크");
+	MessageListViewEbookRentalingList viewData = service.getMessageListView(pageNumber);
+	
+	//List<RentalList> subList = viewData.getMessageList();
+%>	
+
+
+
 </head>
 <body>
+
+<style type="text/css">
+#board, #pageForm, #searchForm {
+	text-align: center;
+}
+</style>
+
+
 <%@include file="../home.jsp"%>
 
 
@@ -41,9 +69,10 @@
 	System.out.println(vo);
 	SimpleDateFormat formatT = new SimpleDateFormat ("yyyy년 MM월 dd일 HH시 mm분");
 	
-	ArrayList<RentalingList> List = (ArrayList<RentalingList>)request.getAttribute("rentalinglist");
-	
+	//ArrayList<RentalingList> List = (ArrayList<RentalingList>)request.getAttribute("rentalinglist");
 	System.out.println(request.getAttribute("rentalinglist"));
+	System.out.println("여까진오나");
+	List<RentalingList> List = viewData.getMessageList();
 	//ArrayList<RentalingList> List2 = List.get(0);
 	
 %>
@@ -98,10 +127,14 @@
 		</tr>
 			
 <% try{
+	int a = pageNumber*5-5;
 	for(int i=0; i < List.size() ; i++)
-	{%>
+		
+	{
+	a++;
+	%>
 			<tr>
-			<td><%= i+1 %></td>
+			<td><%= a %></td>
 			<td>
 			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"
 			height="50" >
@@ -126,6 +159,40 @@
 	</table>
 	
 	</div>
+	
+	<!-- 페이지 넘버 부분 -->
+		<br>
+		<div id="pageForm" >
+			
+				<% if(pageNumber>10){
+			int tenNum2 = pageNumber / 10;
+			if(pageNumber % 10 == 0 && pageNumber > 9)tenNum2 -= 1;
+			%>
+				<a href="rentalinglist?xpage=<%=(tenNum2*10)-9%>">[이전]</a>
+				<% } %>
+			
+			<%
+			//System.out.println(pageNumber);
+			//System.out.println(viewData.getPageTotalCount());
+			for (int i = 1; i <= viewData.getPageTotalCount(); i++) {
+				
+				int tenNum = pageNumber / 10;
+				if(pageNumber % 10 == 0 && pageNumber > 9)tenNum -= 1;
+				if(viewData.getPageTotalCount()==i+(tenNum*10-1))break;
+				
+				if(11>i){%>
+				<a href="rentalinglist?xpage=<%=i+(tenNum*10)%>">[<%=i+(tenNum*10)%>]</a>
+				<%
+				}else{
+				%>
+				<a href="rentalinglist?xpage=<%=i+(tenNum*10)%>">[다음]</a>
+				<% break;
+				}
+			}
+			%>
+		</div>
+		<br>
+	
 	<footer>
 		<div class="fixed">
 	<%@include file="../bottom.jsp"%>

@@ -1,6 +1,7 @@
 package com.a.b.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.a.b.dto.Ebook;
 import com.a.b.dto.RentalList;
@@ -26,7 +27,7 @@ public interface EDao {
 	public void ebookRental(final String bId, final long bBookno); // ebook 대여하기
 	public void ebookRentalPlus(final String bBookname); // ebook 대여 연장기능
 	
-	public ArrayList<RentalList> ebookRentalList(final String bId); //도서대출기록 조회
+	public List<RentalList> ebookRentalList(final String bId); //도서대출기록 조회
 	
 	public ArrayList<Ebook> namesearch(final String bBookname);
 	public ArrayList<Ebook> publishersearch(final String bPublisher);

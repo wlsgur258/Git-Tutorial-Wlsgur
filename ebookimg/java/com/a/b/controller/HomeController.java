@@ -37,6 +37,7 @@ import com.a.b.service.IBoarderService;
 import com.a.b.service.MDeleteService;
 import com.a.b.service.MModifyService;
 import com.a.b.service.RentalListService;
+import com.a.b.service.RentalingListService;
 import com.a.b.service.textService;
 import com.a.b.service.AdminBListService;
 import com.a.b.service.AdminContentService;
@@ -807,20 +808,19 @@ public class HomeController {
 		@RequestMapping("/rentalinglist")
 		public String rentallinglist(Model model, HttpSession session) {
 			
-			String ok = (String)session.getAttribute("id");
-			if(ok==null) {
-				return "./rental/rentalinglist";
-			}
-			System.out.println(ok);
-			EDao dao = sqlSession.getMapper(EDao.class);
-			dao.ebookRentalOverListDelete(ok); // 렌탈링리스트접근시 기간지난거 삭제하고
+//			String ok = (String)session.getAttribute("id");
+//			if(ok==null) {
+//				return "./rental/rentalinglist";
+//			}
+//			System.out.println(ok);
+//			EDao dao = sqlSession.getMapper(EDao.class);
+//			dao.ebookRentalOverListDelete(ok); // 렌탈링리스트접근시 기간지난거 삭제하고
+//			
+//			ArrayList<RentalingList> dtos = dao.ebookRentalingList(ok);
+//			model.addAttribute("rentalinglist", dtos); // 기간지난거없어진걸 가져온다
 			
-			
-			ArrayList<RentalingList> dtos = dao.ebookRentalingList(ok);
-			
-			
-			model.addAttribute("rentalinglist", dtos); // 기간지난거없어진걸 가져온다
-			
+			service = new RentalingListService();
+			service.execute(model);
 			
 			return "./rental/rentalinglist";
 		}
