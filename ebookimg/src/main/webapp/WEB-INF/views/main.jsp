@@ -44,7 +44,6 @@
 			</div>
 			<div class="main">
 			<div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="2000">
-			<div class="cycle-pager"></div>
 			<img src="<spring:url value ='/resources/img/main/main1.jpg'/>" alt="banner1" height="300px"> 
 			<img src="<spring:url value ='/resources/img/main/main2.jpg'/>" alt="banner2" height="300px"> 
 			<img src="<spring:url value ='/resources/img/main/main3.png'/>" alt="banner3" height="300px"> 
