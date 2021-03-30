@@ -42,7 +42,7 @@ $(document).ready(function() {
 			<a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100px" alt="로고출력자리"></a>
 		</div>
 		<div class="name">
-			<img src="<spring:url value ='/resources/img/title.jpg'/>" height="100px" alt="타이틀">
+			<img src="<spring:url value ='/resources/img/title.png'/>" height="100px" alt="타이틀">
 		</div>
 		<div class="loginmenu">
 			<h3 class="y"><%=id%></h3>
