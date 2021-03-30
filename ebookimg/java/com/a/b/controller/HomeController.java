@@ -377,7 +377,7 @@ public class HomeController {
 	public String adminpage(HttpServletRequest request,Model model) {
 		BDao dao = sqlSession.getMapper(BDao.class);
 		
-		
+		String sort = request.getParameter("sort");
 		JSONArray jsonDonutArr = new JSONArray();
 		JSONArray jsonBarArr = new JSONArray();
 		
@@ -407,6 +407,7 @@ public class HomeController {
 		model.addAttribute("objDonut",jsonDonutArr);
 		model.addAttribute("objBar",jsonBarArr);
 		
+		if(sort != null) model.addAttribute("sort", sort);
 		//ArrayList<Ebook> list = dao.list(); 
 //		
 //		  // 가져온 데이터를 화면에 표시 해야한다. String data = "["; for (Ebook x : list) { data +=
@@ -418,10 +419,87 @@ public class HomeController {
 //		  
 //		  
 //		  model.addAttribute("data",data);
-//		 
+//		 	
+		return "admin/adminpage";
+	}
+	
+	@RequestMapping(value="/publisher",method=RequestMethod.GET)
+	public String adminpagePublisher(HttpServletRequest request,Model model) {
+		BDao dao = sqlSession.getMapper(BDao.class);
+		String sort = request.getParameter("sort");
+		
+		JSONArray jsonDonutArr = new JSONArray();
+		JSONArray jsonBarArr = new JSONArray();
+		
+		List<Map<String,String>>  dsBookPublisher = dao.adminpagePublisher();
+		JSONObject jsonObj = null;
+		
+		for(int i =0;  i<dsBookPublisher.size(); i++) {
+			jsonObj = new JSONObject();
+			String bookpublisher = dsBookPublisher.get(i).get("BPUBLISHER");
+			String bookpublishercount = String.valueOf(dsBookPublisher.get(i).get("B_PUBLISHER_COUNT"));
+			
+			jsonObj.put("label", bookpublisher);
+			jsonObj.put("value", bookpublishercount);
+			
+			jsonDonutArr.add(jsonObj);
+			
+			jsonObj = new JSONObject();
+			
+			jsonObj.put("y", bookpublisher);
+			jsonObj.put("a", bookpublishercount);
+			
+			jsonBarArr.add(jsonObj);
+			
+		}
+		
+		model.addAttribute("objDonut",jsonDonutArr);
+		model.addAttribute("objBar",jsonBarArr);
+		
+		if(sort != null) model.addAttribute("sort", sort);
 		
 		return "admin/adminpage";
 	}
+	
+	@RequestMapping(value="/category",method=RequestMethod.GET)
+	public String adminpageCategory(HttpServletRequest request,Model model) {
+		BDao dao = sqlSession.getMapper(BDao.class);
+		String sort = request.getParameter("sort");
+		
+		JSONArray jsonDonutArr = new JSONArray();
+		JSONArray jsonBarArr = new JSONArray();
+		
+		List<Map<String,String>>  dsBookCategory = dao.adminpageCategory();
+		JSONObject jsonObj = null;
+		
+		for(int i =0;  i<dsBookCategory.size(); i++) {
+			jsonObj = new JSONObject();
+			String bookcategory = dsBookCategory.get(i).get("BCATEGORY");
+			String bookcategorycount = String.valueOf(dsBookCategory.get(i).get("B_CATEGORY_COUNT"));
+			
+			jsonObj.put("label", bookcategory);
+			jsonObj.put("value", bookcategorycount);
+			
+			jsonDonutArr.add(jsonObj);
+			
+			jsonObj = new JSONObject();
+			
+			jsonObj.put("y", bookcategory);
+			jsonObj.put("a", bookcategorycount);
+			
+			jsonBarArr.add(jsonObj);
+			
+		}
+		
+		model.addAttribute("objDonut",jsonDonutArr);
+		model.addAttribute("objBar",jsonBarArr);
+		
+		if(sort != null) model.addAttribute("sort", sort);
+		
+		return "admin/adminpage";
+	}
+	
+	
 	
 	
 	@RequestMapping("/cashup")
@@ -443,7 +521,6 @@ public class HomeController {
 		int newCash = (int) remember.getbCash();
 		session.removeAttribute("cash");
 		session.setAttribute("cash", newCash);
-
 		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)

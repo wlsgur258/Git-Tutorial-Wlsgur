@@ -34,7 +34,7 @@
 		<table width="100%" border="0">
 		<tr>
 			
-			<td><a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
+			<td><a href="adminpage" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
 			</td>		
 			<td colspan="3">
 			
