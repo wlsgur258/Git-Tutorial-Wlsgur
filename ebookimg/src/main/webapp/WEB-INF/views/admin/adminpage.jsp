@@ -5,7 +5,10 @@
 <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-
+	<meta charset="UTF-8">
+	<meta name="description" content="statisticsR.jsp">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
 .h1 {
@@ -28,6 +31,16 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 	<title>Home</title>
+	
+	
+< <link href="/b/css1/bootstrap.min.css" rel="stylesheet">
+<link href="/b/css1/bootstrap-theme.css" rel="stylesheet">
+<link href="/b/css1/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="/b/css1/plugins/dataTables.bootstrap.css" rel="stylesheet">
+<link href="/b/css1/sb-admin-2.css" rel="stylesheet">
+<link href="/b/css1/morris.css" rel="stylesheet">	 
+	
+	
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>	
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
