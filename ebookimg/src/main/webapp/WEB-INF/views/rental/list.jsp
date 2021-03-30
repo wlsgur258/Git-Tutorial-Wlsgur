@@ -74,7 +74,7 @@
 		<input type="text" name="search" size="55%">
 		<input type="submit" value="검색">
 	</form>
-	<table border="1" width="45%" align="center">
+	<table border="1" width="45%" align="center" class="table">
 	<tr>
 	<th colspan="7">모든 도서 목록</th>
 	</tr>

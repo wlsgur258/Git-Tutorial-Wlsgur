@@ -68,7 +68,7 @@
 
 <% if (id=="GUEST"){ %>
 	<script>
-		alert('로그인 하세요');
+		alert('로그인 후 이용가능합니다.');
 		document.location.href="main";
 	</script>
 	<%}%>
@@ -117,9 +117,10 @@
 			</c:forEach>
 </table> --%>
 	
-	<table border="1" align = "center">
+	<p><br><h1 align = "center">회원님이 현재 대여중인 책 목록</h1><br></p>
+	
+	<table border="1" align = "center" class="table">
 	<tr>
-		<p><br></p>
 	</tr>
 		<tr>
 			<th>번호</th>
@@ -197,7 +198,7 @@
 			}
 			%>
 		</div>
-		<br>
+		<p><br></p>
 	
 	<footer>
 		<div class="fixed">

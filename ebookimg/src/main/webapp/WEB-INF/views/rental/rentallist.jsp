@@ -76,15 +76,16 @@
 <% if (id=="GUEST"){
 	%>
 <script>
-		alert('로그인 하세요');
+		alert('로그인 후 이용가능합니다.');
 		document.location.href="main";
 		</script>
 		<%} %>
 
 	<div>
-	<table border="1" align = "center">
+	<p><br><h1 align = "center">회원님이 대여한 책 목록</h1><br></p>
+	
+	<table border="1" align = "center" class="table">
 
-	<p><br></p>
 	
 		<tr>
 			<th>기록번호</th>
@@ -158,7 +159,7 @@
 			}
 			%>
 		</div>
-		<br>
+		<p><br></p>
 		
 		
 	<footer>
