@@ -15,7 +15,11 @@
 		List<Ebook> book = (List<Ebook>)session.getAttribute("sear_result");
 	%>
 	<header>
-	<%@include file="home.jsp"%>
+
+	
+
+	<%@include file="./home.jsp"%>
+
 	</header>
 	<br>
 	<h1 align="center">검색결과</h1>
@@ -48,7 +52,11 @@
 	</table>
 	<footer>
 		<div class="fixed">
+<<<<<<< HEAD
 	<%@include file="bottom.jsp"%>
+=======
+	<%@include file="./bottom.jsp"%>
+>>>>>>> 82853d772cd502d591583bac4ffb5f88dc088b43
 		</div>
 	</footer>
 </body>

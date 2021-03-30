@@ -81,7 +81,7 @@
 				
 				<th>이미지</th>
 				<td>
-					<input name="file" type="file" size="60"> 
+					<input name="file" type="file" size="50"> 
 				</td>
 			</c:if>	
 			</tr>

@@ -30,12 +30,12 @@ text-align: center;
 
 
 
-	<%@ include file="adminpage.jsp"%>
+	<%@ include file="adminpageTop.jsp"%>
 	
 <%
 	
 		String pageNumberStr = request.getParameter("xpage");
-		AdminBListService service = new AdminBListService();
+	AdminMemberListService service = new AdminMemberListService();
 		//BDao dao = sqlSession.getMapper(BDao.class);
 		//BDao dao = new BDao();
 		int pageNumber = 1;
@@ -47,7 +47,7 @@ text-align: center;
 		if (pageNumberStr == null)
 		pageNumberStr = "1";
 	
-		List<Ebook> subList = viewData.getMessageList();
+		List<Member> subList = viewData.getMessageList();
 		 %>
 
 
@@ -70,7 +70,8 @@ text-align: center;
 				
 			</tr>
 		
-			<c:forEach items="${ADmember}" var="ADmember">
+			<%-- <c:forEach items="${subList}" var="ADmember"> --%>
+			<c:forEach items="<%=subList%>" var="ADmember">
 			<tr>	
 					
 				<th><c:out value="${ADmember.bId}"/></th>
