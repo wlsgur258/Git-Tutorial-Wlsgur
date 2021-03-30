@@ -21,8 +21,13 @@
 </head>
 <body>
 	<%@include file="home.jsp"%>
+	<br/>
+	<br/>
+	<br/>
 	<h1 align="center">금액 확인</h1>
 	<h3 align="center">현재 잔액 : ${joinVo.bCash}</h3>
+	<br/>
+	<br/>
 	<h1 align="center">금액 충전</h1>
 <form name="cashup" action="cashupdo" method ="POST">
 	<input type="hidden" name="bId" value="${joinVo.bId}">
@@ -39,7 +44,6 @@
 	<footer>
 		<div class="fixed">
 	<%@include file="bottom.jsp"%>
-	<%@include file="./bottom.jsp"%>
 	
 		</div>
 	</footer>

@@ -42,7 +42,7 @@ $(document).ready(function() {
 			<a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100px" alt="로고출력자리"></a>
 		</div>
 		<div class="name">
-			<img src="<spring:url value ='/resources/img/title.jpg'/>" height="100px" alt="타이틀">
+			<img src="<spring:url value ='/resources/img/title.png'/>" height="100px" alt="타이틀">
 		</div>
 		<div class="loginmenu">
 			<h3 class="y"><%=id%></h3>
@@ -75,10 +75,10 @@ $(document).ready(function() {
 							<li><a href="">로맨스/판타지</a>
 						</ul>
 					</li>
-					<li><h3><a href="rentallist">대여 목록</a></h3>
+					<li><h3><a href="rentalinglist">대여 목록</a></h3>
 						<ul class="sub">
-							<li><a href="rentalinglist">총 대여 목록</a>
-							<li><a href="rentallist">현재 대여 목록</a>
+							<li><a href="rentalinglist">현재 대여 목록</a>
+							<li><a href="rentallist">총 대여 목록</a>
 						</ul>
 					</li>
 						<li><h3><a href="boardList">게시판</a></h3>
