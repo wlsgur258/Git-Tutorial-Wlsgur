@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.a.b.dao.BCommentDao">
+
+	<insert id="bcommentWrite">
+	INSERT INTO BCOMMENT(
+	BCID, BID, BCONTENT, BDATE, BSTEP
+	) VALUES(
+	BCOMMENT_SEQ.NEXTVAL, #{param1,jdbcType=VARCHAR}, #{param2,jdbcType=VARCHAR}, 
+	sysdate,  0
+	)
+	</insert>
+
+	<select id="bcommentList" resultType="com.a.b.dto.BComment">
+		SELECT BCID, BID, BCONTENT, BDATE, BSTEP
+		FROM BCOMMENT
+		ORDER BY BSTEP ASC
+	</select>
+	
+	<select id="bcommentContent_view" resultType="com.a.b.dto.BComment" parameterType="long">
+	SELECT * FROM
+	BCOMMENT
+	WHERE BCID = #{param1}
+	</select>
+	
+	
+	<update id="bcommentModify">
+	UPDATE BCOMMENT
+	SET BID = #{param2,jdbcType=VARCHAR}, BCONTENT = #{param3,jdbcType=VARCHAR}
+	WHERE BCID = #{param1,jdbcType=NUMERIC}
+	</update>
+	
+	<delete id="bcommentDelete" parameterType="long">
+	DELETE FROM BCOMMENT WHERE BCID = #{param1}
+	</delete>
+	
+</mapper>

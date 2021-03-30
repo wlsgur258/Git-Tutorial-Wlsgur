@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.a.b.dao.*"%>
+<%@ page import="com.a.b.dto.*"%>
+<%@ page import="com.a.b.service.*"%>
+<%@ page import="java.util.List"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -188,30 +193,94 @@
 	
 		</form>
 	</table>
+	
 	<br>
 	<b><font size="6" color="gray">댓글</font></b>
 	<br>
+	
+	<%
+	String pageNumberStr = request.getParameter("xpage");
+	BCommentListService service = new BCommentListService(); 
+
+int pageNumber = 1;
+if (pageNumberStr != null) {
+	pageNumber = Integer.parseInt(pageNumberStr);
+}
+MessageListView viewData = service.getMessageListView(pageNumber);
+
+List<BComment> subList = viewData.getMessageList1();
+%>
+	
+	<style type="text/css">
+#wrap {
+	width: 800px;
+	margin: 0 auto 0 auto;
+}
+
+#bList {
+	text-align: center;
+}
+</style>
+	<div id="wrap">
+		
+		<div id="comment">
+
+			<table border="3" bordercolor="lightgray">
+	
+				<c:forEach items="<%=subList%>" var="dto">
+					
+						<td width="150">
+							<div>
+								${dto.bId}<br>
+								<font size="2" color="lightgray">${dto.bDate}</font>								
+							</div>
+						</td>
+					
+						<td width="550">
+							<div class="text_wrapper">
+							${dto.bContent}
+							</div>
+						</td>
+					
+				</c:forEach>
+
+			</table>
+		</div>
+	</div>	
+	
+	<br>
+	<br>
+	<br>
+	
 	<!-- 댓글 -->
-	<table width="700" border="3" bordercolor="lightgray" align="center">
-		<form action="commentWrite" method="post">
+	<table border="3" bordercolor="lightgray" align="center">
+		<form action="bcommentWrite" method="post">
 			<%
 				if (vo != null) {
 			%>
+			<input type="hidden" name="bBid" value="${boardWrite_view.bBid}">
 			<input type="hidden" name="bId" value=<%= vo %>>
-			<tr>
-				<th>작성자</th>
-				<td><%= vo %></td>
-			</tr>
-		<tr>
-			<th>내용</th>
-			<td><textarea rows="10" name="cContent"></textarea></td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td colspan="5">
-				<input class="btn btn-success" type="reset" value="작성취소">
-				<input class="btn btn-primary" type="submit" value="등록"> 
-			</td>
-		</tr>		
+			
+				<th width="150">
+					<div>
+						<%=vo %>
+					</div>				
+				</th>
+		
+				<th width="550">
+					<div>
+						<textarea 
+							rows="4" cols="70" name="bContent">
+						</textarea>				
+					</div>
+				</th>
+	
+				<td witdh="100">
+					<div id = "btn" style="text-align:center;">
+						<input class="btn btn-success" type="reset" value="작성취소">
+						<input class="btn btn-primary" type="submit" value="등록"> 
+					</div>
+				</td>
 		
 			<%
 			}else{

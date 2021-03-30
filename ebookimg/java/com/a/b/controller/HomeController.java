@@ -7,7 +7,6 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -47,9 +46,9 @@ import com.a.b.service.AdminModifyService;
 import com.a.b.service.BoardContentService;
 import com.a.b.service.BoardDeleteService;
 import com.a.b.service.BoardListService;
-import com.a.b.service.CommentDeleteService;
-import com.a.b.service.CommentModifyService;
-import com.a.b.service.CommentWriteService;
+import com.a.b.service.BCommentDeleteService;
+import com.a.b.service.BCommentModifyService;
+import com.a.b.service.BCommentWriteService;
 import com.a.b.service.Constant;
 import com.a.b.service.EbookListService;
 import com.a.b.service.EbookListService2;
@@ -115,10 +114,10 @@ public class HomeController {
 	
 	
 	
-	@RequestMapping("/commentWrite")
-	public String commentWrite(HttpServletRequest request, Model model) {
+	@RequestMapping("/bcommentWrite")
+	public String bcommentWrite(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		service = new CommentWriteService();
+		service = new BCommentWriteService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
@@ -143,21 +142,21 @@ public class HomeController {
 		return "redirect:boardList";
 	}
 	
-	@RequestMapping("/commentModify")
-	public String commentModify(HttpServletRequest request, Model model) {
+	@RequestMapping("/bcommentModify")
+	public String bcommentModify(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		service = new CommentModifyService();
+		service = new BCommentModifyService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
 	}
 	
-	@RequestMapping("/commentDelete")
-	public String commentDelete(HttpServletRequest request, Model model) {
+	@RequestMapping("/bcommentDelete")
+	public String bcommentDelete(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		service = new CommentDeleteService();
+		service = new BCommentDeleteService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
@@ -568,7 +567,7 @@ public class HomeController {
 		
 		System.out.println(fileName+"파일네임이다");
 		
-		
+			
 		//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
 		
 		String Realpath = "C:/Users/pc346/Desktop/useEbook/";
