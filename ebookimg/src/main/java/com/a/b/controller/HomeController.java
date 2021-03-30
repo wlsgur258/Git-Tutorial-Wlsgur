@@ -392,17 +392,10 @@ public class HomeController {
 		Member remember = dao.memberView(bid);
 		session.setAttribute("joinVo", remember);
 		
-<<<<<<< HEAD
-
 		int newCash = (int) remember.getbCash();
 		session.removeAttribute("cash");
 		session.setAttribute("cash", newCash);
 
-=======
-		int newCash = (int) remember.getbCash();
-		session.removeAttribute("cash");
-		session.setAttribute("cash", newCash);
->>>>>>> 1e57686c00b0201db4367838ec84de2faa2ef958
 		return "redirect:cashup";
 	}
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)

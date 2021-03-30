@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 package com.a.b.service;
 
 import java.util.Map;
@@ -47,10 +47,10 @@ public class AdminWrite implements IBoarderService {
 		
 		//dao.write(bBookname, bUrl ,bContent, bPrice, bWriter, bPublisher, bCategory);
 		
-	}
+	}	
 
 }
-=======
+
 /*
  * package com.a.b.service;
  * 
@@ -135,4 +135,4 @@ public class AdminWrite implements IBoarderService {
  * 
  * }
  */
->>>>>>> Stashed changes
+
