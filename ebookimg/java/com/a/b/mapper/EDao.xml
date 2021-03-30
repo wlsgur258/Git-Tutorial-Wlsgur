@@ -23,7 +23,7 @@
 		e.bcategory,count(*)as coun from ebook e, rentallist r where e.bbookno = r.bbookno
 		group by e.bbookname, e.bcontent, e.bwriter, e.bpublisher, e.bcategory, 
 		e.burl order by coun desc)
-		a where rownum=1;
+		a where rownum=1
 	</select>
 	
 	<insert id="ebookInsert">
