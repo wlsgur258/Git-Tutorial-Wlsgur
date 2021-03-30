@@ -30,7 +30,7 @@ text-align: center;
 
 
 
-	<%@ include file="adminpage.jsp"%>
+	<%@ include file="adminpageTop.jsp"%>
 	
 <%
 	
@@ -70,7 +70,8 @@ text-align: center;
 				
 			</tr>
 		
-			<c:forEach items="${ADmember}" var="ADmember">
+			<%-- <c:forEach items="${subList}" var="ADmember"> --%>
+			<c:forEach items="<%=subList%>" var="ADmember">
 			<tr>	
 					
 				<th><c:out value="${ADmember.bId}"/></th>

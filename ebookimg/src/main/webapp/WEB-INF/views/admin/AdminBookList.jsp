@@ -28,7 +28,7 @@ text-align: center;
 </head>
 <body>
 
-	<%@ include file="adminpage.jsp"%>
+	<%@ include file="adminpageTop.jsp"%>
 	
 	
 	<%-- <% 
