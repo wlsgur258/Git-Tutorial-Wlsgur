@@ -13,8 +13,8 @@
 
 .h1 {
 	text-align: center;
-}
-
+} 
+ 
 
 </style>
 
@@ -22,24 +22,30 @@
 	String id = (String) session.getAttribute("id");
 	
 %>
-<link rel="stylesheet"
+
+<% if (id =="admin"){ %>
+	<script>
+		alert('로그인 하세요');
+		document.location.href="main";
+	</script>
+	<%}%>
+<!-- <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
 	<title>Home</title>
 	
 	
-< <link href="/b/css1/bootstrap.min.css" rel="stylesheet">
+<link href="/b/css1/bootstrap.min.css" rel="stylesheet">
 <link href="/b/css1/bootstrap-theme.css" rel="stylesheet">
 <link href="/b/css1/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 <link href="/b/css1/plugins/dataTables.bootstrap.css" rel="stylesheet">
 <link href="/b/css1/sb-admin-2.css" rel="stylesheet">
 <link href="/b/css1/morris.css" rel="stylesheet">	 
-	
 	
 <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>	
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -174,17 +180,14 @@ $(function() {
 	$("#sort").change(function(){
 		sort = $("#sort").val();
 
-		if(sort == 'genre'){
-			url = "${context}/work/book/retrieveStatisticsForGenre.do";
-		}else if(sort == 'bookStatus'){
-			url = "${context}/work/book/retrieveStatisticsForBookStatus.do";
-		}else if(sort == 'bookPublisher'){
-			url = "${context}/work/book/retrieveStatisticsForBookPublisher.do";
-		}else if(sort == 'author'){
-			url = "${context}/work/book/retrieveStatisticsForAuthor.do";
+		if(sort == 'category'){
+			
+		}else if(sort == 'publisher'){
+		
+		}else if(sort == 'author'){			
 		}
 
-		location.href = url + "?sort=" + sort;
+		location.href = sort;
 	});
 	
 	
@@ -216,7 +219,9 @@ $(function() {
 
 		<table width="100%" border="0">
 		<tr>		
-			<td><a href="main" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO2.png'/>" height="100" alt="로고출력자리"></a>
+
+			<td><a href="adminpage" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
+
 			</td>		
 			<td colspan="3">
 			
@@ -258,19 +263,19 @@ $(function() {
 		<div class="row">
 			<div class="col-md-12">
 		   		<h1 class="page-header">
-			    	<label class="glyphicon glyphicon-list-alt fa-lg"></label>&nbsp;<i><b>Statistics</b></i>
+			    	<label class="glyphicon glyphicon-list-alt fa-lg"></label>&nbsp;<i><b>종류</b></i>
 		        </h1>
 	        </div>
 	    </div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-2">
 				<select class="form-control" id="sort" name="sort">
-					<option value="category">장르별</option>			
+					<option value="category">카테고리</option>			
 					<option value="publisher">출판사별</option>
 					<option value="author">저자별</option>
 				</select>
 			</div>
-		</div>
+		</div> -->
 	    <div class="row">
 			<div id="donutChart"></div>
 	    </div>
@@ -279,11 +284,11 @@ $(function() {
 			<div id="barChart"></div>
 	    </div>
 
-		<div class="row">
+		 <<!-- div class="row">
 			<div class="col-md-1 col-md-offset-11">
 				<button type="button" class="btn btn-success btn-lg"  style="float:right;" onclick="fn_back()">뒤로가기</button>
-			</div>
-		</div>
+			</div> 
+		</div> -->
 	</div>
 
 
@@ -293,6 +298,8 @@ $(function() {
        ${data}
     </p>
 </figure> --%>
+
+ <%@ include file="/WEB-INF/views/bottom.jsp"%>
 </body>
 </html>
 

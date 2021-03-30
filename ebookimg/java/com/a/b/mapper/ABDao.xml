@@ -44,6 +44,23 @@
 		]]>
 	</select>		
 
-
+	<select id ="adminpagePublisher" resultType="map">
+		<![CDATA[
+			SELECT BPUBLISHER
+				, COUNT(BPUBLISHER) AS B_PUBLISHER_COUNT
+				FROM EBOOK
+				GROUP BY BPUBLISHER
+		]]>
+	</select>
+	
+	<select id ="adminpageCategory" resultType="map">
+		<![CDATA[
+			SELECT BCATEGORY
+				, COUNT(BCATEGORY) AS B_CATEGORY_COUNT
+				FROM EBOOK
+				GROUP BY BCATEGORY
+		]]>
+	</select>
+	
 
 </mapper>
