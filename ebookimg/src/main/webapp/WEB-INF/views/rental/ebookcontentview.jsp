@@ -71,7 +71,7 @@
 	 	if (Rno1.equals(Rno2)) { 
 		%>
 		<script>
-			alert('캐쉬가부족해서대여가불가능함');
+			alert('캐쉬가 부족하여 대여가 불가능합니다.');
 		</script>
 		<%}
 	 	}%>
@@ -80,7 +80,7 @@
 	 	if (Ryes1.equals(Ryes2)) { 
 		%>
 		<script>
-			alert('코인을 3소모하여 대여를 완료했음');
+			alert('캐쉬를 3소모하여 대여를 완료했음');
 		</script>
 		<%}
 	 	}
@@ -92,38 +92,35 @@
 
 <p><br></p>
 
-<table border="1" align = "center">
-		<tr>
-			<th>책번호</th>
-			<th>책이미지</th>
-			<th>책제목</th>
-			<th>책내용</th>
-			<th>책가격</th>
-			<th>책저자</th>
-			<th>출판사</th>
-			<th>장르</th> 
-		</tr>
-
-		<tr>
-				<td>${ebook_view.bBookno}</td>
-				<td><img src="<spring:url 
-				value ='http://121.153.134.167/ebook/${ebook_view.bUrl}'/>" 
-				height="300"></td>
-				<td>${ebook_view.getbBookname()}</td>
-				<td>${ebook_view.bContent}</td>
-				<td>${ebook_view.bPrice}</td>
-				<td>${ebook_view.bWriter}</td>
-				<td>${ebook_view.bPublisher}</td>
-				<td>${ebook_view.bCategory}</td>
-				
+	
+<table border="1" align = "center" style ="width:60%">
+	<tr>
+		<td>${ebook_view.bBookno}</td>
+		<td>대여 필요 캐쉬 : 3</td>
+		<td >${ebook_view.getbBookname()}</td>
 		</tr>
 		
-	
+		<tr>
+			<td colspan="2" rowspan="1"><img src="<spring:url 
+				value ='http://121.153.134.167/ebook/${ebook_view.bUrl}'/>" 
+				height="300"></td>
+			<td>${ebook_view.bContent}</td>
+		</tr>
+		<tr>
+		<td>저자 : ${ebook_view.bWriter}</td>
+		<td>출판사 : ${ebook_view.bPublisher}</td>
+		<td>장르 : ${ebook_view.bCategory}</td>
+		</tr>
+		
+
 </table>
+	
+	
+	
+	
 <div align = "center">
-<p>접속자의 코인보유갯수 : <%= coin %></p>
-<p>이 도서가 렌탈히스토리에 기록된 횟수ㅡ(대출횟수, 인기도) : ${ebook_view2} </p>
-<p>이 도서가, 현재 접속자명의로 렌탈링에 기록되있는 횟수ㅡ : ${ebook_view3} </p>
+<p>접속자의 캐쉬보유 : <%= coin %></p>
+<p>이용자들의 도서 총 대출횟수 : ${ebook_view2} </p>
 
 </div>
 
