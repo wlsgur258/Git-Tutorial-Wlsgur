@@ -13,13 +13,14 @@
 <link rel="stylesheet" href="resources/css/main_css.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+<script src="http://malsup.github.com/jquery.cycle2.js"></script>
 <script src="/script/jquery-3.js"></script>
 <style>
 </style>
 </head>
 <body class="body">
-	<header> <%@include file="home.jsp"%>
+	<header> 
+		<%@include file="home.jsp"%>
 	</header>
 	<div id="container">
 		<div class="left">
@@ -28,9 +29,10 @@
 			<table border="0" width="100%">
 				<c:forEach items="${newbook}" var="newbook">
 					<th colspan="4"><a
-						href="ebookcontentview?bId=${newbook.bBookname}"> <img
+						href="ebookcontentview?bId=${newbook.bBookname}"> 
+						<img
 							src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>"
-							height="200px"></a></th>
+							height="200px" width="100%"></a></th>
 					<tr>
 						<th>제목</th>
 						<th>저자</th>
@@ -45,38 +47,42 @@
 			</table>
 		</div>
 		<div class="main">
-		<div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="2000">
-			<div class="cycle-pager"></div>
-			<img src="<spring:url value ='/resources/img/main/main1.jpg'/>" alt="banner1"> 
-			<img src="<spring:url value ='/resources/img/main/main2.jpg'/>" alt="banner2"> 
-			<img src="<spring:url value ='/resources/img/main/main3.png'/>" alt="banner3"> 
-			</div>
-			</div>
-			<div class="right">
-				<h3 align="center">추천 도서</h3>
-				<table border="0" width="100%">
-					<c:forEach items="${bestbook}" var="bestbook">
-						<th colspan="4"><a
-							href="ebookcontentview?bId=${bestbook.bBookname}"> <img
-								src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>"></a></th>
-						<tr>
-							<th>제목</th>
-							<th>저자</th>
-							<th>출판사</th>
-							<th>장르</th>
-						</tr>
-						<td><a href="">${bestbook.bBookname}</a></td>
-						<td>${bestbook.bWriter}</td>
-						<td>${bestbook.bPublisher}</td>
-						<td>${bestbook.bCategory}</td>
-					</c:forEach>
-				</table>
+			<div class="cycle-slideshow" data-cycle-fx="scrollHorz"
+				data-cycle-timeout="2000">
+				<div class="cycle-pager"></div>
+				<img src="<spring:url value ='/resources/img/main/main1.jpg'/>"
+					alt="banner1" height="300px"> <img
+					src="<spring:url value ='/resources/img/main/main2.jpg'/>"
+					alt="banner2" height="300px"> <img
+					src="<spring:url value ='/resources/img/main/main3.png'/>"
+					alt="banner3" height="300px">
 			</div>
 		</div>
-		<footer>
-		<div class="fixed">
-			<%@include file="bottom.jsp"%>
+		<div class="right">
+			<h3 align="center">추천 도서</h3>
+			<table border="0" width="100%">
+				<c:forEach items="${bestbook}" var="bestbook">
+					<th colspan="4"><a
+						href="ebookcontentview?bId=${bestbook.bBookname}"> <img
+							src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px" width="100%"></a></th>
+					<tr>
+						<th>제목</th>
+						<th>저자</th>
+						<th>출판사</th>
+						<th>장르</th>
+					</tr>
+					<td><a href="">${bestbook.bBookname}</a></td>
+					<td>${bestbook.bWriter}</td>
+					<td>${bestbook.bPublisher}</td>
+					<td>${bestbook.bCategory}</td>
+				</c:forEach>
+			</table>
 		</div>
-		</footer>
+	</div>
+	<footer>
+	<div class="fixed">
+		<%@include file="bottom.jsp"%>
+	</div>
+	</footer>
 </body>
 </html>

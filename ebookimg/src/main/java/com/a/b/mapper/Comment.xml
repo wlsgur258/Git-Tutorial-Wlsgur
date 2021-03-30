@@ -14,10 +14,15 @@
 	)
 	</insert>
 	
-	<select id="commentComment_view" resultType="com.a.b.dto.Comment" parameterType="long">
+	<select id="commentContent_view" resultType="com.a.b.dto.Comment" parameterType="long">
 	SELECT * FROM
 	COMMENT
 	WHERE BCID = #{param1}
+	</select>
+	
+	<select id="commentList" resultType="com.a.b.dto.Comment">
+		SELECT BCID, BBID, BID, CCONTENT, CCDATE
+		FROM COMMENT
 	</select>
 	
 	<update id="commentModify">

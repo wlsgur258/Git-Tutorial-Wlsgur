@@ -11,7 +11,13 @@ public interface BDao {
 
 public ArrayList<Ebook> list();
 	
-	public void modify(final long bBookno,final String bBookname, final String bContent, final long bPrice, final String bWriter, final String bPublisher, final String bCategory);
+	public void modify(final long bBookno,
+			final String bBookname, 
+			final String bContent, 
+			final long bPrice,
+			final String bWriter,
+			final String bPublisher,
+			final String bCategory);
 	
 	public void delete(final long bBookno);
 	

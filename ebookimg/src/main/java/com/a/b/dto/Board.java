@@ -13,12 +13,13 @@ public class Board {
 	private long bGroup;
 	private long bStep;
 	private long bIndent;
+	private String bBurl;
 	
 	public Board() {}
 
 	public Board(long bBid, String bId, String bTitle, String bContent, 
 		 Timestamp bDate, long bHit,
-		 long bGroup, long bStep, long bIndent) {
+		 long bGroup, long bStep, long bIndent, String bBurl) {
 		this.bBid = bBid;
 		this.bId = bId;
 		this.bTitle = bTitle;
@@ -28,6 +29,7 @@ public class Board {
 		this.bGroup = bGroup;
 		this.bStep = bStep;
 		this.bIndent = bIndent;
+		this.bBurl = bBurl;
 	}
 
 	public long getbBid() {
@@ -100,6 +102,14 @@ public class Board {
 
 	public void setbIndent(long bIndent) {
 		this.bIndent = bIndent;
+	}
+
+	public String getbBurl() {
+		return bBurl;
+	}
+
+	public void setbUrl(String bBurl) {
+		this.bBurl = bBurl;
 	}
 
 	

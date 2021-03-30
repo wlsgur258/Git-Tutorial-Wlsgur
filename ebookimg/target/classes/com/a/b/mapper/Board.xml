@@ -7,10 +7,10 @@
 	<insert id="boardWrite">
 	INSERT INTO BOARD(
 	BBID, BID, BTITLE, BCONTENT, BDATE,
-	BHIT, BGROUP, BSTEP, BINDENT	
+	BHIT, BGROUP, BSTEP, BINDENT, BBURL	
 	) VALUES(
 	BOARD_SEQ.NEXTVAL, #{param1,jdbcType=VARCHAR}, #{param2,jdbcType=VARCHAR}, 
-	#{param3,jdbcType=VARCHAR}, sysdate, 0, BOARD_SEQ.CURRVAL, 0, 0
+	#{param3,jdbcType=VARCHAR}, sysdate, 0, BOARD_SEQ.CURRVAL, 0, 0, #{param4,jdbcType=VARCHAR}
 	)
 	</insert>
 
@@ -31,7 +31,7 @@
 
 	<update id="boardModify">
 	UPDATE BOARD
-	SET BTITLE = #{param2,jdbcType=VARCHAR}, BCONTENT = #{param3,jdbcType=VARCHAR}
+	SET BTITLE = #{param2,jdbcType=VARCHAR}, BCONTENT = #{param3,jdbcType=VARCHAR}, BBURL = #{param4,jdbcType=VARCHAR}
 	WHERE BBID = #{param1,jdbcType=NUMERIC}
 	</update>
 

@@ -43,7 +43,7 @@
 	<br>
 
 	<table width="700" border="3" bordercolor="lightgray" align="center">
-		<form action="boardWrite" method="post">
+		<form action="boardWrite" method="post" enctype="multipart/form-data">
 
 			<input type="hidden" name="bBid" value="${boardWrite_view.bBid}">
 			<input type="hidden" name="bId" value=<%= vo %>>
@@ -79,7 +79,11 @@
 
 		</form>
 	</table>
-
+	<footer>
+		<div class="fixed">
+	<%@include file="../bottom.jsp"%>
+		</div>
+	</footer>
 </body>
 </html>
 

@@ -30,8 +30,9 @@
 	<br>
 
 	<table width="700" border="3" bordercolor="lightgray" align="center">
-		<form action="boardModify" method="post">
-
+		<form action="boardModify" method="post" enctype="multipart/form-data">
+		
+			
 			<input type="hidden" name="bBid" value="${boardContent_view.bBid}">
 			<%
 				if (vo != null) {
@@ -63,10 +64,24 @@
 			</tr>
 			
 			<tr>
-			<c:if test="${sessionScope.id == boardContent_view.bId}">
+			<c:if test="${sessionScope.id == boardContent_view.bId && boardContent_view.bBurl != null}">
+				
 				<th>이미지</th>
 				<td>
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >
+					<img src="<spring:url 
+					value ='http://121.153.134.167/ebook/${boardContent_view.bBurl}'  />" 
+					height="50" >
+					<input name="file" type="file" size="50">
+				</td>
+			</c:if>	
+			</tr>
+			
+			<tr>
+			<c:if test="${sessionScope.id == boardContent_view.bId && boardContent_view.bBurl == null}">
+				
+				<th>이미지</th>
+				<td>
+					<input name="file" type="file" size="60"> 
 				</td>
 			</c:if>	
 			</tr>
@@ -88,11 +103,25 @@
 			</c:if>	
 			</tr>
 			<tr>
-			<c:if test="${sessionScope.id != boardContent_view.bId}">
+			<c:if test="${sessionScope.id != boardContent_view.bId && boardContent_view.bBurl != null}">
+					
 				<th>이미지</th>
-				<td>${BookList.bUrl}</td>
+					<td>
+						<img src="<spring:url 
+						value ='http://121.153.134.167/ebook/${boardContent_view.bBurl}'  />" 
+						height="50" >
+					</td>
 			</c:if>	
 			</tr>
+				
+			<c:if test="${sessionScope.id != boardContent_view.bId && boardContent_view.bBurl == null}">
+					
+				<th>이미지</th>
+					<td>
+					</td>
+			</c:if>	
+			</tr>
+			
 			<%
 				} else {
 			%>
@@ -116,15 +145,29 @@
 			<td>${boardContent_view.bContent}</td>
 		</tr>
 		
-		<tr>
-			<th>이미지</th>
-			<td>${BookList.bUrl}</td>
-		</tr>
+			<tr>		
+			<c:if test="${boardContent_view.bBurl != null}">
+				<th>이미지</th>
+					<td>
+						<img src="<spring:url 
+						value ='http://121.153.134.167/ebook/${boardContent_view.bBurl}'  />" 
+						height="50" >
+					</td>
+			</c:if>		
+			</tr>
+			
+			<tr>
+			<c:if test="${boardContent_view.bBurl == null}">
+				<th>이미지</th>
+					<td>
+					</td>
+			</c:if>		
+			</tr>
+			
+		<%
+			}
+		%>
 		
-			<%
-				}
-			%>
-
 		<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId}">
 			<td colspan="2"><input class="btn btn-primary" type="submit"
@@ -154,19 +197,19 @@
 			<%
 				if (vo != null) {
 			%>
+			<input type="hidden" name="bId" value=<%= vo %>>
 			<tr>
 				<th>작성자</th>
-				<td><%=vo %></td>
+				<td><%= vo %></td>
 			</tr>
 		<tr>
 			<th>내용</th>
 			<td><textarea rows="10" name="cContent"></textarea></td>
 		</tr>
-		<tr>
-			<td colspan="2">
-				<input class="btn btn-primary" 
-					type="submit"
-					value="등록"> 
+		<tr align="center" valign="middle">
+			<td colspan="5">
+				<input class="btn btn-success" type="reset" value="작성취소">
+				<input class="btn btn-primary" type="submit" value="등록"> 
 			</td>
 		</tr>		
 		
@@ -175,7 +218,7 @@
 			%>
 
 		<tr>
-			<td>로그인후 작성하실 수 있습니다.</td>
+			<td>로그인 후 작성하실 수 있습니다.</td>
 		</tr>
 		<tr>
 			<td>
@@ -191,5 +234,10 @@
 			
 		</form>
 	</table>
+	<footer>
+		<div class="fixed">
+	<%@include file="../bottom.jsp"%>
+		</div>
+	</footer>
 </body>
 </html>

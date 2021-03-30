@@ -6,16 +6,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -34,10 +29,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.a.b.service.IBoarderService;
-import com.a.b.service.LoginService;
 import com.a.b.service.MDeleteService;
 import com.a.b.service.MModifyService;
-import com.a.b.service.MemberService;
 import com.a.b.service.RentalListService;
 import com.a.b.service.textService;
 import com.a.b.service.AdminBListService;
@@ -49,8 +42,6 @@ import com.a.b.service.AdminModifyService;
 import com.a.b.service.BoardContentService;
 import com.a.b.service.BoardDeleteService;
 import com.a.b.service.BoardListService;
-import com.a.b.service.BoardModifyService;
-import com.a.b.service.BoardWriteService;
 import com.a.b.service.CommentDeleteService;
 import com.a.b.service.CommentModifyService;
 import com.a.b.service.CommentWriteService;
@@ -58,6 +49,7 @@ import com.a.b.service.Constant;
 import com.a.b.service.EbookListService;
 import com.a.b.service.EbookListService2;
 import com.a.b.dao.BDao;
+import com.a.b.dao.BoardDao;
 import com.a.b.dao.EDao;
 import com.a.b.dao.MDao;
 import com.a.b.dto.Ebook;
@@ -116,15 +108,7 @@ public class HomeController {
 		return "board/boardWrite_view";
 	}
 	
-	@RequestMapping("/boardWrite")
-	public String boardWrite(HttpServletRequest request, Model model) {
-		
-		model.addAttribute("request", request);
-		service = new BoardWriteService();
-		service.execute(model);
-		
-		return "redirect:boardList";
-	}
+	
 	
 	@RequestMapping("/commentWrite")
 	public String commentWrite(HttpServletRequest request, Model model) {
@@ -142,16 +126,6 @@ public class HomeController {
 		service = new BoardContentService();
 		service.execute(model);
 		return "board/boardContent_view";
-	}
-	
-	@RequestMapping(method =  RequestMethod.POST, value = "/boardModify")
-	public String boardModify(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
-		
-		service = new BoardModifyService();
-		service.execute(model);
-		
-		return "redirect:boardList";
 	}
 	
 	@RequestMapping("/boardDelete")
@@ -473,7 +447,109 @@ public class HomeController {
 		return "redirect:AdminBookList";
 	}
 	
+	@RequestMapping(method =  RequestMethod.POST, value = "/boardModify")
+	public String boardModify(MultipartHttpServletRequest multi, Model model) {
+		MultipartFile uploadFile = multi.getFile("file");
+		
+		 UUID uuid = UUID.randomUUID();
+		
+		System.out.println(uploadFile.getOriginalFilename());
+		
+		
+		//String fileName = uploadFile.getOriginalFilename();
+		String fileName = uuid+"_"+uploadFile.getOriginalFilename();
+		
+		
+		System.out.println(fileName+"파일네임이다");
+		
+		
+		//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
+		
+		String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+				
+		//http://121.153.134.167/ebook/ebook9.png
+		
+		if(!uploadFile.isEmpty()) {
+			//if(!uploadFile.isEmpty()) {
+			File file = new File(Realpath, fileName);
+			try {
+				uploadFile.transferTo(file);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("실패1");
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("실패2");
+			}
+		}
+		
+		long bBid = Long.parseLong(multi.getParameter("bBid"));
+		String bTitle = multi.getParameter("bTitle");
+		String bContent = multi.getParameter("bContent");
+		String bBurl = fileName;
+		
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		dao.boardModify(bBid, bTitle, bContent, bBurl);
+		
+		return "redirect:boardList";
+	}
+	
 	//책 추가
+	
+	@RequestMapping(value = "/boardWrite",method=RequestMethod.POST)
+	public String boardWrite(MultipartHttpServletRequest multi, Model model) {
+		
+		MultipartFile uploadFile = multi.getFile("file");
+		
+		UUID uuid = UUID.randomUUID();
+		
+		System.out.println(uploadFile.getOriginalFilename());
+		
+		
+		//String fileName = uploadFile.getOriginalFilename();
+		//if 
+		String fileName = uuid+"_"+uploadFile.getOriginalFilename();
+		
+		
+		System.out.println(fileName+"파일네임이다");
+		
+		
+		//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
+		
+		String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+				
+		//http://121.153.134.167/ebook/ebook9.png
+		
+		if(!uploadFile.isEmpty()) {
+			//if(!uploadFile.isEmpty()) {
+			File file = new File(Realpath, fileName);
+			try {
+				uploadFile.transferTo(file);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("실패1");
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("실패2");
+			}
+		}
+		
+		String bId = multi.getParameter("bId");
+		String bTitle = multi.getParameter("bTitle");
+		String bContent = multi.getParameter("bContent");
+		String bBurl = fileName;
+		
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		dao.boardWrite(bId, bTitle, bContent, bBurl);
+		
+		return "redirect:boardList";
+	}
 	
 		@RequestMapping(value = "/Adminwrite",method=RequestMethod.POST)
 		public String AdminWrite(MultipartHttpServletRequest multi, Model model){

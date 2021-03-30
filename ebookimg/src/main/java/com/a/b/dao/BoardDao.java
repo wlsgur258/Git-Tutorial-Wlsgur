@@ -10,7 +10,8 @@ public interface BoardDao {
 	public void boardWrite(
 			 final String bId,
 			 final String bTitle,
-			 final String bContent
+			 final String bContent,
+			 final String bBurl
 			);
 	
 	
@@ -20,7 +21,8 @@ public interface BoardDao {
 	public void boardModify(
 			final long bBid,
 			final String bTitle,
-			final String bContent
+			final String bContent,
+			final String bBurl
 			);
 	
 	
