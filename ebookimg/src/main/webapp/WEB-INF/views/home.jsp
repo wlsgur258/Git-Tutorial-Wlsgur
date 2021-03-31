@@ -45,7 +45,7 @@ $(document).ready(function() {
 			<img src="<spring:url value ='/resources/img/title.png'/>" height="100px" alt="타이틀">
 		</div>
 		<div class="loginmenu">
-			<h3 class="y"><%=id%></h3>
+			<h3 class="y"><font color="white"><%=id%></font></h3>
 	<%
  	if (id.equals("GUEST")) { %>
 				<button class="btn btn-primary" onclick="location.href='login'">로그인</button>

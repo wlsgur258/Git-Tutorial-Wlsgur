@@ -171,23 +171,34 @@ $(function() {
 		$(document).ready(function(){
 	
 		
+		
 		var objDonut = JSON.parse('${objDonut}');
     	var objBar = JSON.parse('${objBar}');
 		sort = '${sort}';
 	
 	if('${sort}' != null) $("#sort").val(sort);
 	
+	
+	
+	
 	$("#sort").change(function(){
 		sort = $("#sort").val();
 
-		if(sort == 'category'){
-			
-		}else if(sort == 'publisher'){
 		
-		}else if(sort == 'author'){			
+		
+		if(sort == 'category'){
+				
+		
+		}else if(sort == 'publisher'){
+						
+		}else if(sort == 'author'){		
+			
 		}
 
-		location.href = sort;
+	
+		 location.href = sort;
+		
+		 
 	});
 	
 	
@@ -220,7 +231,7 @@ $(function() {
 		<table width="100%" border="0">
 		<tr>		
 
-			<td><a href="adminpage" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO1.png'/>" height="100" alt="로고출력자리"></a>
+			<td><a href="adminpage" style="text-decoration: none"><img src="<spring:url value ='/resources/img/LOGO2.png'/>" height="100" alt="로고출력자리"></a>
 
 			</td>		
 			<td colspan="3">
@@ -250,7 +261,7 @@ $(function() {
 		</tr>
 		<tr height="50" colspan="3">
 			<td align="center"><h2><a href="AdminBookList">도서 목록</a></h2></td>	
-			<td align="center"><h2><a href="QnA">요청 게시판</a></h2></td>
+			<td align="center"><h2><a href="adminboardList">요청 게시판</a></h2></td>
 			<td align="center"><h2><a href="AdminMemberList">고객정보</a></h2></td>
 		</tr>
 </table>
@@ -267,15 +278,16 @@ $(function() {
 		        </h1>
 	        </div>
 	    </div>
-		<!-- <div class="row">
+		 <div class="row">
+		
 			<div class="col-md-2">
 				<select class="form-control" id="sort" name="sort">
-					<option value="category">카테고리</option>			
-					<option value="publisher">출판사별</option>
-					<option value="author">저자별</option>
+					 <option value="category" ${sort == 'category' ? 'selected="selected"' : '' }>카테고리</option>	
+					<option value="publisher"  ${sort == 'publisher' ? 'selected="selected"' : '' }>출판사별</option>
 				</select>
 			</div>
-		</div> -->
+		
+		</div> 
 	    <div class="row">
 			<div id="donutChart"></div>
 	    </div>
@@ -299,7 +311,7 @@ $(function() {
     </p>
 </figure> --%>
 
- <%@ include file="/WEB-INF/views/bottom.jsp"%>
+<%@ include file="foot.jsp"%>
 </body>
 </html>
 

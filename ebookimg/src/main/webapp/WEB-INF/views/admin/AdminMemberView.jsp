@@ -21,7 +21,17 @@ text-align: center;
 
 }
 
+
 </style>
+
+ <link href="/b/css1/bootstrap.min.css" rel="stylesheet">
+ <link href="/b/css1/bootstrap-theme.css" rel="stylesheet"> 
+<link href="/b/css1/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="/b/css1/plugins/dataTables.bootstrap.css" rel="stylesheet">
+<link href="/b/css1/sb-admin-2.css" rel="stylesheet">
+<link href="/b/css1/morris.css" rel="stylesheet">
+
+
 
 </head>
 <body>
@@ -90,7 +100,8 @@ text-align: center;
 			
 		</table>
 	</div>
-<%@ include file="/WEB-INF/views/bottom.jsp"%>
+	
+<%@ include file="foot.jsp"%>
 
 
 

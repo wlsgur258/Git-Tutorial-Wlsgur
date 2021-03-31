@@ -93,21 +93,21 @@
 <p><br></p>
 
 
-<table border="1" align = "center" style ="width:60%">
-	<tr>
+<table border="1" align = "center" style ="width:60%" class="table table-dark table-striped table-hover">
+	<tr align = "center">
 		<td>${ebook_view.bBookno}</td>
 		<td>대여 필요 캐쉬 : 3</td>
 		<td >${ebook_view.getbBookname()}</td>
 		</tr>
 		
-		<tr>
+		<tr align = "center">
 			<td colspan="2" rowspan="1"><img src="<spring:url 
 				value ='http://121.153.134.167/ebook/${ebook_view.bUrl}'/>" 
 				height="300"></td>
 			<td>${ebook_view.bContent}</td>
 		</tr>
 		<tr align="center">
-		<tr>
+		<tr align = "center">
 		<td>저자 : ${ebook_view.bWriter}</td>
 		<td>출판사 : ${ebook_view.bPublisher}</td>
 		<td>장르 : ${ebook_view.bCategory}</td>
@@ -137,12 +137,13 @@
 			</form>
 			<%	}else {	%>
 				<button class="btn btn-primary">이미 대여된 책입니다</button>
-				
+				<br><br>
 			<form name = "textgo" action= "textdo" method = "POST">
 				<input type="hidden" name = "bBookno1" value = "${ebook_view.bBookno}">
 				<input type="hidden" name = "bBookname1" value = "${ebook_view.bBookname}">
 				<button class="btn btn-primary" type="submit">책내용 보러가기!</button>
 			</form>
+			<br><br>
 			<% } } %>
 				</div>
 		

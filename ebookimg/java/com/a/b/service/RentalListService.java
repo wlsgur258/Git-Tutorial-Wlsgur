@@ -52,8 +52,7 @@ public class RentalListService implements IBoarderService {
 			HttpSession session = request.getSession();
 			String ok = (String)session.getAttribute("id"); // 에러
 			
-			
-			
+					
 			EDao dao = sqlSession.getMapper(EDao.class);
 			List<RentalList> dtos =  dao.ebookRentalList(ok);
 			return dtos.subList(a-1,z);

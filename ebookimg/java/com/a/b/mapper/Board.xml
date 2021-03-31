@@ -46,4 +46,26 @@
 	WHERE BBID = #{param1}
 	</update>
 
+	<select id="titlesearch" resultType="com.a.b.dto.Board">
+		select * from BOARD
+		where BTITLE like ('%'||#{param1,jdbcType=VARCHAR}||'%')
+	</select>
+	
+	<select id="contentsearch" resultType="com.a.b.dto.Board">
+		select * from BOARD
+		where BCONTENT like ('%'||#{param1,jdbcType=VARCHAR}||'%')
+	</select>
+
+	<select id="idsearch" resultType="com.a.b.dto.Board">
+		select * from BOARD
+		where BID like ('%'||#{param1,jdbcType=VARCHAR}||'%')
+	</select>
+	
+	<select id="allsearch" resultType="com.a.b.dto.Board">
+		select * from BOARD
+		where BTITLE like ('%'||#{param1,jdbcType=VARCHAR}||'%') or 
+		BCONTENT like ('%'||#{param1,jdbcType=VARCHAR}||'%') or 
+		BID like ('%'||#{param1,jdbcType=VARCHAR}||'%')
+	</select>
+	
 </mapper>

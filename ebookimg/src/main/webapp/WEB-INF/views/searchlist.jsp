@@ -30,17 +30,17 @@
 			<option value="Category">카테고리</option>
 		</select>
 		<input type="text" name="search" size="55%">
-		<input type="submit" value="검색">
+		<input type="submit" class="btn btn-primary" value="검색">
 	</form>
 	<br>
-	<table border='1' width="70%" align="center">
+	<table border='1' width="70%" align="center" class="table table-dark table-striped table-hover">
 	<%if(book.equals(null)){
 		%>
 		<h3 align="center">찾는 도서가 없습니다.</h3>
 		<%
 	}else{
 		%>
-	<tr>
+	<tr align="center">
 		<th>이미지</th>
 		<th>타이틀</th>
 		<th>저자</th>
@@ -49,7 +49,7 @@
 		<th>대여료</th>
 	</tr>
 			<c:forEach items="${sear_result}" var="search">
-	<tr>
+	<tr align="center">
 		<td><img src="<spring:url value ='http://121.153.134.167/ebook/${search.bUrl}'/>" height="100"></td>
 		<td align="center"><a href="ebookcontentview?bId=${search.bBookname}">${search.bBookname}</a></td>
 		<td align="center">${search.bWriter}</td>

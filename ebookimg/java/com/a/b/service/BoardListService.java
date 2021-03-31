@@ -14,7 +14,7 @@ import com.a.b.dto.Board;
 public class BoardListService implements IBoarderService{
 
 	private SqlSession sqlSession = Constant.sqlSession;
-	private static final int MESSAGE_COUNT_PER_PAGE = 15;
+	private static final int MESSAGE_COUNT_PER_PAGE = 5;
 	public BoardListService() {}
 	
 	@Override
@@ -46,7 +46,7 @@ public class BoardListService implements IBoarderService{
 			currentPageNumber =0;
 			messageList = Collections.emptyList();
 		}
-		return new MessageListView(messageList, messageTotalCount,currentPageNumber,MESSAGE_COUNT_PER_PAGE,firstRow,endRow);
+		return new MessageListView(messageList, null, messageTotalCount,currentPageNumber,MESSAGE_COUNT_PER_PAGE,firstRow,endRow);
 	}
-
+ 
 }

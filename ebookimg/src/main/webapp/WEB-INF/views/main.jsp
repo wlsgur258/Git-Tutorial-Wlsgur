@@ -18,17 +18,18 @@
 <style>
 </style>
 </head>
-<body class="body">
+<body>
 	<header>
 	<%@include file="home.jsp"%>
 	</header>
 		<div id="container">
 			<div class="left">
+				<br>
 				<h3 align="center">신규 도서</h3>
 				<table border="0" width="100%">
 				<c:forEach items="${newbook}" var="newbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${newbook.bBookname}">
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px" width="100%"></a></th>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px"></a></th>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>
@@ -44,17 +45,18 @@
 			</div>
 			<div class="main">
 			<div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="2000">
-			<img src="<spring:url value ='/resources/img/main/main1.jpg'/>" alt="banner1" height="300px"> 
-			<img src="<spring:url value ='/resources/img/main/main2.jpg'/>" alt="banner2" height="300px"> 
-			<img src="<spring:url value ='/resources/img/main/main3.png'/>" alt="banner3" height="300px"> 
+			<img src="<spring:url value ='/resources/img/main/main.jpg'/>" alt="banner1" height="300px"> 
+			<img src="<spring:url value ='/resources/img/main/main1.jpg'/>" alt="banner2" height="300px"> 
+			<img src="<spring:url value ='/resources/img/main/main2.jpg'/>" alt="banner3" height="300px"> 
 			</div>
 			</div>
 			<div class="right">
+				<br>
 				<h3 align="center">추천 도서</h3>
 				<table border="0" width="100%">
 				<c:forEach items="${bestbook}" var="bestbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${bestbook.bBookname}">
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px" width="100%"></a></th>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px"></a></th>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>

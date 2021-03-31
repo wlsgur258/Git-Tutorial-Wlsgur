@@ -71,8 +71,9 @@
 			<option value="Writer">저자</option>
 			<option value="Category">카테고리</option>
 		</select>
+
 		<input type="text" name="search" size="55%">
-		<input type="submit" value="검색">
+		<input type="submit" class="btn btn-primary" value="검색">
 	</form>
 	<table border="1" width="45%" align="center" class="table table-dark table-striped table-hover">
 	<tr>

@@ -7,7 +7,6 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -32,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.a.b.service.IBoarderService;
 import com.a.b.service.MDeleteService;
@@ -40,6 +40,7 @@ import com.a.b.service.RentalListService;
 import com.a.b.service.RentalingListService;
 import com.a.b.service.textService;
 import com.a.b.service.AdminBListService;
+import com.a.b.service.AdminBoardListService;
 import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
 import com.a.b.service.AdminMemberListService;
@@ -48,9 +49,9 @@ import com.a.b.service.AdminModifyService;
 import com.a.b.service.BoardContentService;
 import com.a.b.service.BoardDeleteService;
 import com.a.b.service.BoardListService;
-import com.a.b.service.CommentDeleteService;
-import com.a.b.service.CommentModifyService;
-import com.a.b.service.CommentWriteService;
+import com.a.b.service.BCommentDeleteService;
+import com.a.b.service.BCommentModifyService;
+import com.a.b.service.BCommentWriteService;
 import com.a.b.service.Constant;
 import com.a.b.service.EbookListService;
 import com.a.b.service.EbookListService2;
@@ -58,9 +59,9 @@ import com.a.b.dao.BDao;
 import com.a.b.dao.BoardDao;
 import com.a.b.dao.EDao;
 import com.a.b.dao.MDao;
+import com.a.b.dto.Board;
 import com.a.b.dto.Ebook;
 import com.a.b.dto.Member;
-import com.a.b.dto.RentalingList;
 
 
 /**
@@ -108,6 +109,18 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("/adminboardList")
+	public String adminboardList(Model model) {
+		
+		service = new AdminBoardListService();
+		service.execute(model);
+		
+		return "admin/AdminboardList";
+		
+	}
+	
+	
+	
 	@RequestMapping("/boardWrite_view")
 	public String boardWrite_view(Model model) {
 		
@@ -115,11 +128,11 @@ public class HomeController {
 	}
 	
 	
-	
-	@RequestMapping("/commentWrite")
-	public String commentWrite(HttpServletRequest request, Model model) {
+	 
+	@RequestMapping(value = "/bcommentWrite",method=RequestMethod.POST)
+	public String bcommentWrite(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		service = new CommentWriteService();
+		service = new BCommentWriteService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
@@ -144,21 +157,21 @@ public class HomeController {
 		return "redirect:boardList";
 	}
 	
-	@RequestMapping("/commentModify")
-	public String commentModify(HttpServletRequest request, Model model) {
+	@RequestMapping("/bcommentModify")
+	public String bcommentModify(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		service = new CommentModifyService();
+		service = new BCommentModifyService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
 	}
 	
-	@RequestMapping("/commentDelete")
-	public String commentDelete(HttpServletRequest request, Model model) {
+	@RequestMapping("/bcommentDelete")
+	public String bcommentDelete(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		service = new CommentDeleteService();
+		service = new BCommentDeleteService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
@@ -360,6 +373,7 @@ public class HomeController {
 		BDao dao = sqlSession.getMapper(BDao.class);
 		
 		String sort = request.getParameter("sort");
+		System.out.println("sort:"+sort+"입니다어드민페이지");
 		JSONArray jsonDonutArr = new JSONArray();
 		JSONArray jsonBarArr = new JSONArray();
 		
@@ -406,10 +420,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/publisher",method=RequestMethod.GET)
-	public String adminpagePublisher(HttpServletRequest request,Model model) {
+	public ModelAndView adminpagePublisher(HttpServletRequest request,Model model) {
+		ModelAndView mv = new ModelAndView();
 		BDao dao = sqlSession.getMapper(BDao.class);
 		String sort = request.getParameter("sort");
-		
+		System.out.println("sort:"+sort+"입니다출판사");
 		JSONArray jsonDonutArr = new JSONArray();
 		JSONArray jsonBarArr = new JSONArray();
 		
@@ -431,22 +446,28 @@ public class HomeController {
 			jsonObj.put("y", bookpublisher);
 			jsonObj.put("a", bookpublishercount);
 			
-			jsonBarArr.add(jsonObj);
-			
+			jsonBarArr.add(jsonObj);		
 		}
 		
-		model.addAttribute("objDonut",jsonDonutArr);
-		model.addAttribute("objBar",jsonBarArr);
+		mv.addObject("objDonut", jsonDonutArr);
+		mv.addObject("objBar", jsonBarArr);
 		
-		if(sort != null) model.addAttribute("sort", sort);
+//		model.addAttribute("objDonut",jsonDonutArr);
+//		model.addAttribute("objBar",jsonBarArr);
 		
-		return "admin/adminpage";
+		if(sort != null) mv.addObject("sort", sort);
+		
+		mv.setViewName("admin/adminpage");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/category",method=RequestMethod.GET)
 	public String adminpageCategory(HttpServletRequest request,Model model) {
 		BDao dao = sqlSession.getMapper(BDao.class);
 		String sort = request.getParameter("sort");
+		
+		System.out.println("sort:"+sort+"카테고리입니다");
 		
 		JSONArray jsonDonutArr = new JSONArray();
 		JSONArray jsonBarArr = new JSONArray();
@@ -497,7 +518,7 @@ public class HomeController {
 		long brecash = member.getbCash() + bcash;
 		dao.cashupdown(bid, brecash);
 		session.removeAttribute("joinVo");
-		Member remember = dao.memberView(bid);
+		Member remember = dao.memberView(bookSearch(null, null, null));
 		session.setAttribute("joinVo", remember);
 
 		int newCash = (int) remember.getbCash();
@@ -506,6 +527,33 @@ public class HomeController {
 
 		return "redirect:cashup";
 	}
+	
+	
+	@RequestMapping(value="/boardsearch", method=RequestMethod.POST)
+	public String boardSearch(HttpServletRequest request, Model model,HttpSession session) {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		String searchRe = request.getParameter("opt");
+		String search = request.getParameter("search");
+		if(searchRe.equals("Title")) {
+			ArrayList<Board> board = dao.titlesearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("Content")) {
+			ArrayList<Board> board = dao.contentsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("Id")) {
+			ArrayList<Board> board = dao.idsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("all")) {
+			ArrayList<Board> board = dao.allsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}
+		return "boardsearch";
+	}
+	
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
 	public String bookSearch(HttpServletRequest request, Model model,HttpSession session) {
 		EDao dao = sqlSession.getMapper(EDao.class);
@@ -651,7 +699,7 @@ public class HomeController {
 		
 		System.out.println(fileName+"파일네임이다");
 		
-		
+			
 		//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
 		
 		String Realpath = "C:/Users/pc346/Desktop/useEbook/";

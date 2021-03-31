@@ -31,4 +31,9 @@ public interface BoardDao {
 	public Board boardContent_view(long strBID);
 	
 	public void upHit(final long bBid);
+	
+	public ArrayList<Board> titlesearch(final String bTitle);
+	public ArrayList<Board> contentsearch(final String bContent);
+	public ArrayList<Board> idsearch(final String bId);
+	public ArrayList<Board> allsearch(final String bTitle);
 }
