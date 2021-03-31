@@ -35,7 +35,7 @@
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-					<td><a href="">${newbook.bBookname}</a></td>
+					<td><a href="ebookcontentview?bId=${newbook.bBookname}">${newbook.bBookname}</a></td>
 					<td>${newbook.bWriter}</td>
 					<td>${newbook.bPublisher}</td>
 					<td>${newbook.bCategory}</td>
@@ -44,7 +44,6 @@
 			</div>
 			<div class="main">
 			<div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="2000">
-			<div class="cycle-pager"></div>
 			<img src="<spring:url value ='/resources/img/main/main1.jpg'/>" alt="banner1" height="300px"> 
 			<img src="<spring:url value ='/resources/img/main/main2.jpg'/>" alt="banner2" height="300px"> 
 			<img src="<spring:url value ='/resources/img/main/main3.png'/>" alt="banner3" height="300px"> 
@@ -62,7 +61,7 @@
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-					<td><a href="">${bestbook.bBookname}</a></td>
+					<td><a href="ebookcontentview?bId=${bestbook.bBookname}">${bestbook.bBookname}</a></td>
 					<td>${bestbook.bWriter}</td>
 					<td>${bestbook.bPublisher}</td>
 					<td>${bestbook.bCategory}</td>

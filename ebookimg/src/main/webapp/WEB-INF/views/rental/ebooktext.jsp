@@ -25,7 +25,7 @@
 
 
 <meta charset="UTF-8">
-<title>Ebook text page</title>
+<title>EBook text page</title>
 </head>
 <body>
 		
@@ -36,7 +36,7 @@
 <p>책 오라클db상의 리얼콘텐츠 이름 : ${ebook_text.bRealContent}</p> --%>
 <%@include file="../home.jsp"%>
 
-<h1>${ebook_text.bBookname}</h1>
+	<h1>${ebook_text.bBookname}</h1>
 <form>
 <textarea rows = "30" cols = "120" readonly >
 
