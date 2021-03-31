@@ -35,7 +35,7 @@
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-					<td><a href="">${newbook.bBookname}</a></td>
+					<td><a href="ebookcontentview?bId=${newbook.bBookname}">${newbook.bBookname}</a></td>
 					<td>${newbook.bWriter}</td>
 					<td>${newbook.bPublisher}</td>
 					<td>${newbook.bCategory}</td>
@@ -61,7 +61,7 @@
 					<th>출판사</th>
 					<th>장르</th>
 				</tr>
-					<td><a href="">${bestbook.bBookname}</a></td>
+					<td><a href="ebookcontentview?bId=${bestbook.bBookname}">${bestbook.bBookname}</a></td>
 					<td>${bestbook.bWriter}</td>
 					<td>${bestbook.bPublisher}</td>
 					<td>${bestbook.bCategory}</td>
