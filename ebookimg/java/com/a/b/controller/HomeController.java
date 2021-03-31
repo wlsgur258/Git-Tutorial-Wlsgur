@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.a.b.service.IBoarderService;
 import com.a.b.service.MDeleteService;
@@ -39,6 +40,7 @@ import com.a.b.service.RentalListService;
 import com.a.b.service.RentalingListService;
 import com.a.b.service.textService;
 import com.a.b.service.AdminBListService;
+import com.a.b.service.AdminBoardListService;
 import com.a.b.service.AdminContentService;
 import com.a.b.service.AdminDeleteService;
 import com.a.b.service.AdminMemberListService;
@@ -106,6 +108,18 @@ public class HomeController {
 		return "board/boardList";
 		
 	}
+	
+	@RequestMapping("/adminboardList")
+	public String adminboardList(Model model) {
+		
+		service = new AdminBoardListService();
+		service.execute(model);
+		
+		return "admin/AdminboardList";
+		
+	}
+	
+	
 	
 	@RequestMapping("/boardWrite_view")
 	public String boardWrite_view(Model model) {
@@ -359,6 +373,7 @@ public class HomeController {
 		BDao dao = sqlSession.getMapper(BDao.class);
 		
 		String sort = request.getParameter("sort");
+		System.out.println("sort:"+sort+"입니다어드민페이지");
 		JSONArray jsonDonutArr = new JSONArray();
 		JSONArray jsonBarArr = new JSONArray();
 		
@@ -405,10 +420,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/publisher",method=RequestMethod.GET)
-	public String adminpagePublisher(HttpServletRequest request,Model model) {
+	public ModelAndView adminpagePublisher(HttpServletRequest request,Model model) {
+		ModelAndView mv = new ModelAndView();
 		BDao dao = sqlSession.getMapper(BDao.class);
 		String sort = request.getParameter("sort");
-		
+		System.out.println("sort:"+sort+"입니다출판사");
 		JSONArray jsonDonutArr = new JSONArray();
 		JSONArray jsonBarArr = new JSONArray();
 		
@@ -430,22 +446,28 @@ public class HomeController {
 			jsonObj.put("y", bookpublisher);
 			jsonObj.put("a", bookpublishercount);
 			
-			jsonBarArr.add(jsonObj);
-			
+			jsonBarArr.add(jsonObj);		
 		}
 		
-		model.addAttribute("objDonut",jsonDonutArr);
-		model.addAttribute("objBar",jsonBarArr);
+		mv.addObject("objDonut", jsonDonutArr);
+		mv.addObject("objBar", jsonBarArr);
 		
-		if(sort != null) model.addAttribute("sort", sort);
+//		model.addAttribute("objDonut",jsonDonutArr);
+//		model.addAttribute("objBar",jsonBarArr);
 		
-		return "admin/adminpage";
+		if(sort != null) mv.addObject("sort", sort);
+		
+		mv.setViewName("admin/adminpage");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/category",method=RequestMethod.GET)
 	public String adminpageCategory(HttpServletRequest request,Model model) {
 		BDao dao = sqlSession.getMapper(BDao.class);
 		String sort = request.getParameter("sort");
+		
+		System.out.println("sort:"+sort+"카테고리입니다");
 		
 		JSONArray jsonDonutArr = new JSONArray();
 		JSONArray jsonBarArr = new JSONArray();
