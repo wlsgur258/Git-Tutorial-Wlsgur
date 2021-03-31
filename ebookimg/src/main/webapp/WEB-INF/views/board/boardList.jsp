@@ -96,27 +96,44 @@ List<Board> subList = viewData.getMessageList();
 
 		<!-- 페이지 넘버 부분 -->
 		<br>
-		<div id="pageForm">
-			Page<%
-			for (int i = 1; i <= viewData.getPageTotalCount(); i++) {
-		%>
-			<a href="boardList?xpage=<%=i%>">[<%=i%>]
-			</a>
-			<%
-				}
-			%>
+		<div id="pageForm" >
 			
+				<% if(pageNumber>10){
+			int tenNum2 = pageNumber / 10;
+			if(pageNumber % 10 == 0 && pageNumber > 9)tenNum2 -= 1;
+			%>
+				<a href="boardList?xpage=<%=(tenNum2*10)-9%>">[이전]</a>
+				<% } %>
+			
+			<%
+			//System.out.println(pageNumber);
+			//System.out.println(viewData.getPageTotalCount());
+			for (int i = 1; i <= viewData.getPageTotalCount(); i++) {
+				
+				int tenNum = pageNumber / 10;
+				if(pageNumber % 10 == 0 && pageNumber > 9)tenNum -= 1;
+				if(viewData.getPageTotalCount()==i+(tenNum*10-1))break;
+				
+				if(11>i){%>
+				<a href="boardList?xpage=<%=i+(tenNum*10)%>">[<%=i+(tenNum*10)%>]</a>
+				<%
+				}else{
+				%>
+				<a href="boardList?xpage=<%=i+(tenNum*10)%>">[다음]</a>
+				<% break;
+				}
+			}
+			%>
 		</div>
 		<br>
 
 		<!-- 검색 부분 -->
 		<div id="searchForm">
-			<form method="post" action="search.jsp">
+			<form method="post" action="boardsearch">
 				<select name="opt">
-					<option value="0">제목</option>
-					<option value="1">내용</option>
-					<option value="2">제목+내용</option>
-					<option value="3">작성자</option>
+					<option value="Title">제목</option>
+					<option value="Content">내용</option>
+					<option value="Id">작성자</option>
 				</select> <input type="text" size="20" name="searchWord" />&nbsp; <input
 					type="submit" value="검색" />
 			</form>

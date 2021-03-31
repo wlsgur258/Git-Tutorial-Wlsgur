@@ -7,7 +7,6 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -48,9 +47,9 @@ import com.a.b.service.AdminModifyService;
 import com.a.b.service.BoardContentService;
 import com.a.b.service.BoardDeleteService;
 import com.a.b.service.BoardListService;
-import com.a.b.service.CommentDeleteService;
-import com.a.b.service.CommentModifyService;
-import com.a.b.service.CommentWriteService;
+import com.a.b.service.BCommentDeleteService;
+import com.a.b.service.BCommentModifyService;
+import com.a.b.service.BCommentWriteService;
 import com.a.b.service.Constant;
 import com.a.b.service.EbookListService;
 import com.a.b.service.EbookListService2;
@@ -58,9 +57,9 @@ import com.a.b.dao.BDao;
 import com.a.b.dao.BoardDao;
 import com.a.b.dao.EDao;
 import com.a.b.dao.MDao;
+import com.a.b.dto.Board;
 import com.a.b.dto.Ebook;
 import com.a.b.dto.Member;
-import com.a.b.dto.RentalingList;
 
 
 /**
@@ -115,11 +114,11 @@ public class HomeController {
 	}
 	
 	
-	
-	@RequestMapping("/commentWrite")
-	public String commentWrite(HttpServletRequest request, Model model) {
+	 
+	@RequestMapping(value = "/bcommentWrite",method=RequestMethod.POST)
+	public String bcommentWrite(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		service = new CommentWriteService();
+		service = new BCommentWriteService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
@@ -144,21 +143,21 @@ public class HomeController {
 		return "redirect:boardList";
 	}
 	
-	@RequestMapping("/commentModify")
-	public String commentModify(HttpServletRequest request, Model model) {
+	@RequestMapping("/bcommentModify")
+	public String bcommentModify(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		service = new CommentModifyService();
+		service = new BCommentModifyService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
 	}
 	
-	@RequestMapping("/commentDelete")
-	public String commentDelete(HttpServletRequest request, Model model) {
+	@RequestMapping("/bcommentDelete")
+	public String bcommentDelete(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		service = new CommentDeleteService();
+		service = new BCommentDeleteService();
 		service.execute(model);
 		
 		return "redirect:boardContent_view";
@@ -497,7 +496,7 @@ public class HomeController {
 		long brecash = member.getbCash() + bcash;
 		dao.cashupdown(bid, brecash);
 		session.removeAttribute("joinVo");
-		Member remember = dao.memberView(bid);
+		Member remember = dao.memberView(bookSearch(null, null, null));
 		session.setAttribute("joinVo", remember);
 
 		int newCash = (int) remember.getbCash();
@@ -506,6 +505,33 @@ public class HomeController {
 
 		return "redirect:cashup";
 	}
+	
+	
+	@RequestMapping(value="/boardsearch", method=RequestMethod.POST)
+	public String boardSearch(HttpServletRequest request, Model model,HttpSession session) {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		String searchRe = request.getParameter("opt");
+		String search = request.getParameter("search");
+		if(searchRe.equals("Title")) {
+			ArrayList<Board> board = dao.titlesearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("Content")) {
+			ArrayList<Board> board = dao.contentsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("Id")) {
+			ArrayList<Board> board = dao.idsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("all")) {
+			ArrayList<Board> board = dao.allsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}
+		return "boardsearch";
+	}
+	
 	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
 	public String bookSearch(HttpServletRequest request, Model model,HttpSession session) {
 		EDao dao = sqlSession.getMapper(EDao.class);
@@ -651,7 +677,7 @@ public class HomeController {
 		
 		System.out.println(fileName+"파일네임이다");
 		
-		
+			
 		//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
 		
 		String Realpath = "C:/Users/pc346/Desktop/useEbook/";

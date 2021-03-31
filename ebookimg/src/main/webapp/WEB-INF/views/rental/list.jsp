@@ -71,6 +71,7 @@
 			<option value="Writer">저자</option>
 			<option value="Category">카테고리</option>
 		</select>
+
 		<input type="text" name="search" size="55%">
 		<input type="submit" value="검색">
 	</form>
