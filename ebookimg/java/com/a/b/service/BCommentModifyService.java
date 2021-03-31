@@ -17,11 +17,12 @@ public class BCommentModifyService implements IBoarderService {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
 		long bCid = Long.parseLong(request.getParameter("bCid"));
+		long bBid = Long.parseLong(request.getParameter("bBid"));
 		String bId = request.getParameter("bId");
 		String bContent = request.getParameter("bContent");
 		
 		BCommentDao dao = sqlSession.getMapper(BCommentDao.class);
-		dao.bcommentModify(bCid, bId, bContent);
+		dao.bcommentModify(bCid, bBid, bId, bContent);
 		
 		}
 

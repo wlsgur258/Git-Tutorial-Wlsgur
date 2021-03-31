@@ -8,6 +8,7 @@
 <%@ page import="com.a.b.dao.EDao" %>
 <%@ page import="com.a.b.dao.MDao" %>
 <%@ page import="com.a.b.dto.RentalingList" %>
+<%@ page import="com.a.b.service.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import= "java.sql.Timestamp" %>
 <%@ page import= "java.text.DateFormat" %>
@@ -27,8 +28,22 @@
 	crossorigin="anonymous"></script>
 <title>현재대여목록페이지</title>
 <link rel="stylesheet" href="resources/css/main_css.css">
+
+
+
+
+
+
 </head>
 <body>
+
+<style type="text/css">
+#board, #pageForm, #searchForm {
+	text-align: center;
+}
+</style>
+
+
 <%@include file="../home.jsp"%>
 
 
@@ -41,12 +56,9 @@
 	System.out.println(vo);
 	SimpleDateFormat formatT = new SimpleDateFormat ("yyyy년 MM월 dd일 HH시 mm분");
 	
-	ArrayList<RentalingList> List = (ArrayList<RentalingList>)request.getAttribute("rentalinglist");
+	//ArrayList<RentalingList> List = (ArrayList<RentalingList>)request.getAttribute("rentalinglist");
+	%>
 	
-	System.out.println(request.getAttribute("rentalinglist"));
-	//ArrayList<RentalingList> List2 = List.get(0);
-	
-%>
 <%-- 
 <%= request.getAttribute("rentalinglist") %>
 <%= List.get(0).getbRentaldate() %> 이거 도서대출한거 없으면 에러남
@@ -56,11 +68,34 @@
 
 <% if (id=="GUEST"){ %>
 	<script>
-		alert('로그인 하세요');
+		alert('로그인 후 이용가능합니다.');
 		document.location.href="main";
 	</script>
 	<%}%>
 <div>
+
+<% 
+
+	String pageNumberStr = request.getParameter("xpage");
+	RentalingListService service = new RentalingListService();
+	
+	int pageNumber = 1;
+	if (pageNumberStr != null) {
+		pageNumber = Integer.parseInt(pageNumberStr);
+	}
+		System.out.println(pageNumber);
+		System.out.println("체크");
+	MessageListViewEbookRentalingList viewData = service.getMessageListView(pageNumber);
+	
+	//List<RentalList> subList = viewData.getMessageList();
+%>	
+<%
+	System.out.println(request.getAttribute("rentalinglist"));
+	System.out.println("여까진오나");
+	List<RentalingList> List = viewData.getMessageList();
+	//ArrayList<RentalingList> List2 = List.get(0);
+	
+%>
 
 <%-- <table border="1" align = "center">
 	</tr>
@@ -82,29 +117,34 @@
 			</c:forEach>
 </table> --%>
 	
-	<table border="1" align = "center">
+	<p><br><h1 align = "center">회원님이 현재 대여중인 책 목록</h1><br></p>
+	
+	<table border="1" align = "center" class="table">
 	<tr>
-		<p>현재 접속자 ID = <%= vo %> , 렌탈'링'리스트, 로그인 회원아이디로 현재빌려진책들 출력</p>
 	</tr>
 		<tr>
-			<th>그냥번호</th>
+			<th>번호</th>
 			<th>이미지</th>
 			<th>대출기록번호</th>
-			<th>회원아이디</th>
+			<th>아이디</th>
 			<th>책번호</th>
-			<th>책이름</th>
-			<th>대출한날짜</th>
-			<th>대출기간만료예정일</th>
+			<th>제목</th>
+			<th>대출날짜</th>
+			<th>대출기간만료날짜</th>
 		</tr>
 			
 <% try{
+	int a = pageNumber*5-5;
 	for(int i=0; i < List.size() ; i++)
-	{%>
+		
+	{
+	a++;
+	%>
 			<tr>
-			<td><%= i+1 %></td>
+			<td><%= a %></td>
 			<td>
 			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"
-			height="50" >
+			height="80" >
 			</td>
 	<td><%= List.get(i).getbRentalno() %></td>
 	<td><%= List.get(i).getbId() %></td>
@@ -126,6 +166,40 @@
 	</table>
 	
 	</div>
+	
+	<!-- 페이지 넘버 부분 -->
+		<br>
+		<div id="pageForm" >
+			
+				<% if(pageNumber>10){
+			int tenNum2 = pageNumber / 10;
+			if(pageNumber % 10 == 0 && pageNumber > 9)tenNum2 -= 1;
+			%>
+				<a href="rentalinglist?xpage=<%=(tenNum2*10)-9%>">[이전]</a>
+				<% } %>
+			
+			<%
+			//System.out.println(pageNumber);
+			//System.out.println(viewData.getPageTotalCount());
+			for (int i = 1; i <= viewData.getPageTotalCount(); i++) {
+				
+				int tenNum = pageNumber / 10;
+				if(pageNumber % 10 == 0 && pageNumber > 9)tenNum -= 1;
+				if(viewData.getPageTotalCount()==i+(tenNum*10-1))break;
+				
+				if(11>i){%>
+				<a href="rentalinglist?xpage=<%=i+(tenNum*10)%>">[<%=i+(tenNum*10)%>]</a>
+				<%
+				}else{
+				%>
+				<a href="rentalinglist?xpage=<%=i+(tenNum*10)%>">[다음]</a>
+				<% break;
+				}
+			}
+			%>
+		</div>
+		<p><br></p>
+	
 	<footer>
 		<div class="fixed">
 	<%@include file="../bottom.jsp"%>

@@ -5,6 +5,8 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.a.b.dao.*" %>
+<%@ page import="com.a.b.dto.*"%>
+<%@ page import="com.a.b.service.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,13 +23,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>도서 목록</title>
 <link rel="stylesheet" href="resources/css/main_css.css">
+	
+	
+	<% 
+	
+	String pageNumberStr = request.getParameter("xpage");
+	EbookListService service = new EbookListService();
+	
+	int pageNumber = 1;
+	if (pageNumberStr != null) {
+		pageNumber = Integer.parseInt(pageNumberStr);
+	}
+	MessageListViewEbookList viewData = service.getMessageListView(pageNumber);
+	
+	List<Ebook> subList = viewData.getMessageList();
+	
+	%>
+	
+	
+	
 </head>
 
 <body>
+<style type="text/css">
+#board, #pageForm, #searchForm {
+	text-align: center;
+}
+</style>
 
 <%@include file="../home.jsp"%>
 
 <%
+	
 	String vo = (String)session.getAttribute("id");
 	if (vo==null){
 		vo = "GUEST";
@@ -35,7 +62,7 @@
 %>
 	<div>
 	<br/>
-	<p>현재 접속자 ID = <%= vo %> </p>
+	
 		<form action="booksearch" method="post" align="center">
 		<select name="searchType">
 			<option value="all">전체</option>
@@ -44,16 +71,17 @@
 			<option value="Writer">저자</option>
 			<option value="Category">카테고리</option>
 		</select>
-		<input type="text" name="search" size="55%">
-		<input type="submit" value="검색">
-	</form>
-	<table border="1" width="45%" align="center">
+			<input type="text" name="search" size="55%">
+			<input type="submit" value="검색">
+		</form>
+	<table border="1" width="45%" align="center" class="table">
 	<tr>
 	<th colspan="7">모든 도서 목록</th>
 	</tr>
-	<tr>
 	
-	</tr>
+	<p/>
+	
+	
 		<tr>
 			<th>책이미지</th>
 			<th>책제목</th>
@@ -70,12 +98,12 @@
 				
 			</tr>
 			</c:forEach> --%>
-			<c:forEach items="${list}" var="dto">
+			<c:forEach items="<%=subList%>" var="dto">
 			<tr>
 				<td>
 				<img src="<spring:url 
 				value ='http://121.153.134.167/ebook/${dto.bUrl}'/>" 
-				height="50">
+				height="100">
 				</td>
 				<td><a href ="ebookcontentview?bId=${dto.bBookname}">${dto.bBookname}</a></td>
 				<td>${dto.bContent}</td>
@@ -87,6 +115,42 @@
 			</c:forEach>
 	</table>
 	</div>
+	<!-- 페이지 넘버 부분 -->
+		<br>
+		<div id="pageForm" >
+			
+				<% if(pageNumber>10){
+			int tenNum2 = pageNumber / 10;
+			if(pageNumber % 10 == 0 && pageNumber > 9)tenNum2 -= 1;
+			%>
+				<a href="list?xpage=<%=(tenNum2*10)-9%>">[이전]</a>
+				<% } %>
+			
+			<%
+			//System.out.println(pageNumber);
+			//System.out.println(viewData.getPageTotalCount());
+			for (int i = 1; i <= viewData.getPageTotalCount(); i++) {
+				
+				int tenNum = pageNumber / 10;
+				if(pageNumber % 10 == 0 && pageNumber > 9)tenNum -= 1;
+				if(viewData.getPageTotalCount()==i+(tenNum*10-1))break;
+				
+				if(11>i){%>
+				<a href="list?xpage=<%=i+(tenNum*10)%>">[<%=i+(tenNum*10)%>]</a>
+				<%
+				}else{
+				%>
+				<a href="list?xpage=<%=i+(tenNum*10)%>">[다음]</a>
+				<% break;
+				}
+			}
+			%>
+		</div>
+		<br>
+	
+	<p/>
+	
+	
 	<footer>
 		<div class="fixed">
 	<%@include file="../bottom.jsp"%>

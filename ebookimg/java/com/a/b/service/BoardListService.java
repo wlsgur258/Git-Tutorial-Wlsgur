@@ -14,7 +14,7 @@ import com.a.b.dto.Board;
 public class BoardListService implements IBoarderService{
 
 	private SqlSession sqlSession = Constant.sqlSession;
-	private static final int MESSAGE_COUNT_PER_PAGE = 3;
+	private static final int MESSAGE_COUNT_PER_PAGE = 5;
 	public BoardListService() {}
 	
 	@Override

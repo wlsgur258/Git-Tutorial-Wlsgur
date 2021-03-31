@@ -7,17 +7,18 @@
 
 	<insert id="bcommentWrite">
 	INSERT INTO BCOMMENT(
-	BCID, BID, BCONTENT, BDATE, BSTEP
+	BCID, BBID, BID, BCONTENT, BDATE, 
+	BGROUP, BSTEP
 	) VALUES(
-	BCOMMENT_SEQ.NEXTVAL, #{param1,jdbcType=VARCHAR}, #{param2,jdbcType=VARCHAR}, 
-	sysdate,  0
+	BCOMMENT_SEQ.NEXTVAL, 0, #{param1,jdbcType=VARCHAR}, #{param2,jdbcType=VARCHAR}, 
+	sysdate, BCOMMENT_SEQ.CURRVAL, 0
 	)
 	</insert>
 
 	<select id="bcommentList" resultType="com.a.b.dto.BComment">
-		SELECT BCID, BID, BCONTENT, BDATE, BSTEP
+		SELECT BCID, BBID, BID, BCONTENT, BDATE, BGROUP, BSTEP
 		FROM BCOMMENT
-		ORDER BY BSTEP ASC
+		ORDER BY BGROUP DESC, BSTEP ASC
 	</select>
 	
 	<select id="bcommentContent_view" resultType="com.a.b.dto.BComment" parameterType="long">

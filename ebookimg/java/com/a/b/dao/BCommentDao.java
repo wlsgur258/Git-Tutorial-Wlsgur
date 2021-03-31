@@ -15,6 +15,7 @@ public interface BCommentDao {
 	
 	public void bcommentModify(
 			final long bCid,
+			final long bBid,
 			final String bId,
 			final String bContent
 			);

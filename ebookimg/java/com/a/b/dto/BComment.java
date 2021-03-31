@@ -5,19 +5,24 @@ import java.sql.Timestamp;
 public class BComment {
 	
 	private long bCid;
+	private long bBid;
 	private String bId;
 	private String bContent;
 	private Timestamp bDate;
+	private long bGroup;
 	private long bStep;
 	
 	public BComment() {}
 
-	public BComment(long bCid, String bId, 
-			String bContent, Timestamp bDate, long bStep) {
+	public BComment(long bCid, long bBid, String bId, 
+			String bContent, Timestamp bDate, 
+			long bGroup, long bStep) {
 		this.bCid = bCid;
+		this.bBid = bBid;
 		this.bId = bId;
 		this.bContent = bContent;
 		this.bDate = bDate;
+		this.bGroup = bGroup;
 		this.bStep = bStep;
 	}
 
@@ -27,6 +32,14 @@ public class BComment {
 
 	public void setbCid(long bCid) {
 		this.bCid = bCid;
+	}
+	
+	public long getbBid() {
+		return bBid;
+	}
+
+	public void setbBid(long bBid) {
+		this.bBid = bBid;
 	}
 
 	public String getbId() {
@@ -51,6 +64,14 @@ public class BComment {
 
 	public void setbDate(Timestamp bDate) {
 		this.bDate = bDate;
+	}
+
+	public long getbGroup() {
+		return bGroup;
+	}
+
+	public void setbGroup(long bGroup) {
+		this.bGroup = bGroup;
 	}
 
 	public long getbStep() {

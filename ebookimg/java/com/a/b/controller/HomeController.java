@@ -36,6 +36,7 @@ import com.a.b.service.IBoarderService;
 import com.a.b.service.MDeleteService;
 import com.a.b.service.MModifyService;
 import com.a.b.service.RentalListService;
+import com.a.b.service.RentalingListService;
 import com.a.b.service.textService;
 import com.a.b.service.AdminBListService;
 import com.a.b.service.AdminContentService;
@@ -56,9 +57,9 @@ import com.a.b.dao.BDao;
 import com.a.b.dao.BoardDao;
 import com.a.b.dao.EDao;
 import com.a.b.dao.MDao;
+import com.a.b.dto.Board;
 import com.a.b.dto.Ebook;
 import com.a.b.dto.Member;
-import com.a.b.dto.RentalingList;
 
 
 /**
@@ -113,8 +114,8 @@ public class HomeController {
 	}
 	
 	
-	
-	@RequestMapping("/bcommentWrite")
+	 
+	@RequestMapping(value = "/bcommentWrite",method=RequestMethod.POST)
 	public String bcommentWrite(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		service = new BCommentWriteService();
@@ -412,7 +413,7 @@ public class HomeController {
 		long brecash = member.getbCash() + bcash;
 		dao.cashupdown(bid, brecash);
 		session.removeAttribute("joinVo");
-		Member remember = dao.memberView(bid);
+		Member remember = dao.memberView(bookSearch(null, null, null));
 		session.setAttribute("joinVo", remember);
 
 		int newCash = (int) remember.getbCash();
@@ -422,7 +423,34 @@ public class HomeController {
 
 		return "redirect:cashup";
 	}
-	@RequestMapping(value="/booksearch", method=RequestMethod.POST)
+	
+	
+	@RequestMapping(value="/boardsearch", method=RequestMethod.POST)
+	public String boardSearch(HttpServletRequest request, Model model,HttpSession session) {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		String searchRe = request.getParameter("opt");
+		String search = request.getParameter("search");
+		if(searchRe.equals("Title")) {
+			ArrayList<Board> board = dao.titlesearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("Content")) {
+			ArrayList<Board> board = dao.contentsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("Id")) {
+			ArrayList<Board> board = dao.idsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}else if(searchRe.equals("all")) {
+			ArrayList<Board> board = dao.allsearch(search);
+			session.setAttribute("sear_result", board);
+			model.addAttribute("session", session);
+		}
+		return "boardsearch";
+	}
+	
+	@RequestMapping(value="/", method=RequestMethod.POST)
 	public String bookSearch(HttpServletRequest request, Model model,HttpSession session) {
 		EDao dao = sqlSession.getMapper(EDao.class);
 		String searchRe = request.getParameter("searchType");
@@ -806,20 +834,19 @@ public class HomeController {
 		@RequestMapping("/rentalinglist")
 		public String rentallinglist(Model model, HttpSession session) {
 			
-			String ok = (String)session.getAttribute("id");
-			if(ok==null) {
-				return "./rental/rentalinglist";
-			}
-			System.out.println(ok);
-			EDao dao = sqlSession.getMapper(EDao.class);
-			dao.ebookRentalOverListDelete(ok); // 렌탈링리스트접근시 기간지난거 삭제하고
+//			String ok = (String)session.getAttribute("id");
+//			if(ok==null) {
+//				return "./rental/rentalinglist";
+//			}
+//			System.out.println(ok);
+//			EDao dao = sqlSession.getMapper(EDao.class);
+//			dao.ebookRentalOverListDelete(ok); // 렌탈링리스트접근시 기간지난거 삭제하고
+//			
+//			ArrayList<RentalingList> dtos = dao.ebookRentalingList(ok);
+//			model.addAttribute("rentalinglist", dtos); // 기간지난거없어진걸 가져온다
 			
-			
-			ArrayList<RentalingList> dtos = dao.ebookRentalingList(ok);
-			
-			
-			model.addAttribute("rentalinglist", dtos); // 기간지난거없어진걸 가져온다
-			
+			service = new RentalingListService();
+			service.execute(model);
 			
 			return "./rental/rentalinglist";
 		}

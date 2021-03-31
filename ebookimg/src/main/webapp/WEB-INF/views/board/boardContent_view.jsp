@@ -31,8 +31,6 @@
 }
 </style>
 	<br>
-	<b><font size="6" color="gray">글쓰기</font></b>
-	<br>
 
 	<table width="700" border="3" bordercolor="lightgray" align="center">
 		<form action="boardModify" method="post" enctype="multipart/form-data">
@@ -43,27 +41,22 @@
 				if (vo != null) {
 			%>
 			<tr>
-				<th>작성자</th>
 				<td>${boardContent_view.bId}</td>
 
-				<th>작성일</th>
 				<td>${boardContent_view.bDate}</td>
 			</tr>
 
 			<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId}">
-				<th>제목</th>
 				<td><input type="text" name="bTitle"
 					value="${boardContent_view.bTitle}"></td>
 
-				<th>조회수</th>
 				<td>${boardContent_view.bHit}</td>
 			</c:if>	
 			</tr>
 			
 			<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId}">
-				<th>내용</th>
 				<td><textarea rows="10" name="bContent">${boardContent_view.bContent}</textarea></td>
 			</c:if>
 			</tr>
@@ -71,7 +64,6 @@
 			<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId && boardContent_view.bBurl != null}">
 				
-				<th>이미지</th>
 				<td>
 					<img src="<spring:url 
 					value ='http://121.153.134.167/ebook/${boardContent_view.bBurl}'  />" 
@@ -84,7 +76,6 @@
 			<tr>
 			<c:if test="${sessionScope.id == boardContent_view.bId && boardContent_view.bBurl == null}">
 				
-				<th>이미지</th>
 				<td>
 					<input name="file" type="file" size="50"> 
 				</td>
@@ -93,24 +84,20 @@
 			
 			<tr>
 			<c:if test="${sessionScope.id != boardContent_view.bId}">
-				<th>제목</th>
 				<td>${boardContent_view.bTitle}</td>
 
-				<th>조회수</th>
 				<td>${boardContent_view.bHit}</td>
 			</c:if>	
 			</tr>
 			
 			<tr>
 			<c:if test="${sessionScope.id != boardContent_view.bId}">
-				<th>내용</th>
-				<td>${boardContent_view.bContent}</td>
+				<td rowspan="40">${boardContent_view.bContent}</td>
 			</c:if>	
 			</tr>
 			<tr>
 			<c:if test="${sessionScope.id != boardContent_view.bId && boardContent_view.bBurl != null}">
 					
-				<th>이미지</th>
 					<td>
 						<img src="<spring:url 
 						value ='http://121.153.134.167/ebook/${boardContent_view.bBurl}'  />" 
@@ -121,7 +108,6 @@
 				
 			<c:if test="${sessionScope.id != boardContent_view.bId && boardContent_view.bBurl == null}">
 					
-				<th>이미지</th>
 					<td>
 					</td>
 			</c:if>	
@@ -131,28 +117,22 @@
 				} else {
 			%>
 			<tr>
-				<th>작성자</th>
 				<td>${boardContent_view.bId}</td>
 
-				<th>작성일</th>
 				<td>${boardContent_view.bDate}</td>
 			</tr>
 		<tr>
-			<th>제목</th>
 			<td>${boardContent_view.bTitle}</td>
 
-			<th>조회수</th>
 			<td>${boardContent_view.bHit}</td>
 		</tr>
 
 		<tr>
-			<th>내용</th>
 			<td>${boardContent_view.bContent}</td>
 		</tr>
 		
 			<tr>		
 			<c:if test="${boardContent_view.bBurl != null}">
-				<th>이미지</th>
 					<td>
 						<img src="<spring:url 
 						value ='http://121.153.134.167/ebook/${boardContent_view.bBurl}'  />" 
@@ -163,7 +143,6 @@
 			
 			<tr>
 			<c:if test="${boardContent_view.bBurl == null}">
-				<th>이미지</th>
 					<td>
 					</td>
 			</c:if>		
@@ -193,11 +172,7 @@
 	
 		</form>
 	</table>
-	
-	<br>
-	<b><font size="6" color="gray">댓글</font></b>
-	<br>
-	
+
 	<%
 	String pageNumberStr = request.getParameter("xpage");
 	BCommentListService service = new BCommentListService(); 
@@ -223,25 +198,39 @@ List<BComment> subList = viewData.getMessageList1();
 </style>
 	<div id="wrap">
 		
+		<!-- 댓글 -->
 		<div id="comment">
 
 			<table border="3" bordercolor="lightgray">
-	
 				<c:forEach items="<%=subList%>" var="dto">
-					
-						<td width="150">
+				<input type="hidden" name="bBid" value="${boardContent_view.bBid}">
+						
+						<th width="150">
 							<div>
 								${dto.bId}<br>
 								<font size="2" color="lightgray">${dto.bDate}</font>								
 							</div>
-						</td>
+						</th>
 					
 						<td width="550">
 							<div class="text_wrapper">
-							${dto.bContent}
+								${dto.bContent}
 							</div>
 						</td>
-					
+						
+						<td width="100">
+					<c:if test="${sessionScope.id == bcommentContent_view.bId}">
+						<div id = "btn" style="text-align:center;">
+							
+								<a href="bcommentDelete?bBid=${bcommentContent_view.bBid}">삭제</a>
+							 &nbsp;&nbsp;	
+							
+								<a href="bcommentModify?bBid=${bcommentContent_view.bBid}">수정</a>
+							 &nbsp;&nbsp;
+						</div>
+					</c:if>	
+						</td>
+						
 				</c:forEach>
 
 			</table>
@@ -252,50 +241,51 @@ List<BComment> subList = viewData.getMessageList1();
 	<br>
 	<br>
 	
-	<!-- 댓글 -->
+	<!-- 댓글작성 -->
 	<table border="3" bordercolor="lightgray" align="center">
 		<form action="bcommentWrite" method="post">
 			<%
 				if (vo != null) {
 			%>
-			<input type="hidden" name="bBid" value="${boardWrite_view.bBid}">
-			<input type="hidden" name="bId" value=<%= vo %>>
-			
-				<th width="150">
-					<div>
-						<%=vo %>
-					</div>				
-				</th>
-		
-				<th width="550">
-					<div>
-						<textarea 
-							rows="4" cols="70" name="bContent">
-						</textarea>				
-					</div>
-				</th>
-	
-				<td witdh="100">
-					<div id = "btn" style="text-align:center;">
-						<input class="btn btn-success" type="reset" value="작성취소">
-						<input class="btn btn-primary" type="submit" value="등록"> 
-					</div>
-				</td>
-		
+			<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://disquskbc1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })(); 
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 			<%
 			}else{
 			%>
+		<th width="150">
+					<div>
+					</div>				
+				</th>
+		
+		<<th width="550">
+					<div>
+						로그인 후 작성하실 수 있습니다.
+					</div>
+				</th>
 
-		<tr>
-			<td>로그인 후 작성하실 수 있습니다.</td>
-		</tr>
-		<tr>
-			<td>
+			<th width="100">
  				<button type="button" class="btn btn-success">
 					<a href="login">로그인</a>
 				</button>
-			</td>
-		</tr>
+			</th>
+	
 		
 			<% 
 			}

@@ -1,3 +1,4 @@
+
 package com.a.b.dto;
 
 public class Bestbook {
@@ -8,6 +9,7 @@ public class Bestbook {
 	private String bCategory;
 	private long coun;
 	private String bUrl;
+	
 	public String getbUrl() {
 		return bUrl;
 	}
@@ -56,5 +58,6 @@ public class Bestbook {
 				+ ", bPublisher=" + bPublisher + ", bCategory=" + bCategory + ", coun=" + coun + ", bUrl=" + bUrl + "]";
 	}
 
-
+	
+	
 }
