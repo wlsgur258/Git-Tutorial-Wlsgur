@@ -41,6 +41,7 @@
 #board, #pageForm, #searchForm {
 	text-align: center;
 }
+<table style="text-align: center;">
 </style>
 
 
@@ -119,10 +120,10 @@
 	
 	<p><br><h1 align = "center">회원님이 현재 대여중인 책 목록</h1><br></p>
 	
-	<table border="1" align = "center" class="table">
+	<table border="1" align="center" class="table table-dark table-striped table-hover">
 	<tr>
 	</tr>
-		<tr>
+		<tr align="center">
 			<th>번호</th>
 			<th>이미지</th>
 			<th>대출기록번호</th>
@@ -140,7 +141,7 @@
 	{
 	a++;
 	%>
-			<tr>
+			<tr align="center">
 			<td><%= a %></td>
 			<td>
 			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"

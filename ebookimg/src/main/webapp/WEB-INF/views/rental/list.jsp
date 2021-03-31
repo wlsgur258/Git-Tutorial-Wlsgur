@@ -71,10 +71,11 @@
 			<option value="Writer">저자</option>
 			<option value="Category">카테고리</option>
 		</select>
-			<input type="text" name="search" size="55%">
-			<input type="submit" value="검색">
-		</form>
-	<table border="1" width="45%" align="center" class="table">
+
+		<input type="text" name="search" size="55%">
+		<input type="submit" value="검색">
+	</form>
+	<table border="1" width="45%" align="center" class="table table-dark table-striped table-hover">
 	<tr>
 	<th colspan="7">모든 도서 목록</th>
 	</tr>
@@ -82,7 +83,7 @@
 	<p/>
 	
 	
-		<tr>
+		<tr align="center">
 			<th>책이미지</th>
 			<th>책제목</th>
 			<th>책내용</th>
@@ -99,7 +100,7 @@
 			</tr>
 			</c:forEach> --%>
 			<c:forEach items="<%=subList%>" var="dto">
-			<tr>
+			<tr align="center">
 				<td>
 				<img src="<spring:url 
 				value ='http://121.153.134.167/ebook/${dto.bUrl}'/>" 

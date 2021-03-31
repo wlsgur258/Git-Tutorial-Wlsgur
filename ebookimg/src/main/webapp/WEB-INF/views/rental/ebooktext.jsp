@@ -25,7 +25,7 @@
 
 
 <meta charset="UTF-8">
-<title>이북텍스트</title>
+<title>EBook text page</title>
 </head>
 <body>
 		
@@ -35,16 +35,18 @@
 <p>책 이름 :${ebook_text.bBookname}</p>
 <p>책 오라클db상의 리얼콘텐츠 이름 : ${ebook_text.bRealContent}</p> --%>
 <%@include file="../home.jsp"%>
-
-${ebook_text.bBookname}
+<br>
+	<h1><i>${ebook_text.bBookname}</i></h1>
+	<br>
 <form>
-<textarea rows = "30" cols = "120" readonly >
+<textarea rows = "30" cols = "120" readonly style = "background-color: #FFFFF0;">
 
 <%= request.getAttribute("txt1") %>
 
 </textarea>
 </form>
 
+<br><br>
 <%-- <p>책 내용 : <%= request.getAttribute("txt1") %></p> --%>
 		
 		</div>
