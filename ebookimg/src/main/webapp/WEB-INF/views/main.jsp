@@ -18,27 +18,27 @@
 <style>
 </style>
 </head>
-<body style="background-color:black;">
+<body>
 	<header>
 	<%@include file="home.jsp"%>
 	</header>
 		<div id="container">
 			<div class="left">
-				<h3 align="center"><font color="white">신규 도서</font></h3>
+				<h3 align="center">신규 도서</h3>
 				<table border="0" width="100%">
 				<c:forEach items="${newbook}" var="newbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${newbook.bBookname}">
 					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px" width="100%"></a></th>
 				<tr>
-					<th><font color="white">제목</font></th>
-					<th><font color="white">저자</font></th>
-					<th><font color="white">출판사</font></th>
-					<th><font color="white">장르</font></th>
+					<th>제목</th>
+					<th>저자</th>
+					<th>출판사</th>
+					<th>장르</th>
 				</tr>
 					<td><a href="ebookcontentview?bId=${newbook.bBookname}">${newbook.bBookname}</a></td>
-					<td><font color="white">${newbook.bWriter}</font></td>
-					<td><font color="white">${newbook.bPublisher}</font></td>
-					<td><font color="white">${newbook.bCategory}</font></td>
+					<td>${newbook.bWriter}</td>
+					<td>${newbook.bPublisher}</td>
+					<td>${newbook.bCategory}</td>
 				</c:forEach>
 				</table>
 			</div>
@@ -50,21 +50,21 @@
 			</div>
 			</div>
 			<div class="right">
-				<h3 align="center"><font color="white">추천 도서</font></h3>
+				<h3 align="center">추천 도서</h3>
 				<table border="0" width="100%">
 				<c:forEach items="${bestbook}" var="bestbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${bestbook.bBookname}">
 					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px" width="100%"></a></th>
 				<tr>
-					<th><font color="white">제목</font></th>
-					<th><font color="white">저자</font></th>
-					<th><font color="white">출판사</font></th>
-					<th><font color="white">장르</font></th>
+					<th>제목</th>
+					<th>저자</th>
+					<th>출판사</th>
+					<th>장르</th>
 				</tr>
 					<td><a href="ebookcontentview?bId=${bestbook.bBookname}">${bestbook.bBookname}</a></td>
-					<td><font color="white">${bestbook.bWriter}</font></td>
-					<td><font color="white">${bestbook.bPublisher}</font></td>
-					<td><font color="white">${bestbook.bCategory}</font></td>
+					<td>${bestbook.bWriter}</td>
+					<td>${bestbook.bPublisher}</td>
+					<td>${bestbook.bCategory}</td>
 				</c:forEach>
 				</table>
 			</div>
