@@ -92,7 +92,7 @@
 
 <p><br></p>
 
-	
+
 <table border="1" align = "center" style ="width:60%">
 	<tr>
 		<td>${ebook_view.bBookno}</td>
@@ -106,6 +106,7 @@
 				height="300"></td>
 			<td>${ebook_view.bContent}</td>
 		</tr>
+		<tr align="center">
 		<tr>
 		<td>저자 : ${ebook_view.bWriter}</td>
 		<td>출판사 : ${ebook_view.bPublisher}</td>
@@ -114,10 +115,7 @@
 		
 
 </table>
-	
-	
-	
-	
+
 <div align = "center">
 <p>접속자의 캐쉬보유 : <%= coin %></p>
 <p>이용자들의 도서 총 대출횟수 : ${ebook_view2} </p>
