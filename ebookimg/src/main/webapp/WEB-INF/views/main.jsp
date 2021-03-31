@@ -24,6 +24,7 @@
 	</header>
 		<div id="container">
 			<div class="left">
+				<br>
 				<h3 align="center">신규 도서</h3>
 				<table border="0" width="100%">
 				<c:forEach items="${newbook}" var="newbook">
