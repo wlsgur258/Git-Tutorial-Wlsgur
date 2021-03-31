@@ -28,7 +28,7 @@
 				<table border="0" width="100%">
 				<c:forEach items="${newbook}" var="newbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${newbook.bBookname}">
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px" width="100%"></a></th>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px"></a></th>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>
@@ -54,7 +54,7 @@
 				<table border="0" width="100%">
 				<c:forEach items="${bestbook}" var="bestbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${bestbook.bBookname}">
-					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px" width="100%"></a></th>
+					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px"></a></th>
 				<tr>
 					<th>제목</th>
 					<th>저자</th>
