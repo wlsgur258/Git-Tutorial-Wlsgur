@@ -76,7 +76,7 @@ text-align: center;
 		<table class = "table table-striped">
 			<tr>
 				<th>번호</th>
-				<!-- <th>사진</th>  -->
+			 	<th>사진</th>
 				<th>제목</th>
 				<th>소개</th>
 				<th>저자</th>
@@ -121,7 +121,7 @@ text-align: center;
 	 %>	
 
  
- <%@ include file="/WEB-INF/views/bottom.jsp"%>
+<%@ include file="foot.jsp"%>
 	</div>
 </div>
 </body>

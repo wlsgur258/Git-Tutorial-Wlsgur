@@ -8,6 +8,8 @@ public class Bestbook {
 	private String bCategory;
 	private long coun;
 	private String bUrl;
+	
+	
 	public String getbUrl() {
 		return bUrl;
 	}
