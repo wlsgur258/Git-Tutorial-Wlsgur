@@ -10,7 +10,7 @@
 	</select>
 	<select id="ebookList" resultType="com.a.b.dto.Ebook">
 		select *
-		from EBOOK order by BBOOKNO ASC
+		from EBOOK order by BBOOKNO desc
 	</select>
 	<select id="newebook" resultType="com.a.b.dto.Ebook">
 		select * FROM (select * from ebook order by bbookno desc) where rownum=1

@@ -251,13 +251,13 @@ public class HomeController {
 	}
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpServletRequest request, HttpSession session) {
-//		session.removeAttribute("no");
-//		session.removeAttribute("id");
-//		session.removeAttribute("pw");
-//		session.removeAttribute("loginOk");
-//		session.removeAttribute("joinVo");
-//		session.removeAttribute("cash");
-		session.invalidate();
+		session.removeAttribute("no");
+		session.removeAttribute("id");
+		session.removeAttribute("pw");
+		session.removeAttribute("loginOk");
+		session.removeAttribute("joinVo");
+		session.removeAttribute("cash");
+// 		session.invalidate();
 		System.out.println("로그아웃.세션초기화");
 		return "redirect:main";
 	}
@@ -330,7 +330,12 @@ public class HomeController {
 			return "redirect:memdata";
 		}else {
 			dao.memberModify(bPw, bName, bId);
-			session.invalidate();
+			session.removeAttribute("no");
+			session.removeAttribute("id");
+			session.removeAttribute("pw");
+			session.removeAttribute("loginOk");
+			session.removeAttribute("joinVo");
+			session.removeAttribute("cash");
 			return "redirect:login";
 		}
 	}
