@@ -39,6 +39,9 @@ public ArrayList<Ebook> list();
 	public ArrayList<Member> Memberlist();
 	
 	public List<Map<String, String>> retrieveStatisticsForBookPublisher();
+	public List<Map<String, String>> adminpagePublisher();
+	public List<Map<String, String>> adminpageCategory();
+	
 	
 }
 
