@@ -85,12 +85,12 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request", request);
 		model.addAttribute("locale", locale);
-		EDao dao = sqlSession.getMapper(EDao.class);
-		ArrayList<Ebook> ebook = dao.newebook();
-		session.setAttribute("newbook", ebook);
-		ArrayList<Ebook> bestbook = dao.bestbook();
-		session.setAttribute("bestbook", bestbook);
-		model.addAttribute("session",session);
+//		EDao dao = sqlSession.getMapper(EDao.class);
+//		ArrayList<Ebook> ebook = dao.newebook();
+//		session.setAttribute("newbook", ebook);
+//		ArrayList<Ebook> bestbook = dao.bestbook();
+//		session.setAttribute("bestbook", bestbook);
+//		model.addAttribute("session",session);
 		return "main";
 	}
 	@RequestMapping(value="/main", method=RequestMethod.GET)
@@ -507,20 +507,28 @@ public class HomeController {
 	
 	@RequestMapping("/cashup")
 	public String cashup(HttpServletRequest request, Model model, HttpSession session) {
+		System.out.println("3번");
 		return "cashup";
 	}
 	@RequestMapping("/cashupdo")
 	public String cashupdo(HttpServletRequest request, Model model, HttpSession session) {
+		System.out.println("1번");
 		MDao dao = sqlSession.getMapper(MDao.class);
 		String bid = request.getParameter("bId");
 		Member member = dao.memberView(bid);
+		
+		
+		if(request.getParameter("bCash") == "") {
+			return "redirect:cashup";
+		}
+		
 		long bcash = Long.parseLong(request.getParameter("bCash"));
 		long brecash = member.getbCash() + bcash;
 		dao.cashupdown(bid, brecash);
 		session.removeAttribute("joinVo");
-		Member remember = dao.memberView(bookSearch(null, null, null));
+		Member remember = dao.memberView(bid);
 		session.setAttribute("joinVo", remember);
-
+		
 		int newCash = (int) remember.getbCash();
 		session.removeAttribute("cash");
 		session.setAttribute("cash", newCash);
@@ -907,12 +915,13 @@ public class HomeController {
 				// 북리스트접근시 렌탈링리스트에 기간지난거 삭제하고
 			}
 			
-			System.out.println("list()");
+			System.out.println("렌탈링최신화이후");
 			service = new EbookListService();
 			service.execute(model);
+			System.out.println("여기돼나?");
 			service = new EbookListService2();
 			service.execute(model);
-			
+			System.out.println("여기돼나?222");
 			
 			return "./rental/list";
 		}

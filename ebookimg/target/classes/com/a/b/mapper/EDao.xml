@@ -16,7 +16,7 @@
 		select * FROM (select * from ebook order by bbookno desc) where rownum=1
 	</select>
 
-	<select id="bestbook" resultType="com.a.b.dto.Bestbook">
+	<!-- <select id="bestbook" resultType="com.a.b.dto.Bestbook">
 		select a.* from (
 		select e.bbookname,e.bcontent,
 
@@ -28,7 +28,7 @@
 		group by e.bbookname, e.bcontent, e.bwriter, e.bpublisher, e.bcategory, 
 		e.burl order by coun desc)
 		a where rownum=1
-	</select>
+	</select> -->
 	
 	<insert id="ebookInsert">
 		insert into EBOOK (bBookno, bBookname, bContent, 

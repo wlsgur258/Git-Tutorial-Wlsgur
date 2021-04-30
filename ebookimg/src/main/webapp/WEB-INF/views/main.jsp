@@ -26,7 +26,7 @@
 			<div class="left">
 				<br>
 				<h3 align="center">신규 도서</h3>
-				<table border="0" width="100%">
+			<%-- 	<table border="0" width="100%">
 				<c:forEach items="${newbook}" var="newbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${newbook.bBookname}">
 					<img src="<spring:url value ='http://121.153.134.167/ebook/${newbook.bUrl}'/>" height="200px"></a></th>
@@ -41,7 +41,7 @@
 					<td>${newbook.bPublisher}</td>
 					<td>${newbook.bCategory}</td>
 				</c:forEach>
-				</table>
+				</table> --%>
 			</div>
 			<div class="main">
 			<div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="2000">
@@ -53,7 +53,7 @@
 			<div class="right">
 				<br>
 				<h3 align="center">추천 도서</h3>
-				<table border="0" width="100%">
+				<%-- <table border="0" width="100%">
 				<c:forEach items="${bestbook}" var="bestbook">
 					<th colspan="4"><a href ="ebookcontentview?bId=${bestbook.bBookname}">
 					<img src="<spring:url value ='http://121.153.134.167/ebook/${bestbook.bUrl}'/>" height="200px"></a></th>
@@ -68,7 +68,7 @@
 					<td>${bestbook.bPublisher}</td>
 					<td>${bestbook.bCategory}</td>
 				</c:forEach>
-				</table>
+				</table> --%>
 			</div>
 		</div>
 		<footer>

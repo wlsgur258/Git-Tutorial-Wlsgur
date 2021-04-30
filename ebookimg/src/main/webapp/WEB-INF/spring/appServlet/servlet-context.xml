@@ -35,9 +35,9 @@
 	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<beans:property name="url" value="jdbc:oracle:thin:@192.168.0.230:1521:xe" />
-		<beans:property name="username" value="ebook" />
-		<beans:property name="password" value="ebook" />
+		<beans:property name="url" value="jdbc:oracle:thin:@192.168.123.101:1521:xe" />
+		<beans:property name="username" value="EBOOK" />
+		<beans:property name="password" value="EBOOK" />
 	</beans:bean>
 	
 		<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

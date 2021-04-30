@@ -33,7 +33,7 @@
 	<input type="hidden" name="bId" value="${joinVo.bId}">
 <table align="center">
 	<tr><th>금액</th><td>
-		<input type="text" name="bCash" size="20">
+		<input type="number" name="bCash" size="20">
 	</td></tr>
 	<tr><td colspan="2" align="center">
 		<input type="submit" class="btn btn-primary" value="충전">
