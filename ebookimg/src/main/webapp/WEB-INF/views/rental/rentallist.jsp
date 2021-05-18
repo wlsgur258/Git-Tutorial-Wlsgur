@@ -10,6 +10,13 @@
 <%@ page import="com.a.b.service.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.a.b.dto.RentalList" %>
+<%@ page import="com.a.b.dto.urlVO" %>
+
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@ page import="org.springframework.web.context.WebApplicationContext"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +46,13 @@
 <%@include file="../home.jsp"%>
 	
 <% 
+
+WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(application);
+urlVO adress = wac.getBean("url", urlVO.class);
+
+request.setAttribute("ad1", adress);
+
+
 
 	String pageNumberStr = request.getParameter("xpage");
 	RentalListService service = new RentalListService();
@@ -106,7 +120,7 @@
 			<tr align="center">
 			<td><%= a %></td>
 			<td>
-			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"
+			<img src="${ ad1.urlname }/ebook/<%= List.get(i).getbUrl() %>"
 			height="80" >
 			</td>
 	<td><%= List.get(i).getbRentalno() %></td>

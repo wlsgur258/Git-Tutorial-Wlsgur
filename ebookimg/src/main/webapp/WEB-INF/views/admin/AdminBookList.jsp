@@ -8,6 +8,17 @@
 <%@ page import="com.a.b.service.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
+
+<%@ page import="com.a.b.dto.urlVO" %>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@ page import="org.springframework.web.context.WebApplicationContext"%>
+
+
+
+
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,6 +62,13 @@ text-align: center;
 	
 	<%
 	
+	
+		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(application);
+		urlVO adress = wac.getBean("url", urlVO.class);
+
+		request.setAttribute("ad1", adress);
+
+	
 		String pageNumberStr = request.getParameter("xpage");
 		AdminBListService service = new AdminBListService();
 		//BDao dao = sqlSession.getMapper(BDao.class);
@@ -91,7 +109,7 @@ text-align: center;
 			<tr>	
 				<th><c:out value="${BookList.bBookno}"/></th>
 				<th>
-				<img src="<spring:url value ='http://121.153.134.167/ebook/${BookList.bUrl}'  />" height="50" >		
+				<img src="<spring:url value ='${ ad1.urlname }/ebook/${BookList.bUrl}'  />" height="50" >		
 				</th>
 				<th><c:out value="${BookList.bBookname}"/></th>
 				<td><c:out value="${BookList.bContent}"/></td>

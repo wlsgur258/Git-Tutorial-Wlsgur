@@ -10,6 +10,14 @@
 		 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
           <property name="maxUploadSize" value="10485760"></property> 
     	</bean>
+    	
+    	<bean id="url" class="com.a.b.dto.urlVO">					
+			<property name="urlname" value="http://localhost:8008"/>
+			<property name="pathname" value="C:/Users/wlsgu/useEbook"/>
+			<property name="tel" value="010-1111-1111"/>	
+		</bean>
+
+    	
 		
 		
 		

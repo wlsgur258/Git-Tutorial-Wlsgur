@@ -7,7 +7,14 @@
 <%@ page import="com.a.b.dao.*" %>
 <%@ page import="com.a.b.dto.*"%>
 <%@ page import="com.a.b.service.*"%>
+<%@ page import="org.springframework.web.context.request.RequestScope"%>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@ page import="org.springframework.web.context.WebApplicationContext"%>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 
@@ -22,23 +29,29 @@
 	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>도서 목록</title>
+
 <link rel="stylesheet" href="resources/css/main_css.css">
 	
 	
-	<% 
-	
-	String pageNumberStr = request.getParameter("xpage");
-	EbookListService service = new EbookListService();
-	
-	int pageNumber = 1;
-	if (pageNumberStr != null) {
-		pageNumber = Integer.parseInt(pageNumberStr);
-	}
-	MessageListViewEbookList viewData = service.getMessageListView(pageNumber);
-	
-	List<Ebook> subList = viewData.getMessageList();
-	
-	%>
+	<%
+				WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(application);
+				urlVO adress = wac.getBean("url", urlVO.class);
+				
+				request.setAttribute("ad1", adress);
+
+
+
+				String pageNumberStr = request.getParameter("xpage");
+				EbookListService service = new EbookListService();
+				
+				int pageNumber = 1;
+				if (pageNumberStr != null) {
+					pageNumber = Integer.parseInt(pageNumberStr);
+				}
+				MessageListViewEbookList viewData = service.getMessageListView(pageNumber);
+				
+				List<Ebook> subList = viewData.getMessageList();
+			%>
 	
 	
 	
@@ -84,7 +97,9 @@
 	
 	
 		<tr align="center">
-			<th>책이미지</th>
+			<th>책이미지 / ${ ad1.urlname } / ${ adress.urlname }
+			/${ adress.geturlname() } /${ adress.geturlname }
+			/ ${ adress.name }</th>
 			<th>책제목</th>
 			<th>책내용</th>
 			<th>책가격</th>
@@ -92,18 +107,16 @@
 			<th>출판사</th>
 			<th>장르</th> 
 		</tr>
-			<%-- <c:forEach items="${list234}" var="dto123">
-			<tr>
-				<td>${dto123.bId}</td>
-				<td>${dto123.bName}</td>
-				
-			</tr>
-			</c:forEach> --%>
+			
 			<c:forEach items="<%=subList%>" var="dto">
 			<tr align="center">
 				<td>
+				<%-- 
 				<img src="<spring:url 
-				value ='http://121.153.134.167/ebook/${dto.bUrl}'/>" 
+				value ='http://121.153.134.167/ebook/${dto.bUrl}'/>"  
+				--%>
+				<img src=
+				"${ ad1.urlname }/ebook/${dto.bUrl}"
 				height="100">
 				</td>
 				<td><a href ="ebookcontentview?bId=${dto.bBookname}">${dto.bBookname}</a></td>

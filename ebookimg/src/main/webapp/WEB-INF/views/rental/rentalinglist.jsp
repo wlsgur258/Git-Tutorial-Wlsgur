@@ -7,12 +7,16 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.a.b.dao.EDao" %>
 <%@ page import="com.a.b.dao.MDao" %>
+<%@ page import="com.a.b.dto.urlVO" %>
 <%@ page import="com.a.b.dto.RentalingList" %>
 <%@ page import="com.a.b.service.*"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import= "java.sql.Timestamp" %>
 <%@ page import= "java.text.DateFormat" %>
 <%@ page import= "java.sql.Date" %>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@ page import="org.springframework.web.context.WebApplicationContext"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -76,6 +80,12 @@
 <div>
 
 <% 
+
+
+WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(application);
+urlVO adress = wac.getBean("url", urlVO.class);
+
+request.setAttribute("ad1", adress);
 
 	String pageNumberStr = request.getParameter("xpage");
 	RentalingListService service = new RentalingListService();
@@ -144,7 +154,7 @@
 			<tr align="center">
 			<td><%= a %></td>
 			<td>
-			<img src="http://121.153.134.167/ebook/<%= List.get(i).getbUrl() %>"
+			<img src="${ ad1.urlname }/ebook/<%= List.get(i).getbUrl() %>"
 			height="80" >
 			</td>
 	<td><%= List.get(i).getbRentalno() %></td>

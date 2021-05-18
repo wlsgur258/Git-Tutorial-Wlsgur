@@ -9,7 +9,7 @@
 	<%
 	Member vo = (Member)session.getAttribute("joinVo");
 	if(vo==null){
-		%>
+	%>
 		<script>
 		alert('로그인 후 가능합니다.');
 		document.location.href="main";

@@ -22,6 +22,7 @@ import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,6 +65,7 @@ import com.a.b.dao.MDao;
 import com.a.b.dto.Board;
 import com.a.b.dto.Ebook;
 import com.a.b.dto.Member;
+import com.a.b.dto.urlVO;
 
 
 /**
@@ -72,6 +76,10 @@ public class HomeController {
 	
 	
 	@Autowired
+	ApplicationContext context;
+
+
+	@Autowired
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 		Constant.sqlSession = this.sqlSession;
@@ -80,6 +88,8 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	IBoarderService service;
 	SqlSession sqlSession;
+	
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
@@ -91,10 +101,17 @@ public class HomeController {
 //		ArrayList<Ebook> bestbook = dao.bestbook();
 //		session.setAttribute("bestbook", bestbook);
 //		model.addAttribute("session",session);
+
+		
 		return "main";
 	}
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String main(Locale locale, Model model, HttpServletRequest request) {
+		urlVO info1 = (urlVO)context.getBean(urlVO.class);
+		
+		System.out.println(info1.geturlname());
+		System.out.println(info1.getPathname());
+		System.out.println("main 페이지 가동");
 		return "main";
 	}
 	
@@ -767,7 +784,8 @@ public class HomeController {
 			
 			//String Realpath = multi.getSession().getServletContext().getRealPath("/resources/ebook/");
 			
-			String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+			//String Realpath = "C:/Users/pc346/Desktop/useEbook/";
+			String Realpath = "C:/Users/wlsgu/useEbook/";
 					
 			//http://121.153.134.167/ebook/ebook9.png
 			
@@ -1063,10 +1081,12 @@ public class HomeController {
 			Ebook dto = dao.ebookView(bname);
 			
 			System.out.println("텍스트두:"+bno);
+			urlVO info1 = (urlVO)context.getBean(urlVO.class);
+			String pathname = info1.getPathname();
 			
 			model.addAttribute("ebook_text", dto);
 			
-			service = new textService(bno);
+			service = new textService(bno, pathname);
 			service.execute(model);
 			
 			System.out.println("textdo 컨트롤러중asd");

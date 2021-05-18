@@ -60,6 +60,12 @@
 
      </beans:bean> 
 	
+	<!-- <beans:bean id="p2" class="vo.PersonVO">					
+			<beans:property name="name" value="일길동"/>
+			<beans:property name="age" value="20"/>
+			<beans:property name="tel" value="010-1111-1111"/>			
+		</beans:bean> -->
+
 	
 
 

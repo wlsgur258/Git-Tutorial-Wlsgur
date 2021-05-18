@@ -8,6 +8,9 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.a.b.dao.EDao" %>
 <%@ page import="com.a.b.dao.MDao" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext"%>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -34,6 +37,11 @@
 
 
 <% 
+	WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(application);
+	urlVO adress = wac.getBean("url", urlVO.class);
+	request.setAttribute("ad1", adress);
+
+
 	String boo2;
 	try
 	{long boo1 = (Integer)request.getAttribute("ebook_view3");
@@ -102,7 +110,7 @@
 		
 		<tr align = "center">
 			<td colspan="2" rowspan="1"><img src="<spring:url 
-				value ='http://121.153.134.167/ebook/${ebook_view.bUrl}'/>" 
+				value ='${ ad1.urlname }/ebook/${ebook_view.bUrl}'/>" 
 				height="300"></td>
 			<td>${ebook_view.bContent}</td>
 		</tr>
