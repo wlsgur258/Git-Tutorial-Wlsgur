@@ -34,6 +34,7 @@ public class RentalingListService implements IBoarderService {
 		}else {
 		System.out.println(ok);
 		EDao dao = sqlSession.getMapper(EDao.class);
+		
 		dao.ebookRentalOverListDelete(ok); // 렌탈링리스트접근시 기간지난거 삭제하고
 		
 		ArrayList<RentalingList> dtos = dao.ebookRentalingList(ok);

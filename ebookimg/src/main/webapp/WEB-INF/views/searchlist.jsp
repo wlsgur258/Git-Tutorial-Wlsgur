@@ -49,13 +49,24 @@
 		<th>대여료</th>
 	</tr>
 			<c:forEach items="${sear_result}" var="search">
-	<tr align="center">
-		<td><img src="<spring:url value ='http://121.153.134.167/ebook/${search.bUrl}'/>" height="100"></td>
-		<td align="center"><a href="ebookcontentview?bId=${search.bBookname}">${search.bBookname}</a></td>
+	<tr align="center"
+	onclick="location.href='ebookcontentview?bId=${search.bBookname}'" 
+			style="cursor:pointer"
+	>
+		<%-- <td><img src="<spring:url value ='/ebook/${search.bUrl}'/>" height="100"></td> --%>
+		<%-- <a href="ebookcontentview?bId=${search.bBookname}"></a> --%>
+		
+		<td><img src="/ebook/${search.bUrl}" height="100"></td>
+		<td align="center">${search.bBookname}</td>
+		
 		<td align="center">${search.bWriter}</td>
+		
 		<td align="center">${search.bCategory}</td>
 		<td align="center">${search.bPublisher}</td>
 		<td align="center">${search.bPrice}</td>
+		
+		
+		
 	</tr>
 	</c:forEach>
 	</table>
@@ -64,7 +75,7 @@
 		<div class="fixed">
 
 	<%@include file="./bottom.jsp"%>
-		</div>
 	</footer>
+		</div>
 </body>
 </html>

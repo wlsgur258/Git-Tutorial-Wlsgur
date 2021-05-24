@@ -69,7 +69,8 @@
 <%= List.get(0).getbRentaldate() %> 이거 도서대출한거 없으면 에러남
 <%= formatT.format(List.get(0).getbRentaldate()) %>
 <%= List.size() %>
-<%= List.get(0).getbId() %> --%>
+<%= List.get(0).getbId() %> 
+--%>
 
 <% if (id=="GUEST"){ %>
 	<script>
@@ -135,7 +136,7 @@ request.setAttribute("ad1", adress);
 	</tr>
 		<tr align="center">
 			<th>번호</th>
-			<th>이미지</th>
+			<th>이미지임</th>
 			<th>대출기록번호</th>
 			<th>아이디</th>
 			<th>책번호</th>
