@@ -24,7 +24,7 @@
 
 ​
 
-# Demo
+# Demo / 스크린샷
 
 
 ![b_01](https://user-images.githubusercontent.com/79967078/121019768-b21d6180-c7da-11eb-8b1a-bc99ac038afd.jpg)
